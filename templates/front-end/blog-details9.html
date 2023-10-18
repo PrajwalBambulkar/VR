@@ -1,0 +1,578 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Details</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        .left-side .popular-post .popular-image .popular-number {
+            border-radius: 7px;
+            width: 70px;
+        }
+
+        .left-side .popular-post .popular-image img {
+            width: 80px;
+            height: 70px;
+            /* -o-object-fit: cover; */
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blog Details</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Details Blog Section Start -->
+    <section class="masonary-blog-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-9 col-md-8 order-md-1 ratio_square">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="blog-details">
+                                <div class="blog-image-box">
+                                    <img src="{% static 'assets/images/VR-img/10.jpg' %}" alt="" class="card-img-top">
+                                    <div class="blog-title">
+                                        <div>
+                                            <div class="social-media media-center">
+                                                <a href="https://www.facebook.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://twitter.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://in.pinterest.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-pinterest-p"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>The Role of Partnership in Advancing Gender Equality within and through Education</h1>
+                                    <br>
+
+                                    <p class="font-light firt-latter">Gender equality has been a global issue for generations as women and girls often face discrimination in various aspects of life such as education, jobs and safety and many other fields. Equality is a very important virtue in all the form of human societies and it is necessary to move forward and working together for the advancement and development of the society. In order to address this issue of gender equality, we need a sustainable partnership of various government bodies, educational institutes, local civil society organisations and NGOs to raise awareness and impart the importance of gender equality in a society to the masses. Education is a very powerful weapon and has the power to transform the world for the good and hence it can be used to fight the evil of gender inequality. This article explores role of education and the various partnerships in promoting equal opportunities across all genders and ensuring equal benefits and access to all the genders.    </p>
+                                    <br>
+
+                                    <h2 class="card-title">1. Advocacy and Policy Development  :</h2>
+                                    <p class="font-light">Partnership includes bringing together the various stakeholders from all the diverse fields of life such as educators, gender equality advocates, and policymakers from the government to discuss the issue of gender equality, understand the problem by in-depth analysis of the issues. Using the reports and discussions, government bodies can form guidelines, frameworks and even laws to enforce the idea and concept of gender equality in the society. The concept of equality needs to be educated to children from a very young age, so that they grow up to be good and responsible citizens who are not guided by the vices of inequality. Policymakers, educators and gender equality activists can come together in partnerships to contribute to the development and implement strategic policies that prioritize gender equality by the means of education.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">2. Capacity Building and Teacher Training :</h2>
+                                    <p class="font-light">With a mission to eradicate inequality by the means of education and partnerships, schools and teachers play a pivotal role in imparting the message. Different organisations and NGOs need to come together in partnership to plan for courses and training programmes for teachers and school faculties to ensure a gender inequality free environment in schools and classrooms and also spreading and teaching the idea to the students. By equipping the teaching staff with the necessary knowledge and skills, good partnerships with many educational institutes in the same platform can do wonders for the cause of gender equality. To ensure this, we need teachers and educators that are supportive and give equal opportunities, regardless of genders. Such capacity-building efforts contribute to creating safe spaces that challenge gender stereotypes and foster an empowering learning environment.
+                                    </p><br>
+
+                                    <h2 class="card-title">3. Access to Quality Education :</h2>
+                                    <p class="font-light">To improve gender equality through education, we need a good educational infrastructure by building schools equipped with all modern facilities and labs to impart quality education to students. We need government collaborations between the various stakeholders to address the barriers of poverty, cultural norms, and distance as this are the main factors that prevent girls from being able to get enrolled in schools and increase their retention rate in schools. Just like governments across the country along with NGOs started the concept of mid-day meals in schools to make parents of poor households send their children to school, providing cost effective education with many incentives and scholarships can make orthodox parents of girl children to send them school. By enhancing access to quality education, partnerships contribute to breaking the cycle of poverty and empowering girls to realize their full potential.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">4. Empowering Girls and Women :</h2>
+                                    <p class="font-light">Different organisations can come together in various partnerships to foster initiatives that have the quality to empower girls and women through the use of education. All these schemes and initiatives are driven by the idea to promote leadership skills, and critical thinking among girls to make them challenge societal norms and go forward to pursue and aim for higher and bigger dreams and go for diverse educational and career pathways. We need to educate women and girls with the necessary skills to improve their competency and enable them to fight for their equal place in the world, ensuring gender quality can be made simpler. By providing mentorship programs, life skills training, and scholarships, partnerships support girls in overcoming socio-economic barriers and empower them to become change agents in their communities.
+                                    </p>
+
+                                    <h2 class="card-title">5. Data Collection and Monitoring :</h2>
+                                    <br>
+                                    <p class="font-light">
+                                        Data collection, monitoring, and evaluation are important factors to measuring and analysing the progress of the schemes and initiatives towards gender equality and women empowerment through education. To collect and monitor these data, partnerships between various organisations and data collection bodies and very essential. This data helps to identify the problems and gaps that can be improved by making the necessary changes to further enforce the idea of gender equality in masses. By the means of collaborative monitoring and analysis, partnerships help in fostering transparency in achieve gender equality.  
+
+
+                                    </p><br>
+                                    <p class="font-light">
+                                        Partnerships and very important and play a crucial role in fostering gender equality by the means of education. Ensuring access to quality education through incentives and scholarships, proper educational infrastructure, data backed policies and schemes, training teaching staff for building gender inequality free schools are some methods to promote the idea of gender equality in not only India but across the world. To help the growth of our country, we require people from different walks of life to join hands and work together to contribute in building a well-developed society and ensuring basic respect and equality along with opportunities for everyone.
+
+                                    </p><br>
+
+                                     </p><br>
+
+                                </div>
+                            </div>
+
+                            <div class="blog-profile box-center mb-lg-5 mb-4">
+                                <div class="image-profile">
+                                    <img src="{% static 'assets/images/inner-page/review-image/2.jpg' %}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="image-name text-weight">
+                                    <h3>Vishwaratna</h3>
+                                    <h6>22 September 2023</h6>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="minus-spacing mb-2">
+                                        <h3>Leave Comments</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
+                                        required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="example@example.com" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="textarea" class="form-label">Comments</label>
+                                    <textarea rows="3" class="form-control" id="textarea"
+                                        placeholder="Leave a comment here" required></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-solid-default btn-spacing mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="left-side">
+                        <!-- Search Bar Start -->
+                        <div class="search-section">
+                            <div class="input-group search-bar">
+                                <input type="search" class="form-control search-input" placeholder="Search">
+                                <button class="input-group-text search-button" id="basic-addon3">
+                                    <i class="fas fa-search text-color"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar End -->
+
+                        <!-- Popular Post Start -->
+                        <div class="popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Popular Blogs</h3>
+                            </div>
+
+                            <a href="/blog_details/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">01 -->
+                                            <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt="" class="card-img-top">
+                                        <!-- </h4> -->
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>14th Dalai Lama</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails1/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">02</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt="" class="card-img-top">
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Bhagat Singh</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails2/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">03</h4> -->
+                                        <img src=" {% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt="" class="card-img-top">
+                                    
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Dr. Bhim Rao Ambedkar</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails3/" class="blog-img">
+                                <div class="popular-image mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">04</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt="" class="card-img-top">
+                                        
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Mahatma Jyotiba Phule</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Popular Post End -->
+
+                        <!-- Category section Start -->
+                        <div class="category-section popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Category</h3>
+                            </div>
+                            <ul>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-globe text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Global</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-building text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Business</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-play text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Entertainmant</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-tshirt text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Sports</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-dumbbell text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Health</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Category section End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Details Blog Section End -->
+
+    <!-- related blog start -->
+    <section class="section-b-space block-shadow-space ratio3_2">
+        <div class="container">
+            <div class="slide-4 product-wrapper slick-lg-space">
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/9.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/8.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/4.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/16.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/13.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related blog end -->
+
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js"' %}></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

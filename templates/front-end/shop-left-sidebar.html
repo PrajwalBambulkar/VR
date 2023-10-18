@@ -1,0 +1,777 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="assets/images/favicon/2.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="assets/images/favicon/2.png" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="assets/images/favicon/2.png" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="assets/images/favicon/2.png" type="image/x-icon" />
+    <title>Shop Left Sidebar</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{%static 'assets/css/vendors/bootstrap.css' %} ">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet" href="{%static 'assets/css/vendors/ion.rangeSlider.min.css' %}" />
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{%static 'assets/css/demo2.css' %}">
+
+    <style>
+        .fixed-size-image {
+            /* width: 380px; */
+             /* Set your desired width */
+            height: 350px; 
+            /* Set your desired height */
+        }
+
+        .banner-image .banner-content {
+            position: absolute;
+            left: calc(20px + (60 - 20) * ((100vw - 320px) / (1920 - 320)));
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 30%;
+        }
+
+        .banner-image .banner-content p {
+            color: #000000;
+            margin-bottom: 0;
+            line-height: 1.6;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Shop Listing</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <!-- <a href="index.html"> -->
+                                    <i class="fas fa-home"></i>
+                                <!-- </a> -->
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop Fashion</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Shop Section start -->
+    <section class="section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="category-option">
+                        <div class="button-close mb-3">
+                            <button class="btn p-0"><i data-feather="arrow-left"></i> Close</button>
+                        </div>
+                        <div class="accordion category-name" id="accordionExample">
+                            <div class="accordion-item category-rating">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne">
+                                        Filter by Category
+                                    </button>
+                                </h2>
+                                <div style="display: inline-block;" class="mt-1 w-100">
+                                    <form method="get" action="{% url 'shop_category' %}">
+                                        {% csrf_token %}
+                                        <select id="category" name="category" class="form-select">
+                                            <option value="">Select Categories</option>
+                                            {% for category_code, category_name in CATEGORY_CHOICE %}
+                                                <option value="{{ category_code }}">{{ category_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input type="submit" value="Apply" class="btn btn-danger mt-1">
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- <div class="accordion-item category-color">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree">
+                                        Color
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <ul class="category-list">
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="accordion-item category-price">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour">Price</button>
+                                </h2>
+                                <div style="display: inline-block;" class="w-100">
+                                    <form method="get" action="{% url 'shop_category' %}">
+                                        {% csrf_token %}
+                                        <!-- <label for="price_range">Filter by Price Range:</label> -->
+                                        <select id="price_range" name="price_range" class="form-select mt-1">
+                                            <option value="">Select Price</option>
+                                            <option value="100-500">100 - 500</option>
+                                            <option value="600-1000">600 - 1000</option>
+                                            <option value="above_1000">Above 1000</option>
+                                        </select>
+                                        <input type="submit" value="Apply" class="btn btn-danger mt-1">
+                                    </form>
+                                </div>
+                            </div>
+
+                        
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive">
+                                        Discount Range Sort by
+                                    </button>
+                                </h2>
+                                <div style="display: inline-block;" class="w-100">
+                                    <form method="get" action="{% url 'shop_category' %}">
+                                        {% csrf_token %}
+                                        <!-- <label for="sort_by">Sort by:</label> -->
+                                        <select id="sort_by" name="sort_by" class="custom-select form-select mt-1" >
+                                            <option value="high_to_low" {% if sort_by == 'high_to_low' %}selected{% endif %}>Price (High to Low)</option>
+                                            <option value="low_to_high" {% if sort_by == 'low_to_high' %}selected{% endif %}>Price (Low to High)</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-danger mt-1">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-12 ratio_30">
+                    <div class="banner-deatils">
+                        <div class="banner-image">
+                            <img src="{% static 'assets/images/VR-img/1030x310.jpg' %}" class="img-fluid bg-img blur-up lazyload"
+                                alt="">
+                            <div class="banner-content">
+                                <div>
+                                    <h3>Shop The Latest Trends</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-contain mt-3 mb-5">
+                            <p class="font-light">Step into a world where fashion meets revolution, where style is the manifesto, and where you can shop the future of iconic change.</p>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <!-- filter button -->
+                        <div class="filter-button">
+                            <button class="btn filter-btn p-0"><i data-feather="align-left"></i> Filter</button>
+                        </div>
+                        <!-- filter button -->
+
+                         <div class="col-12">
+                            <div class="filter-options">
+                                <div class="grid-options d-sm-inline-block d-none">
+                                    <ul class="d-flex">
+                                        <li class="two-grid">
+                                            <a href="javascript:void(0)">
+                                                <img src="{% static 'assets/svg/grid-2.svg' %} " class="img-fluid blur-up lazyload"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li class="three-grid d-md-inline-block d-none">
+                                            <a href="javascript:void(0)">
+                                                <img src="{%static 'assets/svg/grid-3.svg' %} " class="img-fluid blur-up lazyload"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li class="grid-btn active d-lg-inline-block d-none">
+                                            <a href="javascript:void(0)">
+                                                <img src="{%static 'assets/svg/grid.svg' %} " class="img-fluid blur-up lazyload"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li class="list-btn">
+                                            <a href="javascript:void(0)">
+                                                <img src="{%static 'assets/svg/list.svg' %} " class="img-fluid blur-up lazyload"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- label and featured section -->
+
+                    
+                    <div class="row g-sm-4 g-3 row-cols-lg-4 row-cols-md-3 row-cols-2 mt-1 custom-gy-5 product-style-2 ratio_asos product-list-section">
+                        {% for product in page %}
+                        <div class="">
+                            <div class="product-box">
+                                <div class="img-wrapper">
+                                    <div class="front">
+                                        <a href="{% url 'product_detail' product.pk %}"> 
+                                            <img src="{{ product.product_image.url }}" class="bg-img blur-up lazyload" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-details">
+                                    <div class="rating-details">
+                                         <span class="font-light grid-content">B&Y Jacket</span>
+                                                        <ul class="rating mt-0">
+                                                            <li>
+                                                                <i class="fas fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fas fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fas fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fas fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fas fa-star"></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="main-price">
+                                                        <a href="product-left-sidebar.html" class="font-default">
+                                                            <h5 class="ms-0">Regular Fit</h5>
+                                                        </a>
+                                                        <div class="listing-content">
+                                                            <a href="{% url 'product_detail' product.pk %}"> 
+                                                                <span class="font-light">Regular Fit</span>
+                                                                <p class="font-light">{{ product.title }}</p>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-details text-center">
+                                                            <h3 class="theme-color"> Rs. {{ product.discount_price }}
+                                                                <span class="font-light ml-1">{{ product.selling_price }}</span>
+                                                            </h3>
+
+                                                        </div>
+                                                        <h3 class="theme-color"></h3>
+                                                        <h3 class="theme-color"></h3>
+                                                        
+                                                    </div>
+                                            </div>
+                                            
+                                        </div>
+                                    
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+
+
+                        
+                    <nav class="page-section">
+                        <ul class="pagination">
+                            {% if page.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" aria-label="Previous">
+                                        <span aria-hidden="true">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                    
+                            {% for page_num in page.paginator.page_range %}
+                                <li class="page-item {% if page_num == page.number %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                </li>
+                            {% endfor %}
+                    
+                            {% if page.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page.paginator.num_pages }}" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+
+                    <!-- <nav class="page-section">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                                    <span aria-hidden="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="javascript:void(0)">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section end -->
+
+
+    <!-- Quick view modal start -->
+    <div class="modal fade quick-view-modal" id="quick-view">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <div class="row gy-4">
+                        
+                        <div class="col-lg-6">
+                            <div class="quick-view-image">
+                                <div class="quick-view-slider">
+                                    <div>
+                                        <img src="{{d.product_image.url}}"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                    <div>
+                                        <img src="assets/images/fashion/product/front/5.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                    <!-- <div>
+                                        <img src="assets/images/fashion/product/front/6.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                    <div>
+                                        <img src="assets/images/fashion/product/front/7.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div> -->
+                                </div>
+                                <div class="quick-nav">
+                                    <div>
+                                        <img src="assets/images/fashion/product/front/4.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                    <div>
+                                        <img src="assets/images/fashion/product/front/5.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                    <div>
+                                        <img src="assets/images/fashion/product/front/6.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                    <div>
+                                        <img src="assets/images/fashion/product/front/7.jpg"
+                                            class="img-fluid blur-up lazyload" alt="product">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="product-right">
+                                <h2 class="mb-2">Men's Hoodie t-shirt</h2>
+                                <ul class="rating mt-1">
+                                    <li>
+                                        <i class="fas fa-star theme-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star theme-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star theme-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="font-light">(In stock)</li>
+                                </ul>
+                                <div class="price mt-3">
+                                    <h3>$20.00</h3>
+                                </div>
+                                <div class="color-types">
+                                    <h4>colors</h4>
+                                    <ul class="color-variant mb-0">
+                                        <li class="bg-half-light selected"></li>
+                                        <li class="bg-light1"></li>
+                                        <li class="bg-blue1"></li>
+                                        <li class="bg-black1"></li>
+                                    </ul>
+                                </div>
+                                <div class="size-detail">
+                                    <h4>size</h4>
+                                    <ul class="">
+                                        <li class="selected">S</li>
+                                        <li>M</li>
+                                        <li>L</li>
+                                        <li>XL</li>
+                                    </ul>
+                                </div>
+                                <div class="product-details">
+                                    <h4>product details</h4>
+                                    <ul>
+                                        <li>
+                                            <span class="font-light">Style :</span> Hoodie
+                                        </li>
+                                        <li>
+                                            <span class="font-light">Catgory :</span> T-shirt
+                                        </li>
+                                        <li>
+                                            <span class="font-light">Tags:</span> summer, organic
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-btns">
+                                    <button type="button" class="btn btn-solid-default btn-sm"
+                                        data-bs-dismiss="modal">Add to cart</button>
+                                    <button type="button" class="btn btn-solid-default btn-sm"
+                                        data-bs-dismiss="modal">View details</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Quick view modal end -->
+
+    <!-- Cart Successful Start -->
+    <div class="modal fade cart-modal" id="addtocart" tabindex="-1" role="dialog" aria-label="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-contain">
+                        <div>
+                            <div class="modal-messages">
+                                <i class="fas fa-check"></i> 3-stripes full-zip hoodie successfully added to
+                                you cart.
+                            </div>
+                            <div class="modal-product">
+                                <div class="modal-contain-img">
+                                    <img src="assets/images/fashion/instagram/4.jpg" class="img-fluid blur-up lazyload"
+                                        alt="">
+                                </div>
+                                <div class="modal-contain-details">
+                                    <h4>Premier Cropped Skinny Jean</h4>
+                                    <p class="font-light my-2">Yellow, Qty : 3</p>
+                                    <div class="product-total">
+                                        <h5>TOTAL : <span>$1,140.00</span></h5>
+                                    </div>
+                                    <div class="shop-cart-button mt-3">
+                                        <a href="shop-left-sidebar.html"
+                                            class="btn default-light-theme conti-button default-theme default-theme-2 rounded">CONTINUE
+                                            SHOPPING</a>
+                                        <a href="cart.html"
+                                            class="btn default-light-theme conti-button default-theme default-theme-2 rounded">VIEW
+                                            CART</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ratio_asos mt-4">
+                        <div class="container">
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <div
+                                        class="product-wrapper product-style-2 slide-4 p-0 light-arrow bottom-space spacing-slider">
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="assets/images/fashion/product/front/1.jpg"
+                                                                class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="assets/images/fashion/product/front/2.jpg"
+                                                                class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="assets/images/fashion/product/front/3.jpg"
+                                                                class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="assets/images/fashion/product/front/4.jpg"
+                                                                class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart Successful End -->
+
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+
+    <!-- Add To Home js -->
+    <script src="assets/js/pwa.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="assets/js/feather/feather.min.js"></script>
+
+    <!-- lazyload js-->
+    <script src="assets/js/lazysizes.min.js"></script>
+
+    <!-- Slick js-->
+    <script src="assets/js/slick/slick.js"></script>
+    <script src="assets/js/slick/slick-animation.min.js"></script>
+    <script src="assets/js/slick/custom_slick.js"></script>
+
+    <!-- Price Filter js -->
+    <script src="{% static 'assets/js/price-filter.js' %}"></script>
+
+    <!--Plugin JavaScript file-->
+    <script src="assets/js/ion.rangeSlider.min.js"></script>
+
+    <!-- Filter Hide and show Js -->
+    <script src="assets/js/filter.js"></script>
+
+    <!-- Notify js-->
+    <script src="assets/js/bootstrap/bootstrap-notify.min.js"></script>
+
+    <!-- script js -->
+    <script src="assets/js/theme-setting.js"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script>
+    console.log("JavaScript code is running");
+
+    // Attach the click event listener to the "add-wish" element
+    document.getElementById("add-wish").addEventListener("click", function () {
+        var userId = $(this).data("user-id");
+        var productId = $(this).data("product-id");
+        
+        // Send a POST request to add the product to the wishlist
+        $.ajax({
+            type: "GET",
+            url: '/add_wishlist/',
+            data: {
+                user_id: userId,
+                product_id: productId
+            },
+            success: function (data) {
+                console.log("AJAX Success:", data);
+                alert('Product added to wishlist!');
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.error("AJAX Error:", textStatus, errorThrown);
+                alert('Failed to add product to wishlist. Please try again.');
+            }
+        });
+    });
+</script>
+
+
+    <!-- <script>
+    console.log("JavaScript code is running");
+        $(document).ready(function () {
+            $(".add-wish").click(function () {
+                var userId = $(this).data("user-id");
+                var productId = $(this).data("product-id");
+        
+                $.ajax({
+                    type: "GET", // Use GET request
+                    url: '/add_wishlist/?user_id=' + userId + '&product_id=' + productId, // Include data in the URL
+                    success: function (data) {
+                        console.log(data); // Log the response for debugging
+                        alert('Product added to wishlist!');
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.error(xhr.statusText); // Log any errors for debugging
+                        alert('Failed to add product to wishlist.');
+                    }
+                });
+            });
+        });
+        </script> -->
+</body>
+
+</html>
+
+
+{% endblock content %}

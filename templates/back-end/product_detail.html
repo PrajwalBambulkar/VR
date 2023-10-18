@@ -1,0 +1,157 @@
+{% extends 'back-end/admin_base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Voxo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Voxo admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <title>{{ product.title }}</title>
+
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="assets/css/linearicon.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/feather-icon.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper dark-sidebar" id="pageWrapper">
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+
+            <!-- Container-fluid starts-->
+            <div class="page-body">
+                <div class="title-header">
+                    <h5>Products List</h5>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1>{{ product.title }}</h1>
+                                    <p>Selling Price: {{ product.selling_price }}</p>
+                                    <p>Discount Price: {{ product.discount_price }}</p>
+                                    <p>Description: {{ product.description }}</p>
+                                    <p>Brand: {{ product.brand }}</p>
+                                    <p>Category: {{ product.category }}</p>
+
+                                    {% if product.product_image %}
+                                    <img src="{{ product.product_image.url }}" alt="{{ product.title }}" width="200"
+                                        height="200" />
+                                    {% else %}
+                                    <p>No image available</p>
+                                    {% endif %}
+
+                                    {% if product.back_image %}
+                                    <img src="{{ product.back_image.url }}" alt="Back Image" width="200" height="200" />
+                                    {% endif %}
+
+                                    {% if product.left_image %}
+                                    <img src="{{ product.left_image.url }}" alt="Left Image" width="200" height="200" />
+                                    {% endif %}
+
+                                    {% if product.right_image %}
+                                    <img src="{{ product.right_image.url }}" alt="Right Image" width="200"
+                                        height="200" />
+                                    {% endif %}
+
+                                    {% if product.product_video %}
+                                    <video width="320" height="240" controls>
+                                        <source src="{{ product.product_video.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    {% endif %}
+
+                                    <form method="POST" action="{% url 'approve_seller_product' product.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success">Approve</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <!-- footer start-->
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2021 © Voxo theme by pixelstrap</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <!-- latest js -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="assets/js/scrollbar/simplebar.js"></script>
+    <script src="assets/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="assets/js/config.js"></script>
+
+    <!-- customizer js -->
+    <script src="assets/js/customizer.js"></script>
+
+    <!-- Plugins js -->
+    <script src="assets/js/sidebar-menu.js"></script>
+    <script src="assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="assets/js/notify/index.js"></script>
+
+    <!-- Theme js -->
+    <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

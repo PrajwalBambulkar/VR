@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your order! Your order details are as follows:</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.discount_price }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Total: {{ order_total }} .Rs</p>
+    <p>Tax (18%): ${{ order_tax }} .Rs</p>
+    <p>Shipping: ${{ order_shipping }} .Rs</p>
+    <p>Grand Total: ${{ order_grand_total }} .Rs</p>
+
+    <p>Thank you for shopping with us!</p>
+</body>
+</html>

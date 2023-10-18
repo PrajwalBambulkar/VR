@@ -1,0 +1,103 @@
+{% extends 'back-end/seller-base.html' %}{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Voxo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Voxo admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="{% static 'assets1/images/Asset 3.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets1/images/Asset 3.png' %}" type="image/x-icon">
+    <title>Vishwaratna</title>
+
+    <!-- Google font-->
+    <link
+        href="{% static 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap' %}"
+        rel="stylesheet">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="{% static 'assets1/css/linearicon.css' %}">
+
+    <!-- fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/font-awesome.css' %}">
+
+    <!-- Themify icon css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/themify.css' %}">
+
+    <!-- ratio css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/ratio.css' %}">
+
+    <!-- Feather icon css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/feather-icon.css' %}">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/scrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/animate.css' %}">
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/bootstrap.css' %}">
+
+    <!-- vector map css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vector-map.css' %}">
+
+    <!-- slick slider css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/slick-theme.css' %}">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/style.css' %}">
+
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/responsive.css' %}">
+
+
+</head>
+
+<body>
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper dark-sidebar" id="pageWrapper">
+
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+
+            <!-- index body start -->
+            <div class="page-body">
+                <div class="title-header">
+                    <h5>Edit Seller Profile</h5>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                         <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header-2">
+                                        <form method="post">
+                                            <div class="input">
+                                                {% csrf_token %}
+                                                {{ form.as_p }}
+                                                <div class="form-group">
+                                                    <button type="submit">Save</button>
+                                                </div>
+                                            </div>  
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+{% endblock content %}

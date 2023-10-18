@@ -1,0 +1,670 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Details</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        .left-side .popular-post .popular-image .popular-number {
+            border-radius: 7px;
+            width: 70px;
+        }
+
+        .left-side .popular-post .popular-image img {
+            width: 80px;
+            height: 70px;
+            /* -o-object-fit: cover; */
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blog Details</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Details Blog Section Start -->
+    <section class="masonary-blog-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-9 col-md-8 order-md-1 ratio_square">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="blog-details">
+                                <div class="blog-image-box">
+                                    <img src="{% static 'assets/images/VR-img/11.jpg' %}" alt="" class="card-img-top">
+                                    <div class="blog-title">
+                                        <div>
+                                            <div class="social-media media-center">
+                                                <a href="https://www.facebook.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://twitter.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://in.pinterest.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-pinterest-p"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>The Role of Education in Women’s Empowerment</h1>
+                                    <br>
+                                    <br>
+
+                                    <p class="font-light firt-latter">Education has been widely acknowledged as a potent
+                                        instrument for empowering individuals and instigating societal transformation.
+                                        In the context of women's empowerment, education assumes a pivotal role in
+                                        dismantling barriers, questioning prevailing social norms, and unlocking the
+                                        boundless potential within women. This comprehensive article delves into the
+                                        intricate and multifaceted impact of education on empowering women, underscoring
+                                        its profound influence in fostering gender equality and establishing a more
+                                        equitable society. This article delves into the intricate and multifaceted
+                                        impact of education on empowering women, emphasizing its profound influence in
+                                        nurturing gender equality and creating a more equitable society. This article
+                                        explores the different aspects of how education empowers women, aiming to
+                                        illuminate the significant impact education can have in bringing about positive
+                                        change for women globally. It highlights the transformative power of education
+                                        and its potential to create a brighter future for women worldwide.
+                                    </p><br>
+
+                                    <br>
+                                    <h2 class="card-title">1. Knowledge and Awareness :</h2><br>
+                                    <p class="font-light">Education has a great impact on empowering women, as it equips
+                                        them with knowledge and awareness about their rights, available opportunities,
+                                        and the world they live in. Education helps women understand their value as
+                                        individuals and the importance of their voices and perspectives. By gaining
+                                        knowledge in various fields, women can explore their interests, pursue careers
+                                        once considered exclusive to men, and challenge traditional gender roles,
+                                        promoting a more inclusive society. It provides them with the necessary
+                                        knowledge and skills to secure decent employment, engage in entrepreneurship,
+                                        and access economic opportunities. By breaking free from the cycle of poverty
+                                        and gaining financial independence, educated women can contribute to the
+                                        economic development of their families and communities, fostering overall
+                                        progress.
+                                    </p><br>
+
+
+                                    <h2 class="card-title">2. Economic Empowerment :</h2>
+
+                                    <br>
+                                    <p class="font-light">
+                                        Education is a powerful catalyst for economic empowerment among women. It equips
+                                        them with the skills, knowledge, and confidence necessary to secure decent
+                                        employment, engage in entrepreneurship, and access economic opportunities.
+                                        By gaining an education, women can break free from the cycle of poverty.
+                                        Education opens doors to better job prospects, higher-paying positions, and
+                                        career advancement opportunities. Furthermore, education nurtures
+                                        entrepreneurial spirit among women. This intergenerational impact creates a
+                                        positive cycle of empowerment and uplifts entire communities.
+
+                                    </p>
+                                    <br>
+                                    <h2 class="card-title">3. Health and Well-being :</h2>
+                                    <p class="font-light">Education is vital in enhancing the health and well-being of
+                                        women. They are aware of family planning methods, enabling them to make choices
+                                        regarding the timing and spacing of pregnancies. Education equips women with the
+                                        knowledge to prevent and manage common illnesses, understand the importance of
+                                        vaccination, and adopt healthy lifestyle practices.
+                                        Furthermore, education empowers women to navigate the healthcare system and
+                                        advocate for their rights. By promoting self-care and stress management,
+                                        education contributes to women's overall well-being, enabling them to lead
+                                        fulfilled and balanced lives.
+
+                                    </p>
+                                    <br>
+
+
+                                    <h2 class="card-title">4. Social and Political Participation :</h2>
+                                    <p class="font-light">Education gives women the power to actively engage in social
+                                        and political domains by equipping them with essential skills and knowledge. By
+                                        receiving an education, women develop an awareness of their rights, including
+                                        their political rights, and recognize the significance of being active and
+                                        engaged citizens.
+
+                                        Women bring a wide range of perspectives, creative ideas, and analytical
+                                        thinking abilities to the discussion, enhancing the decision-making processes
+                                        and cultivating societies that are inclusive and fair. Furthermore, education
+                                        enables women to develop leadership skills and build networks of support. It
+                                        provides them with opportunities for personal growth, public speaking,
+                                        negotiation, and teamwork.
+
+                                    </p><br>
+
+
+                                    <h2 class="card-title">5. Breaking Gender Stereotypes :</h2>
+                                    <p class="font-light">Education has a crucial role in challenging and dismantling
+                                        gender stereotypes while advocating for equal treatment and opportunities for
+                                        all genders. It challenges traditional norms and biases by fostering an
+                                        environment of inclusivity, respect, and equal opportunities. Education allows
+                                        women to explore diverse perspectives and ideas, expanding their knowledge and
+                                        broadening their understanding of gender roles while discovering new
+                                        possibilities for themselves.
+
+
+                                    </p><br>
+                                    <p class="font-light">
+                                        They learn about the achievements and contributions of women in various fields,
+                                        breaking the perception that certain careers or roles are exclusively for men.
+                                        Educated women become inspiring role models for future generations, motivating
+                                        young girls to fearlessly pursue their dreams and aspirations. By defying
+                                        societal expectations and succeeding in their chosen paths, educated women
+                                        shatter stereotypes and create a ripple effect of empowerment and change
+                                    </p> <br>
+                                    <h2 class="card-title">6. Inter-generational Impact :</h2>
+                                    <p class="font-light">Women who have received an education possess a deep
+                                        understanding of its transformative power. They are keenly aware that education
+                                        serves as a gateway to a world of opportunities, empowering individuals and
+                                        propelling societal advancement. With this knowledge, educated women become
+                                        advocates for prioritizing education as a means of empowering future
+                                        generations.
+                                        When children have access to education, they experience improved health
+                                        outcomes, develop enhanced cognitive abilities, and gain increased opportunities
+                                        for socioeconomic progress. In essence, education has a profound
+                                        intergenerational impact. By prioritizing education, women empower future
+                                        generations. Educated children have better health outcomes, improved cognitive
+                                        abilities, and increased opportunities for socioeconomic advancement.
+
+                                    </p><br>
+                                    <h2 class="card-title"> 7. Conclusion :</h2>
+                                    <p class="font-light">Education assumes a significant role in empowering women as it
+                                        enables them to surmount challenges, discover unexplored possibilities, and
+                                        address gender inequalities. Through knowledge acquisition, economic autonomy,
+                                        improved health outcomes, active engagement in society and politics, dispelling
+                                        stereotypes, and creating a lasting impact for future generations, education
+                                        becomes a powerful tool for advancing women's rights and fostering gender
+                                        equality. By giving priority to education, we create an environment where women
+                                        can equally partake in learning, personal development, and making meaningful
+                                        contributions to a society that embraces fairness and inclusivity.
+
+
+                                    </p><br>
+
+                                </div>
+                            </div>
+
+                            <div class="blog-profile box-center mb-lg-5 mb-4">
+                                <div class="image-profile">
+                                    <img src="{% static 'assets/images/inner-page/review-image/2.jpg' %}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="image-name text-weight">
+                                    <h3>Vishwaratna</h3>
+                                    <h6>22 September 2023</h6>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="minus-spacing mb-2">
+                                        <h3>Leave Comments</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
+                                        required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="example@example.com" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="textarea" class="form-label">Comments</label>
+                                    <textarea rows="3" class="form-control" id="textarea"
+                                        placeholder="Leave a comment here" required></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-solid-default btn-spacing mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="left-side">
+                        <!-- Search Bar Start -->
+                        <div class="search-section">
+                            <div class="input-group search-bar">
+                                <input type="search" class="form-control search-input" placeholder="Search">
+                                <button class="input-group-text search-button" id="basic-addon3">
+                                    <i class="fas fa-search text-color"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar End -->
+
+                        <!-- Popular Post Start -->
+                        <div class="popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Popular Blogs</h3>
+                            </div>
+
+                            <a href="/blog_details/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">01 -->
+                                            <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt="" class="card-img-top">
+                                        <!-- </h4> -->
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>14th Dalai Lama</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails1/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">02</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt="" class="card-img-top">
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Bhagat Singh</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails2/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">03</h4> -->
+                                        <img src=" {% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt="" class="card-img-top">
+                                    
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Dr. Bhim Rao Ambedkar</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails3/" class="blog-img">
+                                <div class="popular-image mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">04</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt="" class="card-img-top">
+                                        
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Mahatma Jyotiba Phule</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Popular Post End -->
+
+                        <!-- Category section Start -->
+                        <div class="category-section popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Category</h3>
+                            </div>
+                            <ul>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-globe text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Global</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-building text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Business</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-play text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Entertainmant</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-tshirt text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Sports</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-dumbbell text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Health</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Category section End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Details Blog Section End -->
+
+    <!-- related blog start -->
+    <section class="section-b-space block-shadow-space ratio3_2">
+        <div class="container">
+            <div class="slide-4 product-wrapper slick-lg-space">
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/9.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/8.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/4.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/16.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/13.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related blog end -->
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

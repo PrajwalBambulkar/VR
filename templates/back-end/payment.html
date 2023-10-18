@@ -1,0 +1,170 @@
+{% extends 'back-end/admin_base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Voxo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Voxo admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <title>Voxo - Reports</title>
+
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="{% static 'assets1/css/linearicon.css' %}">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/font-awesome.css' %}">
+
+    <!-- Themify icon css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/themify.css' %}">
+
+    <!-- ratio css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/ratio.css' %}">
+
+    <!-- Feather icon css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/feather-icon.css' %}">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/scrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/animate.css' %}">
+
+    <!-- datepicker css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/date-picker.css' %}">
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/bootstrap.css' %}">
+
+    <!-- vector map css  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vector-map.css' %}">
+
+    <!-- slick slider css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/slick-theme.css' %}">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/style.css' %}">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/responsive.css' %}">
+</head>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper dark-sidebar" id="pageWrapper">
+
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+
+            <!-- index body start -->
+            <div class="page-body">
+                <div class="title-header">
+                    <h5>Payment</h5>
+                </div>
+
+                <!-- Container-fluid start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- chart caard section start -->
+                        <div class="col-sm-6 col-xxl-3 col-lg-6">
+                            <div class="b-b-primary border-5 border-0 card o-hidden">
+                                <div class="custome-1-bg b-r-4 card-body">
+                                    <div class="media align-items-center static-top-widget">
+                                        <div class="media-body p-0">
+                                            <span class="m-0">Total Earnings</span>
+                                            <h4 class="mb-0 counter">6659
+                                                <span class="badge badge-light-primary grow">
+                                                    <i data-feather="trending-up"></i>8.5%</span>
+                                            </h4>
+                                        </div>
+                                        <div class="align-self-center text-center">
+                                            <i data-feather="database"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid Ends-->
+
+                 <!-- footer start-->
+                <!-- <div class="container-fluid">
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2021 © Voxo theme by pixelstrap</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div> -->
+                <!-- footer End-->
+            </div>
+             <!-- index body start -->
+        </div>
+    </div>
+
+    <!-- latest js -->
+    <script src="{% static 'assets1/js/jquery-3.6.0.min.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets1/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets1/js/icons/feather-icon/feather.min.js' %}"></script>
+    <script src="{% static 'assets1/js/icons/feather-icon/feather-icon.js' %}"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="{% static 'assets1/js/scrollbar/simplebar.js' %}"></script>
+    <script src="{% static 'assets1/js/scrollbar/custom.js' %}"></script>
+
+    <!-- Sidebar js -->
+    <script src="{% static 'assets1/js/config.js' %}"></script>
+
+    <!-- tooltip init js -->
+    <script src="{% static 'assets1/js/tooltip-init.js' %}"></script>
+
+    <!-- Plugins js -->
+    <script src="{% static 'assets1/js/sidebar-menu.js' %}"></script>
+    <script src="{% static 'assets1/js/notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'assets1/js/notify/index.js' %}"></script>
+
+    <!-- Apexchar js -->
+    <script src="{% static 'assets1/js/chart/apex-chart/apex-chart1.js' %}"></script>
+    <script src="{% static 'assets1/js/chart/apex-chart/moment.min.js' %}"></script>
+    <script src="{% static 'assets1/js/chart/apex-chart/apex-chart.js' %}"></script>
+    <script src="{% static 'assets1/js/chart/apex-chart/stock-prices.js' %}"></script>
+    <script src="{% static 'assets1/js/chart/apex-chart/chart-custom.js' %}"></script>
+
+    <!-- customizer js -->
+    <script src="{% static 'assets1/js/customizer.js' %}"></script>
+
+    <!-- ratio js -->
+    <script src="{% static 'assets1/js/ratio.js' %}"></script>
+
+    <!-- Theme js -->
+    <script src="{% static 'assets1/js/script.js' %}"></script>
+</body>
+
+</html>
+
+{% endblock %}

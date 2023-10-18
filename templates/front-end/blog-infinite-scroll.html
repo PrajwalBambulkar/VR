@@ -1,0 +1,415 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Infinite Scroll</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blogs</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Blog Section Start -->
+    <section id="portfolio" class="left-sidebar-section masonary-blog-section section-b-space">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-12 col-md-7 order-md-1 ratio3_2">
+                    <div class="row g-4 product-load-more">
+                        <!-- 1 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="/blog_details/" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <h5>Product Update</h5>
+                                    <!-- <a href="/blog_details/"> -->
+                                        <!-- title -->
+                                        <h2 class="card-title">14th Dalai Lama</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="/blogdetails1/" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="/blogdetails1/">
+                                        <!-- title -->
+                                        <h2 class="card-title">Bhagat Singh</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 3 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="/blogdetails2/" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="/blogdetails2/">
+                                        <!-- title -->
+                                        <h2 class="card-title">Dr. Bhim Rao Ambedkar</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="/blogdetails3/" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="/blogdetails3/">
+                                        <!-- title -->
+                                        <h2 class="card-title">Mahatma Jyotiba Phule</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 5 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="/blogdetails4/" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/NelsonMandela.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="/blogdetails4/">
+                                        <!-- title -->
+                                        <h2 class="card-title">Nelson Mandela</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 6 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="/blogdetails5/" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/SavitribaiPhule.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="/blogdetails5/">
+                                        <!-- title -->
+                                        <h2 class="card-title">Savitri Bai Phule</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 12 -->
+                        <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/13.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="">
+                                        <!-- title -->
+                                        <h2 class="card-title">Martin Luther King</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- 13 -->
+                         <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/17.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="">
+                                        <!-- title -->
+                                        <h2 class="card-title">Guru Nanak</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- 14-->
+                         <div class="col-lg-4 col-md-6 col-grid-box">
+                            <div class="card blog-categority">
+                                <a href="" class="blog-img">
+                                  <!-- image -->
+                                    <img src="{% static 'assets/images/VR-img/18.jpg' %}" alt=""
+                                        class="card-img-top blur-up lazyload bg-img">
+                                   
+                                </a>
+                                <div class="card-body">
+                                    <!-- <h5>Product Update</h5> -->
+                                    <a href="">
+                                        <!-- title -->
+                                        <h2 class="card-title">Birsa Munda</h2>
+                                    </a>
+                                    <div class="blog-profile">
+                                        <div class="image-name">
+                                            <!-- author name -->
+                                            <h3>Vishwaratna</h3>
+                                            <!-- date -->
+                                            <h6>29 Sept 2023</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    
+                    
+                    
+                    <!-- {% comment %} <ul>
+                        {% for post in posts %}
+                        <li>
+                            <h2>{{ post.title }}</h2>
+                            <p>Author: {{ post.author.username }}</p>
+                            <p>Created On: {{ post.created_on }}</p>
+                            <p>comment this{{ post.content }}</p> 
+                            
+                            {% if post.blog_img %}
+                                <img src="{{ post.blog_img.url }}" alt="Image" width="200" height="00">
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul> {% endcomment %} -->
+                                            
+                    <div class="load-more">
+                        <button class="loadMore btn btn-submit btn-full">load more</button>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- Infinite scroll js -->
+    <script src="{% static 'assets/js/infinite-scroll.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script src="{% static 'assets/js/home-script.js' %}"></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

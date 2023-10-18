@@ -1,0 +1,835 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Details</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        .left-side .popular-post .popular-image .popular-number {
+            border-radius: 7px;
+            width: 70px;
+        }
+
+        .left-side .popular-post .popular-image img {
+            width: 80px;
+            height: 70px;
+            /* -o-object-fit: cover; */
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blog Details</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Details Blog Section Start -->
+    <section class="masonary-blog-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-9 col-md-8 order-md-1 ratio_square">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="blog-details">
+                                <div class="blog-image-box">
+                                    <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt=""
+                                        class="card-img-top">
+                                    <div class="blog-title">
+                                        <div>
+                                            <div class="social-media media-center">
+                                                <a href="https://www.facebook.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://twitter.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://in.pinterest.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-pinterest-p"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>A Voice for the Abolishment of Casteism: Towards an Equal and Inclusive Society</h1>
+                                    <br>
+                                    <h2 class="card-title">Introduction</h2>
+                                    <p class="font-light firt-latter">Casteism remains a persistent and deeply rooted problem in societies, particularly in South Asia. The caste system's hierarchical nature perpetuates discrimination and inequality, impeding social advancement. This article highlights the significance of ending caste discrimination and establishing a society that treats everyone fairly and welcomes everyone, valuing their worth and freedoms regardless of their caste. By addressing these unjust actions, we can construct a society where people are not hindered by discrimination and can achieve success based on their skills and qualifications.</p> <br>
+
+                                    <h2 class="card-title">Understanding Casteism:</h2>
+                                    <p class="font-light">Casteism is a deeply ingrained system of social discrimination that is prevalent in certain societies. It operates based on birth and hereditary hierarchies, dividing individuals into rigid social groups. This categorisation determines not only their occupation and social status but also their rights and opportunities in life. Sadly, discrimination and prejudice are deeply woven into the social fabric, perpetuating inequality, and restricting the prospects of those belonging to lower castes. <br> In some extreme cases, it even results in acts of violence and oppression against individuals from lower castes. Overcoming casteism requires concerted efforts to challenge and dismantle these discriminatory practices, promoting social justice and equal opportunities for all. </p> <br>
+                                       
+                                    
+                                    <h2 class="card-title">The Call for Abolishment:</h2>
+                                    <p class="font-light">Eliminating casteism is vital for the establishment of a fair and egalitarian society. Caste-based discrimination directly contradicts the principles of social justice and human dignity, impeding societal progress and perpetuating long-standing inequalities between generations. To create a society that truly values the intrinsic worth and potential of every person, it is necessary to actively challenge and dismantle the systemic barriers that uphold casteism. <br> To create a society that values the intrinsic worth and potential of every person, it is essential to actively confront and dismantle the structural barriers that uphold casteism.</p> <br>
+
+                                    <h2 class="card-title">Education and Awareness:</h2>
+                                    <p class="font-light">One of the most important roles played in removing the caste system is that of education. It serves as a powerful tool for raising awareness and fostering understanding about the unjust nature of the caste system. By prioritising inclusivity, educational institutions can contribute to breaking down prejudices and stereotypes associated with caste. It is important to incorporate an anti-caste curriculum that addresses the historical and contemporary issues surrounding caste-based discrimination. <br> Additionally, promoting social harmony and empathy through education enables individuals to develop critical thinking skills and challenge deeply ingrained casteist beliefs and practices.</p> <br>
+
+                                    <h2 class="card-title">Legal Reforms and Enforcement:</h2>
+                                    <p class="font-light">Achieving the eradication of casteism necessitates the establishment of strong legal frameworks and their diligent enforcement. Legislation should unequivocally prohibit caste-based discrimination, guaranteeing equal rights and opportunities for every citizen. Robust laws need to be put in place to offer protection and support to individuals who endure caste-based atrocities. More effective law enforcement mechanisms must be done in order to make the output successful enough. <br> Additionally, creating accessible grievance redressal systems can provide a pathway to justice for victims of caste-based discrimination.    </p> <br>
+ 
+                                    <h2 class="card-title">Economic Empowerment:</h2>
+                                    <p class="font-light">Addressing economic disparities is a key aspect of combating casteism. It is vital to promote economic opportunities and implement affirmative action programmes that specifically target marginalised communities. These measures can help break the cycle of poverty and marginalisation that lower caste individuals often find themselves in. <br> By encouraging entrepreneurship, providing skill development initiatives, and improving access to financial resources, we can empower individuals from lower castes to overcome the systemic barriers they face and actively participate in the economy. Creating a more inclusive and equitable economy is essential for fostering social mobility and dismantling the barriers that restrict the progress of marginalised communities.</p> <br>
+
+                                    <h2 class="card-title">Promoting Social Integration:</h2>
+                                    <p class="font-light">Building a society that upholds social integration and equality necessitates the promotion of inter-caste marriages and the fostering of social interactions across caste boundaries. By dismantling the caste-based social barriers and facilitating meaningful interactions among people from different castes, we can weaken the foundations of casteism. Initiatives that encourage cultural exchanges, community-building activities, and social cohesion play a vital role in breaking down the divisions created by caste.  <br>Creating platforms for dialogue allows for the dismantling of stereotypes, the forging of connections between communities, and the cultivation of a shared sense of belonging. Through these endeavours, we can strive towards a future characterised by harmony, equity, and a celebration of unity amidst our differences.</p> <br>
+
+                                    <h2 class="card-title">Empowering Marginalised Communities:</h2>
+                                    <p class="font-light">Empowering marginalised communities plays a pivotal role in dismantling casteism. It is essential to provide equitable access to quality education, healthcare, and social welfare schemes, bridging the gaps that hinder individuals from lower castes from realising their full potential. Empowerment programmes that focus on enhancing leadership skills, promoting political representation, and strengthening community networks can amplify the voices of marginalised communities  <br>By enabling active participation in decision-making processes, these initiatives ensure that the concerns and perspectives of lower-caste individuals are considered. Empowerment efforts go beyond providing opportunities; they foster a sense of agency and self-determination, enabling marginalised communities to challenge the systemic barriers imposed by casteism.</p> <br>
+
+                                    <h2 class="card-title">Changing Mindsets and Challenging Privilege:</h2>
+                                    <p class="font-light">Overcoming casteism requires a profound transformation in societal attitudes, entailing a conscious and deliberate endeavour to challenge privilege. It is important to encourage individuals to unlearn casteist beliefs, critically examine their own privileges, and actively participate in conversations addressing caste discrimination. This collective effort fosters a culture of empathy, understanding, and equality. Media, literature, and art have a crucial role to play in challenging casteist narratives and promoting inclusive representations. <br> By diversifying narratives and uplifting marginalised voices, these creative mediums contribute to dismantling stereotypes and promoting social harmony. Additionally, promoting intergenerational dialogue and encouraging open discussions about caste discrimination can help break the cycle of inherited biases.</p> <br>
+
+                                    <h2 class="card-title">Conclusion:</h2>
+                                    <p class="font-light">In conclusion, the eradication of casteism is imperative to forge a society rooted in justice and equality. It necessitates a holistic approach encompassing education, legal reforms, economic empowerment, social integration, and a shift in societal perspectives. Achieving this goal necessitates collective efforts, self-reflection, and genuine empathy to dismantle deeply ingrained caste-based hierarchies. Cultivating a culture of empathy and promoting equality will pave the way for a society where caste-based discrimination becomes a relic of the past.</p> <br>
+                                </div> -->
+                                <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>Bhagat Singh</h1>
+                                    <br>
+
+                                    <p class="font-light firt-latter">Bhagat Singh (Born: 28 September 1907[a] ,
+                                        Martyrdom: 23 March 1931) was a great freedom fighter and revolutionary of
+                                        India. Along with Chandrashekhar Azad and other party members, he fought the
+                                        powerful British government with unprecedented courage for India's independence.
+                                        First the assassination of Bernie Sanders in Lahore and then the bomb blast in
+                                        Delhi's Central Parliament (Central Assembly) raised open rebellion against the
+                                        British Empire. He refused to run even after throwing a bomb in the assembly. As
+                                        a result, the British government hanged him on March 23, 1931, along with his
+                                        two other companions, Rajguru and Sukhdev. </p> <br>
+
+                                    <h2 class="card-title">1. Birth And Environment :</h2>
+                                    <p class="font-light">Bhagat Singh's birth is popular on 28 September 1907 (Ashwin
+                                        Krishna Paksha Saptami) but according to many evidences of the time, he was born
+                                        in a Sikh family on 27 September 1907. [a] His father's name was Sardar Kishan
+                                        Singh and mother's name was Vidyavati. Kaur was He was from a farmer[9] family.
+                                        The Jallianwala Bagh massacre that took place in Amritsar on 13 April 1919 had a
+                                        deep impact on Bhagat Singh's thinking. Bhagat Singh had founded the Naujawan
+                                        Bharat Sabha for the independence of India after leaving the studies of the
+                                        National College of Lahore.
+                                    </p> <br>
+
+                                    <p class="font-light">After the Chauri Chaura massacre in the year 1922, Bhagat
+                                        Singh was very disappointed when Gandhiji did not support the farmers. After
+                                        that his faith in non-violence weakened and he came to the conclusion that armed
+                                        revolution is the only way to get freedom. After that he became a part of the
+                                        Gadar Dal formed under the leadership of Chandrashekhar Azad. In the Kakori
+                                        incident, Bhagat Singh was so disturbed by the hanging of 04 revolutionaries
+                                        including Ram Prasad 'Bismil' and the imprisonment of 16 others that he along
+                                        with Chandrashekhar Azad joined his party Hindustan Republican Association and
+                                        gave it a new name Hindustan Socialist Republican Association. . The aim of this
+                                        organization was to prepare young men capable of service, sacrifice and
+                                        suffering.</p><br>
+
+                                    <p class="font-light">
+                                        Bhagat Singh, along with Rajguru, had killed British officer J.P. Saunders, who
+                                        was Assistant Superintendent of Police in Lahore, on 17 December 1928.
+                                        Revolutionary Chandrashekhar Azad had fully helped him in this action. Along
+                                        with fellow revolutionary Batukeshwar Dutt, Bhagat Singh threw bombs and
+                                        pamphlets on 8 April 1929 in the Parliament House, the auditorium of the then
+                                        Central Assembly of British India, located in present-day New Delhi, to wake up
+                                        the British government. After throwing the bomb, both of them also gave their
+                                        arrest there.
+                                    </p><br>
+
+                                    <h2 class="card-title">2. Revolutionary ActivitiesBhagat Singh :</h2>
+                                    <p class="font-light">At that time Bhagat Singh was about twelve years old when the
+                                        Jallianwala Bagh massacre took place. As soon as he got information about this,
+                                        Bhagat Singh reached Jallianwala Bagh by walking 12 miles from his school. At
+                                        this age, Bhagat Singh used to read the revolutionary books of his uncles and
+                                        wonder whether his path was right or not? After Gandhiji's non-cooperation
+                                        movement started, he started choosing a path for himself between Gandhiji's
+                                        non-violent methods and the violent movement of the revolutionaries.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">
+                                        Due to the cancellation of Gandhi ji's non-cooperation movement, some anger
+                                        arose in him, but like the whole nation, he also respected Mahatma Gandhi. But
+                                        instead of Gandhiji's non-violent movement, he did not consider it inappropriate
+                                        to adopt the path of violent revolution for the freedom of the country. He
+                                        started participating in processions and became a member of many revolutionary
+                                        parties. The main revolutionaries of his party were Chandrashekhar Azad,
+                                        Sukhdev, Rajguru etc. In the Kakori incident, Bhagat Singh was so disturbed by
+                                        the death sentences of 4 revolutionaries and imprisonment of 16 others that he
+                                        merged his party Naujawan Bharat Sabha with Hindustan Republican Association in
+                                        1928 and gave it a new name Hindustan Socialist Republican Association. 10]
+                                    </p> <br>
+
+                                    <h2 class="card-title">3. Vengeance of Lalaji's death :</h2>
+                                    <p class="font-light">HSRA pamphlets after Saunders' murder.<br>
+                                        In 1928 there were fierce demonstrations to boycott the Simon Commission. The
+                                        British government also lathi-charged the participants in these demonstrations.
+                                        Lala Lajpat Rai died after being hurt by this lathi charge. Couldn't live with
+                                        them anymore. Under a secret plan, he thought of a plan to kill Police
+                                        Superintendent Scott. According to the thought plan, Bhagat Singh and Rajguru
+                                        started walking in front of Lahore Kotwali in a busy posture. On the other hand,
+                                        Jaigopal sat down with his bicycle as if it had broken down. Both became alert
+                                        on Gopal's signal. On the other hand, Chandrashekhar Azad was working as a guard
+                                        in carrying out the incident by hiding near the boundary wall of the nearby
+                                        D.A.L.V. school.
+
+                                    </p> <br>
+                                    <p class="font-light">On December 17, 1928, at around 4.15 a.m., as soon as ASP
+                                        Saunders arrived, Rajguru fired a bullet directly into his head, which would
+                                        have killed him earlier. But soon after, Bhagat Singh also made complete
+                                        arrangements for his death by firing 3-4 bullets. As soon as these two were
+                                        running away, a constable Chanan Singh started chasing them. Chandrashekhar Azad
+                                        warned him - "If he moves forward, I will shoot him." On not agreeing, Azad shot
+                                        him and he died on the spot. In this way these people took revenge for the death
+                                        of Lala Lajpat Rai.
+                                    </p> <br>
+
+
+                                    <h2 class="card-title">4. Bomb the Assembly :</h2>
+                                    <p class="font-light">Although Bhagat Singh was not in favor of bloodshed, but he
+                                        believed in leftist ideology, and he was related to the principles of Karl Marx
+                                        and he was promoting the same ideology. However, he was also a staunch supporter
+                                        of socialism. In the past, his opponents have been accusing him of tricking the
+                                        youth in the name of Bhagat Singh by telling him their ideology. Despite the
+                                        Congress being in power, the Congress could not get Bhagat Singh the status of a
+                                        martyr, because they only used Bhagat Singh's name to connect the youth to their
+                                        party. He did not like the capitalists' policy of exploitation towards the
+                                        workers. At that time, since the British were the surveyors and very few Indian
+                                        industrialists were able to progress, it was natural for them to protest against
+                                        the atrocities of the British towards the labourers. It was their group's
+                                        decision not to let the anti-labour policies be passed in the British
+                                        Parliament. Everyone wanted that the British should know that Indians have woken
+                                        up and there is anger in their hearts towards such policies. To do this, he had
+                                        planned to throw a bomb in the Central Assembly of Delhi.
+
+                                    </p><br>
+                                    <p class="font-light">
+                                        Bhagat Singh wanted it to not have any bloodshed and that his 'voice' could also
+                                        reach the British. Although in the beginning all the people of his party did not
+                                        think so, but in the end the names of Bhagat Singh and Batukeshwar Dutt were
+                                        unanimously chosen. According to the schedule, on 8 April 1929, both of them
+                                        threw a bomb in the Central Assembly at a place where no one was present,
+                                        otherwise they could get hurt. The whole hall was filled with smoke.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Bhagat Singh could have run away if he wanted, but he had already thought that
+                                        he would accept the punishment, even if it was hanging; So he refused to run. At
+                                        that time both of them were wearing khaki shirt and shorts. After the bomb
+                                        exploded, they chanted "Inquilab-zindabad, imperialism-murdabad!" [11] raised
+                                        slogans and threw the pamphlets they had brought with them in the air. Shortly
+                                        thereafter the police arrived and both were arrested.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">5. Jail Days :</h2>
+                                    <p class="font-light">First page of Bismil's autobiography published from Sindh.
+                                        This book was sent to Bhagat Singh in Lahore Jail.
+                                        <br>
+                                        Bhagat Singh remained in jail for almost 2 years. During this, he used to
+                                        express his revolutionary thoughts by writing articles. His studies continued
+                                        continuously even while in jail. His articles and letters written during that
+                                        time to his relatives are still the mirror of his thoughts. In his writings, he
+                                        has described capitalists as his enemies in many ways. He wrote that the person
+                                        who exploits the laborers, even if he is an Indian, is their enemy. He also
+                                        wrote an article in English in jail titled Why am I an atheist? In
+                                        jail, Bhagat Singh and his companions went on a hunger strike for 64 days. One
+                                        of his companions, Yatindranath Das, had sacrificed his life in hunger strike.
+
+                                    </p><br>
+                                    <h2 class="card-title">6. Hanging :</h2>
+                                    <p class="font-light">
+                                        Death Certificate of Bhagat Singh
+                                        <br>
+                                        On August 26, 1930, the court convicted Bhagat Singh under sections 129, 302 of
+                                        the Indian Penal Code and sections 4 and 6F of the Explosive Substances Act and
+                                        section 120 of the IPC. On October 7, 1930, the court gave a 68-page verdict, in
+                                        which Bhagat Singh, Sukhdev and Rajguru were sentenced to death. Section 144 was
+                                        imposed in Lahore as soon as the death sentence was pronounced. After this, an
+                                        appeal was filed in the Privy Council for pardon of Bhagat Singh's death
+                                        sentence, but this appeal was rejected on January 10, 1931. After this, the then
+                                        Congress President Pt. Madan Mohan Malviya filed an appeal before the Viceroy
+                                        for pardon on February 14, 1931, that using his privilege, he should waive the
+                                        death sentence on the basis of humanity. Mahatma Gandhi spoke to the Viceroy on
+                                        February 17, 1931, to pardon Bhagat Singh's death sentence, and then on February
+                                        18, 1931, on behalf of the general public, also filed an appeal with various
+                                        arguments in front of the Viceroy for pardon. All this was happening against the
+                                        wishes of Bhagat Singh because Bhagat Singh did not want his sentence to be
+                                        forgiven.
+                                        <br>
+
+                                        Bhagat Singh and his two companions Sukhdev and Rajguru were hanged on March 23,
+                                        1931 at around 7.33 pm. Before going to the gallows, he was reading Lenin's
+                                        biography and when he was asked his last wish So he said that he was reading
+                                        Lenin's biography and that he should be given time to complete it. When the
+                                        prison authorities informed him that the time had come for his execution, he is
+                                        said to have said- "Wait! First one revolutionary should meet the other." Then
+                                        after a minute, the book bounced towards the ceiling and said - "Okay now let's
+                                        go."
+                                    <p class="font-light">
+                                        While going to the gallows, all three of them were singing merrily -
+                                        <br>
+                                        <li> me color Basanti Chola, give me color.</li>
+                                        <li>Give my color Basanti Chola. My color give Basanti Chola.</li>
+                                    </p>
+
+                                    <p class="font-light">
+                                        Fearing that no movement might break out after the hanging, the British first
+                                        cut his dead body into pieces, then filled it in sacks and took it to Ferozepur,
+                                        where instead of ghee, kerosene was burnt. When the people of the village saw
+                                        the fire burning, they came closer. Fearing this, the British threw the
+                                        half-burnt pieces of his dead body into the Sutlej river and ran away. When the
+                                        villagers came near, they collected the pieces of his dead body and duly
+                                        cremated it. And Bhagat Singh became immortal forever. After this, people
+                                        started considering Gandhi as responsible for his death along with the British.
+                                        For this reason, when Gandhi was going to attend the Lahore session of Congress,
+                                        people welcomed Gandhiji with black flags. Gandhi was also attacked at a few
+                                        places, but the police walking with him in plain uniform saved him.
+                                    </p>
+                                    <br>
+
+                                    <h2 class="card-title">7. Persona :</h2>
+                                    <p class="font-light">His thoughts can be gauged from the letters and articles
+                                        written by him during his jail days. He lamented the distance caused by script
+                                        (Punjabi's Gurmukhi and Shahmukhi and Hindi and Arabic and Urdu in particular),
+                                        caste and religion in Indian society. He also considered the attack of an Indian
+                                        on the weaker section of the society with the same strictness as the atrocities
+                                        done by an Englishman.
+                                    </p><br>
+                                    <p class="font-light"></p>
+                                    Apart from Hindi, Urdu, Punjabi and English, Bhagat Singh also knew Bangla which he
+                                    learned from Batukeshwar Dutt. He believed that his martyrdom would further disturb
+                                    the Indian public and this could hardly happen if he remained alive. For this
+                                    reason, he flatly refused to write an apology even after being sentenced to death.
+                                    Bhagat Singh followed the guidelines given by Pandit Ram Prasad 'Bismil' in his
+                                    autobiography . He also wrote a letter to the British government, in which it
+                                    was said that he should be considered a prisoner of war symbolizing the war of
+                                    Indians against the British government and instead of being hanged, he should be
+                                    shot. Before his execution, on March 3, his brother Bhagat Singh wrote in a
+                                    letter sent to Kultar. How can today's youth become Bhagat Singh? Newsgram Archived
+                                    2020-10-11 at the Wayback Machine
+                                    </p>
+                                    <p class="font-light">
+                                        <li>They always worry about this, what is the new style?</li>
+                                        <li>We have this hobby, let's see, what is the limit of oppression?</li>
+                                        <br>
+                                        Why be angry with Dahar, what to complain about Charkh.
+                                        Sara Jahan Adu Sahi, Come! Compete
+                                        His bravery can be estimated from these passionate lines. At the time of his
+                                        first meeting with Chandrashekhar Azad, he took a vow by placing his hand on a
+                                        burning candle that he would sacrifice his life for the country and he fulfilled
+                                        that vow.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">
+                                        “Someone has rightly said, old men cannot reform. They are very intelligent and
+                                        sensible. Reforms are done by the hard work, courage, sacrifice and loyalty of
+                                        the youth, who do not know how to be afraid and who think less and experience
+                                        more. ”~ Bhagat Singh
+
+                                        Can you imagine, a kingdom that ruled such a large part of the world, it was
+                                        said that the sun never sets under their rule. Such a powerful government was
+                                        scared of a 23 year old youth.
+                                    </p>
+                                    <br>
+                                    <h2 class="card-title">8. Fame and Honor :</h2>
+                                    <p class="" font-light">
+                                        Memorial of the three martyrs in Hussainiwala
+                                        The news of his death was published by the Daily Tribune of Lahore and the Daily
+                                        Worker, a newspaper in New York. Even after this, articles on him were published
+                                        in many Marxist papers, but since there was a ban on the publication of Marxist
+                                        papers in India in those days, Indian intellectuals did not know about it. His
+                                        martyrdom was remembered across the country.
+                                    </p><br>
+                                    <p class="" font-light">
+                                        In South India, Periyar was famous for his article "Why am I an Atheist?" But
+                                        wrote an editorial in Tamil in the 22-29 March 1931 issue of his weekly paper
+                                        Kudai Aarasu. In this, Bhagat Singh was praised and his martyrdom was seen as a
+                                        victory over British imperialism.
+
+                                        Even today the people of India and Pakistan see Bhagat Singh as a lover of
+                                        freedom who devoted his whole life including his youth for the country.His life
+                                        inspired many Hindi film characters.
+
+                                    </p><br>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <div class="blog-profile box-center mb-lg-5 mb-4">
+                                <div class="image-profile">
+                                    <img src="{% static 'assets/images/inner-page/review-image/2.jpg' %}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="image-name text-weight">
+                                    <h3>Vishwaratna</h3>
+                                    <h6>22 September 2023</h6>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="minus-spacing mb-2">
+                                        <h3>Leave Comments</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
+                                        required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="example@example.com" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="textarea" class="form-label">Comments</label>
+                                    <textarea rows="3" class="form-control" id="textarea"
+                                        placeholder="Leave a comment here" required></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-solid-default btn-spacing mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="left-side">
+                        <!-- Search Bar Start -->
+                        <div class="search-section">
+                            <div class="input-group search-bar">
+                                <input type="search" class="form-control search-input" placeholder="Search">
+                                <button class="input-group-text search-button" id="basic-addon3">
+                                    <i class="fas fa-search text-color"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar End -->
+
+                        <!-- Popular Post Start -->
+                        <div class="popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Popular Blogs</h3>
+                            </div>
+
+                            <a href="/blog_details/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">01 -->
+                                            <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt="" class="card-img-top">
+                                        <!-- </h4> -->
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>14th Dalai Lama</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails1/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">02</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt="" class="card-img-top">
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Bhagat Singh</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails2/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">03</h4> -->
+                                        <img src=" {% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt="" class="card-img-top">
+                                    
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Dr. Bhim Rao Ambedkar</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails3/" class="blog-img">
+                                <div class="popular-image mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">04</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt="" class="card-img-top">
+                                        
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Mahatma Jyotiba Phule</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Popular Post End -->
+
+                        <!-- Category section Start -->
+                        <div class="category-section popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Category</h3>
+                            </div>
+                            <ul>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-globe text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Global</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-building text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Business</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-play text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Entertainmant</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-tshirt text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Sports</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-dumbbell text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Health</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Category section End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Details Blog Section End -->
+
+    <!-- related blog start -->
+    <section class="section-b-space block-shadow-space ratio3_2">
+        <div class="container">
+            <div class="slide-4 product-wrapper slick-lg-space">
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/9.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/8.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/4.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/16.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/13.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related blog end -->
+
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

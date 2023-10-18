@@ -1,0 +1,1029 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Details</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        .left-side .popular-post .popular-image .popular-number {
+            border-radius: 7px;
+            width: 70px;
+        }
+
+        .left-side .popular-post .popular-image img {
+            width: 80px;
+            height: 70px;
+            /* -o-object-fit: cover; */
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blog Details</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Details Blog Section Start -->
+    <section class="masonary-blog-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-9 col-md-8 order-md-1 ratio_square">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="blog-details">
+                                <div class="blog-image-box">
+                                    <img src="{% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt=""
+                                        class="card-img-top">
+                                    <div class="blog-title">
+                                        <div>
+                                            <div class="social-media media-center">
+                                                <a href="https://www.facebook.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://twitter.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://in.pinterest.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-pinterest-p"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>Dr. Bhim Rao Ambedkar</h1>
+                                    <br>
+                                    <br>
+
+                                    <p class="font-light firt-latter">Bhimrao Ramji Ambedkar (April 14, 1891 –
+                                        December 6, 1956), popularly known as Dr. Babasaheb Ambedkar, was an Indian
+                                        polymath, jurist, economist, politician, and social reformer. He inspired the
+                                        Dalit Buddhist movement and Campaigned against social discrimination against
+                                        untouchables (Dalits). He also supported the rights of workers, farmers and
+                                        women. He was the first law and justice minister of independent India, the
+                                        father of the Indian Constitution and one of the founders of the Republic of
+                                        India.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Ambedkar was a student of immense talent. He received doctorates in economics
+                                        from both Columbia University and the London School of Economics, and did
+                                        research in law, economics, and political science. In the early part of his
+                                        professional life, he was a professor of economics and also practiced law. His
+                                        early and later life was spent more in political activities. Ambedkar then
+                                        became involved in campaigning and discussions for India's independence,
+                                        publishing journals, advocating political rights and social freedom for Dalits,
+                                        and was instrumental in the making of India.
+                                    </p><br>
+                                    <p class="font-light">
+                                        In 1956, fed up with the practice of kurutis and untouchability prevailing in
+                                        the Hindu panth, he adopted Buddhism. In 1990, he was posthumously awarded the
+                                        Bharat Ratna, India's highest civilian honour. His birthday, 14 April, is
+                                        celebrated around the world, including India, as Ambedkar Jayanti. Dr.
+                                        Ambedkar's legacy includes many memorials and depictions in popular culture.
+                                    </p> <br>
+                                    <br>
+                                    <h2 class="card-title">1. Early life:</h2>
+                                    <p class="font-light">Ambedkar was born on 14 April 1891 in the Mhow Nagar military
+                                        cantonment in the Central India Province (now Madhya Pradesh) of British
+                                        India. He was the 14th and last child of Ramji Maloji Sakpal and
+                                        Bhimabai. His family The follower of Kabir Panth was of Marathi origin and
+                                        he was a resident of Ambadwe village in the present-day Ratnagiri district of
+                                        Maharashtra. He belonged to the Hindu Mahar caste, which was then called
+                                        untouchable and due to this he was deeply socially and economically.
+                                        Discrimination had to be tolerated. Bhimrao Ambedkar's forefathers had long
+                                        served in the army of the British East India Company and his father, Ramji
+                                        Sakpal, was serving in the Mhow cantonment of the Indian Army and rose to the
+                                        rank of subedar while working here. had reached He received formal education in
+                                        Marathi and English.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Due to his caste, the boy Bhima was facing social resistance. Despite being able
+                                        to study in school, student Bhimrao had to face many difficulties due to
+                                        untouchability. On November 7, 1900, Ramji Sakpal enrolled his son Bhimrao as
+                                        Bhiva Ramji Ambedwekar at the Government High School in Satara. His childhood
+                                        name was 'Bhiva'. Ambedkar's original surname was spelled Ambedwekar instead of
+                                        Sakpal, which was related to his Ambedwe village. Because the people of Konkan
+                                        province kept their surname from the name of the village, hence Ambedkar's
+                                        surname from Ambedkar's Ambedwe village was registered in the school. Later,
+                                        Krishna Keshav Ambedkar, a Devrukhe Brahmin teacher who had a special affection
+                                        for him, dropped 'Ambedvekar' from his name and added his simple 'Ambedkar'
+                                        surname. From then till today he is known by the name Ambedkar.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Ramabai Ambedkar, wife of Ambedkar<br>
+                                        Ramji Sakpal moved to Bombay (now Mumbai) with the family. In April 1906, when
+                                        Bhimrao was about 15 years old, he was arranged to marry Ramabai, a
+                                        nine-year-old girl. Then he was studying fifth English class. In those days
+                                        child marriage was prevalent in India.
+
+                                    </p> <br>
+                                    <br>
+
+                                    <h2 class="card-title">2. Education :</h2>
+                                    <br>
+                                    <h3>Primary Education :</h3>
+                                    <br>
+                                    <p class="font-light">
+                                        Ambedkar took admission in the first class of English on 7 November 1900 at the
+                                        Government High School (now Pratap Singh High School) located at Rajwada Chowk
+                                        in Satara Nagar. His educational life started from this day, hence November 7 is
+                                        celebrated as Student's Day in Maharashtra. At that time he was called as
+                                        'Bhiva'. At that time in the school, 'Bhiva Ramji Ambedkar', his name was
+                                        mentioned on serial number-1914 in the attendance register. When he passed the
+                                        fourth grade English examination, Bhimrao's success was celebrated as a public
+                                        ceremony among untouchables, as it was unusual among untouchables, and his
+                                        family friend and writer Dada Keluskar published a self-written 'Buddha'.
+                                        Biography' was presented to him. After reading this, he came to know Gautam
+                                        Buddha and Buddhism for the first time and was impressed by his teachings.[19]
+                                    </p>
+                                    <br>
+                                    <h3>secondary education : </h3>
+                                    <br>
+                                    <p class="font-light">In 1897, Ambedkar's family moved to Mumbai where he received
+                                        further education at the Government High School on Elphinstone Road.[20]
+                                        <br>
+                                        <br>
+                                    <h4>Undergraduate Studies at Bombay University</h4>
+                                    <br>
+                                    
+                                    <p class="font-light">In 1907, he passed his matriculation examination and the
+                                        following year he entered the Elphinstone College, which was affiliated with the
+                                        University of Bombay. He was the first person from his community to receive
+                                        education at this level.
+
+                                        By 1912, he obtained a Bachelor of Arts (BA) in Economics and Political Science
+                                        from Bombay University, and began working with the Baroda State Government. His
+                                        wife had just moved her new family and started work when he had to return to
+                                        Bombay to attend to his ailing father, who died on 2 February 1913.
+                                    </p>
+                                    <br>
+                                    <br>
+                                    <h4>Postgraduate Studies at Columbia University</h4>
+                                    <br>
+                                    <p class="font-light">
+                                        Ambedkar as a student at Columbia University (1915–1917)
+                                        <br>
+                                        In 1913, Ambedkar moved to the United States at the age of 22, where he received
+                                        a stipend of $11.50 for three years to provide opportunities for graduate
+                                        education at Columbia University in New York City under a scheme set up by
+                                        Sayajirao Gaekwad III (Gaekwad of Baroda) Baroda State Scholarship was provided
+                                        per month. Soon after reaching there, he settled in Livingston Hall with a Parsi
+                                        friend, Naval Bhatena. In June 1915, he passed his Master of Arts (MA)
+                                        examination, with economics as his main subject, and sociology, history,
+                                        philosophy and anthropology as other subjects. He presented research work on the
+                                        topic of Ancient Indian Commerce for post graduation. Ambedkar was influenced by
+                                        John Dewey and his work on democracy.
+                                    </p>
+                                    <p class="font-light">
+                                        In 1916, he was awarded a second Master of Arts for his second research work,
+                                        National Dividend of India - A Historical and Analytical Study, and eventually
+                                        made his way to London. Received a PhD in economics in 1916 for his third
+                                        research work, Evolution of Provincial Finance in British India, and was
+                                        officially awarded a PhD in 1927 after publishing his research work. On 9
+                                        May, he presented a research paper titled Castes in India: Their System, Origin
+                                        and Evolution, his first published paper, at a seminar organized by the
+                                        anthropologist Alexander Goldenweiser. He used the scholarship for a period of 3
+                                        years to complete the course in America in just two years and in 1916 he went to
+                                        London.
+                                    </p>
+                                    <br>
+
+                                    <h4>Postgraduate Studies at the London School of Economics</h4>
+                                    <br>
+                                    <p class="font-light">Ambedkar with his professors and friends at the London School
+                                        of Economics (centre centre, before right), 1916 - 17
+                                        <br>
+                                        Dr. Bhimrao Ambedkar as a barrister in 1922
+                                        In October 1916, he moved to London and joined the Barrister Course at Gray's
+                                        Inn, as well as the London School of Economics, where he began work on his
+                                        doctoral thesis in economics. . In June 1917, he was forced to leave his studies
+                                        temporarily and return to India as his scholarship from Baroda State had
+                                        expired. On his return his book collection was sent on a different ship than the
+                                        one that was sunk by a torpedo from a German submarine. This was the period of
+                                        World War I. He was allowed to return to London for his thesis within four
+                                        years.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">Dr. Bhimrao Ambedkar was disheartened by the sudden
+                                        reappearance of discrimination in his life while working as the Army Secretary
+                                        of Baroda State and quit his job to work as a private tutor and accountant. He
+                                        even started his own consulting business which failed due to his social status.
+                                        He got a job as Professor of Political Economy at the Sydnam College of Commerce
+                                        and Economics in Mumbai because of his English acquaintance Lord Sydnam, former
+                                        Governor of Mumbai. In 1920, with the support of Shahu Maharaj of Kolhapur, his
+                                        Parsi friend, and some personal savings, he was able to return to England once
+                                        again and obtained a Master of Science (MSc) in 1921, for which he studied
+                                        'Provencial'. Presented the research book 'Decentralization of Imperial Finance
+                                        in British India' (Provincial Decentralization of Imperial Economy in British
+                                        India).
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">3. Struggle Against Untouchability :</h2>
+                                    <p class="font-light">Ambedkar giving a speech
+                                        <br>
+                                        See also: Mahad Satyagraha and Kalaram Mandir Satyagraha
+                                        Ambedkar had said "Untouchability is worse than slavery." Ambedkar was
+                                        educated by the princely state of Baroda, so was bound to serve them. He was
+                                        appointed military secretary to Maharaja Gaekwad, but he had to leave the job
+                                        within no time due to caste discrimination. He recounted this incident in his
+                                        autobiography, Waiting for a Visa. Thereafter, he tried again to find a
+                                        means of livelihood for his growing family, for which he worked as an accountant
+                                        and as a private tutor. He also worked there, and set up an investment
+                                        consulting business, but all these efforts failed when his clients learned that
+                                        he was an untouchable. In 1918, he became professor of political economics
+                                        at the Sydenham College of Commerce and Economics in Bombay. Became a professor.
+                                        Although he was successful with the students, other professors objected to him
+                                        sharing drinking utensils with them.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">
+                                        Ambedkar was invited to testify as one of India's leading scholars before the
+                                        Southborough Committee preparing the Government of India Act 1919. During this
+                                        hearing, Ambedkar advocated separate electorates and reservations for Dalits and
+                                        other religious communities. In 1920, from Bombay, he started the
+                                        publication of the weekly Mooknayak. The publication quickly became popular with
+                                        readers, and Ambedkar used it to criticize conservative Hindu politicians and
+                                        the reluctance of the Indian political community to fight caste discrimination.
+                                        His speech during a conference of Dalit class greatly impressed the local ruler
+                                        of Kolhapur state, Shahu IV, whose dining with Ambedkar caused a stir in the
+                                        conservative society.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">
+
+                                        While practicing law in the Bombay High Court, he made efforts to promote the
+                                        education and upliftment of the untouchables. His first organized effort was the
+                                        establishment of the central institution Bahishkrit Hitakarini Sabha, which
+                                        aimed to promote education and socio-economic reform as well as the welfare of
+                                        the "outcastes", referred to as the depressed classes. To protect Dalit
+                                        rights , he brought out five magazines like Mooknayak, Bahishkrit Bharat,
+                                        Samata, Prabuddha Bharat and Janta.
+
+                                        In 1925, he was appointed to the Bombay Presidency Committee to serve on the
+                                        Simon Commission consisting of all European members. Protests against this
+                                        commission took place across India. While its report was ignored by most
+                                        Indians, Ambedkar separately wrote back recommendations for future
+                                        constitutional reforms.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">
+
+                                        Dr. Babasaheb Ambedkar and his followers at 'Jaistambh', Koregaon Bhima, 1
+                                        January 1927
+                                        On January 1, 1927, Ambedkar organized a ceremony at the Koregaon Victory
+                                        Monument (Jaystambh) in honor of Indian Mahar soldiers killed during the Battle
+                                        of Koregaon on January 1, 1818, under the Second Anglo-Maratha War. Here the
+                                        names of soldiers belonging to the Mahar community were engraved on a marble
+                                        inscription and made Koregaon a symbol of Dalit self-respect.
+
+                                        By 1927, Dr. Ambedkar decided to launch a massive and active movement against
+                                        untouchability. Through public agitations, satyagrahas and processions, he
+                                        fought for the opening of public drinking water resources to all sections of the
+                                        society as well as for untouchables to have the right to enter Hindu temples. He
+                                        also launched a satyagraha for the untouchable community in Mahad city to get
+                                        the right to draw water from the city's Chavdar reservoir. At a conference
+                                        in late 1927, Ambedkar, in order to ideologically justify caste discrimination
+                                        and "untouchability", publicly condemned the ancient Hindu text, the Manusmriti,
+                                        many verses of which openly support racial discrimination and casteism, and
+                                        he formally burned copies of the ancient text. On 25 December 1927, he
+                                        Thousands of followers led the burning of copies of Manusmriti. In
+                                        its memory, 25 December is celebrated annually as Manusmriti Burning Day by
+                                        Ambedkarites and Hindu Dalits.
+                                    </p><br>
+                                    <p class="font-light">
+                                        In 1930, Ambedkar launched the Kalaram Temple Satyagraha after three months of
+                                        preparation. Around 15,000 volunteers gathered in the Kalaram Mandir movement,
+                                        making it the largest procession in Nashik. The procession was led by a military
+                                        band, a batch of scouts, women and men moved in discipline, order, and
+                                        determination to see the Lord for the first time. When they reached the gate,
+                                        the gate was closed by the Brahmin officials.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">4. Pune pact :</h2>
+                                    <p class="font-light">Main articles: Pune Agreement and Round Table Conference
+                                        (India)
+                                        <br>
+                                        Second Round Table Conference, 1931; In which Ambedkar (first from right),
+                                        Gandhi, Malviya and other people were included.
+                                        Till now Bhimrao Ambedkar had become the biggest untouchable political
+                                        personality till date. He bitterly criticized the perceived apathy of the
+                                        mainstream political parties towards the eradication of the caste system.
+                                        Ambedkar also criticized the Indian National Congress and its leader Mahatma
+                                        Gandhi, accusing them of presenting the untouchable community as an object of
+                                        pity. Ambedkar was also dissatisfied with the failures of the British rule, he
+                                        advocated a separate political identity for the untouchable community, in which
+                                        both the Congress and the British would have no interference. On August 8, 1930,
+                                        during an oppressed class conference i.e. First Round Table Conference in
+                                        London, Ambedkar presented his political vision to the world, according to which
+                                        the security of the oppressed class lies in its independence from both the
+                                        government and the Congress.
+                                    </p><br>
+                                    <p class="font-light">
+                                        We have to make our own way and ourselves... Political power cannot solve the
+                                        problems of the oppressed, their salvation lies in getting their rightful place
+                                        in the society. They must change their bad way of living... They must be
+                                        educated... A great necessity is to shake off their sense of inferiority and to
+                                        instill in them that divine discontent which is the source of all heights.
+
+                                        Ambedkar criticized the Congress and the Salt Satyagraha run by Gandhi. Due to
+                                        his increasing popularity and public support in the untouchable community, he
+                                        was invited to participate in the second Round Table Conference to be held in
+                                        London in 1931. There he had a heated debate with Gandhi on the issue of giving
+                                        separate electorates to the untouchables, and the British agreed with Dr.
+                                        Ambedkar's views. Gandhi, a staunch opponent of separate electorates based on
+                                        religion and caste, feared that separate electorates given to untouchables would
+                                        divide Hindu society. Gandhi felt that the upper castes should be given a period
+                                        of a few years for their change of heart to forget untouchability. 
+                                    </p><br>
+                                    <p class="font-light">
+
+                                        MR Jayakar, Tej Bahadur and Dr. Ambedkar (second from right) at Yerwada Central
+                                        Jail on 24 September 1932
+                                        <br>
+                                        In 1932, when the British, agreeing with Ambedkar's views, announced separate
+                                        electorates to the untouchables. The announcement of the Communal Award was the
+                                        result of the discussions held in the Round Table Conference. Under this accord,
+                                        considering the demand for political representation raised by Ambedkar, the
+                                        Dalits were given the right of two votes in separate electorates. Under this,
+                                        the Dalits could choose their representative with one vote and there was freedom
+                                        to choose the representative of the general class with the second vote. Thus the
+                                        Dalit representative was to be elected by the votes of Dalits only. With this
+                                        provision, there was no interference of the general class in choosing the Dalit
+                                        representative. But at the same time, the Dalit class could play its role by
+                                        using its second vote to elect the representative of the general class. In such
+                                        a situation, the Dalit candidate chosen by the Dalits could have kept the
+                                        problems of Dalits well, but it was not necessary for the non-candidate to try
+                                        to solve their problems.
+                                    </p>
+                                    <p class="font-light">
+                                        Gandhi was at this time in Yerwada Jail in Poona. As soon as the Communal Award
+                                        was announced, Gandhi first wrote a letter to the Prime Minister demanding that
+                                        it be changed. But when he felt that no action was being taken on his demand, he
+                                        announced to fast unto death. Then Ambedkar said that "It would have been better
+                                        if Gandhi had kept this fast for the independence of the country, but he has
+                                        kept this fast against the Dalit people, which is very regrettable. While Indian
+                                        Christians, Muslims and Sikhs got the same K There was no objection from Gandhi
+                                        regarding the right." He also said that Gandhi is not an immortal person. Don't
+                                        know how many such people took birth in India and left. Ambedkar said that he
+                                        could not sacrifice the interests of Dalits to save Gandhi's life. Now Gandhi's
+                                        health was continuously deteriorating due to death fast. There was a huge crisis
+                                        on Gandhi's life. And the entire Hindu society became opposed to Ambedkar.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Seeing the growing pressure in the country, Ambedkar reached Yerwada Jail on 24
+                                        September 1932 at 5 pm. Here there was an agreement between Gandhi and Ambedkar,
+                                        which later came to be known as the Poona Pact. In this agreement, Ambedkar
+                                        announced to give up the right of separate electorate given to the Dalits in the
+                                        Communal Award. But along with this, instead of the 78 reserved seats received
+                                        from the Communal Award, the number of reserved seats was increased to 148 in
+                                        the Poona Pact. Along with this, fixed a sufficient amount in education grant in
+                                        each province for untouchable people and ensured the recruitment of Dalit class
+                                        people from government jobs without any discrimination and in this way Ambedkar
+                                        saved the life of Mahatma Gandhi. Ambedkar was unsatisfied with the compromise,
+                                        calling Gandhi's fast a ploy by Gandhi to deprive the untouchables of their
+                                        political rights and force them to back down from their demands. Ambedkar
+                                        condemned this agreement in 1942, expressed his displeasure regarding the Poona
+                                        Pact in his book 'State of Minority'. The Republican Party of India has also
+                                        held dhikr meetings many times before this.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">5. Political life :</h2>
+                                    <p class="font-light">Ambedkar's political career began in 1926 and he held various
+                                        positions in the political field till 1956. In December 1926, the Governor of
+                                        Bombay nominated him as a member of the Bombay Legislative Council; He took his
+                                        duties seriously, and often gave speeches on economic matters. He was a member
+                                        of the Bombay Legislative Council till 1936.
+                                    </p><br>
+                                    <p class="font-light">
+                                        On 13 October 1935, Ambedkar was appointed Principal of the Government Law
+                                        College, a position he held for two years. He also served as the President of
+                                        the Governing Body of Delhi University's Ramjas College after the death of its
+                                        founder Shri Rai Kedarnath. Ambedkar settled in Bombay (now Mumbai), where
+                                        he built a large three-storey house. Rajagriha, which contained his personal
+                                        library of over 50,000 books, then the largest private library in the world.
+                                         In the same year, on 27 May 1935, his wife Ramabai died after a prolonged
+                                        illness. Ramabai wanted to go to Pandharpur for pilgrimage before her death but
+                                        Ambedkar did not allow her to do so. Ambedkar said that there is no point in
+                                        going to the Hindu pilgrimage where they are considered untouchables, instead
+                                        they talked about building a new Pandharpur for them.
+                                    <p>
+                                    <p class="font-light">
+                                        In 1936, Ambedkar founded the Independent Labor Party, which won 13 seats in the
+                                        1937 Central Legislative Assembly elections. Ambedkar was elected as an MLA
+                                        to the Bombay Legislative Assembly. He remained a member of the Legislative
+                                        Assembly until 1942, during which time he also served as the Leader of the
+                                        Opposition in the Bombay Legislative Assembly.
+
+                                        In the same year, Ambedkar published his book 'Annihilation of Caste' on 15 May
+                                        1936, which was based on a research paper written by him in New York. [60] In
+                                        this book, Ambedkar criticized Hindu religious leaders and the caste system.
+                                         He strongly criticized the decision of the Congress to refer to the
+                                        untouchable community as Harijan, a term coined by Gandhi. Later, in a
+                                        1955 BBC interview, he criticized Gandhi for his Gujarati language. Accused of
+                                        supporting caste system in letters and opposing caste system in English language
+                                        papers.
+                                    </p><br>
+                                    <p class="font-light">
+                                        The All India Scheduled Castes Federation was a socio-political organization
+                                        founded by Ambedkar in 1942 to campaign for the rights of the Dalit community.
+                                        During the years 1942 to 1946, Ambedkar served on the Defense Advisory Committee
+                                        and the Viceroy's Executive Council as Labor Minister.
+                                        <br><br>
+                                        Ambedkar took an active part in India's freedom struggle.
+                                        <br>
+                                        Following the Lahore Resolution (1940) of the Muslim League demanding Pakistan,
+                                        Ambedkar wrote a 400-page book called "Thoughts on Pakistan", which analyzed the
+                                        concept of "Pakistan" in all its aspects. Criticized the demand for a separate
+                                        country of Pakistan for Pakistan. Also argued that Hindus should accept the
+                                        Pakistan of Muslims. He proposed that Punjab and Bengal be divided to separate
+                                        Muslim and non-Muslim majority parts. Provincial boundaries should be redrawn.
+                                        He thought that the Muslims could have no objection to the redrawing of
+                                        provincial boundaries. If they did, they would not quite "understand the nature
+                                        of their demand". Scholar Venkat Dhalipal said that Thoughts on Pakistan
+                                        "precipitated Indian politics for a decade". It set the course of dialogue
+                                        between the Muslim League and the Indian National Congress, paving the way for
+                                        the Partition of India.[69] However He was strongly critical of the divisive
+                                        communal tactics of Muhammad Ali Jinnah and the Muslim League, but argued that
+                                        Hindus and Muslims should be separated and Pakistan should be formed as a single
+                                        country to lead, due to ethnic nationalism. More violence will flourish within.
+                                    </p>
+                                    <br>
+                                    <p class="font-light">
+                                        He cited historical events such as the dissolution of the Ottoman Empire and
+                                        Czechoslovakia in support of his idea of a communal divide between Hindus and
+                                        Muslims. He asked whether there were sufficient reasons for the establishment of
+                                        Pakistan? and suggested that it might have been possible to end the differences
+                                        between Hindus and Muslims with a less drastic step. He has written that
+                                        Pakistan should justify its existence. Communal issues have always been there
+                                        even in countries like Canada, but even today the British and the French live
+                                        together, so can't Hindus and Muslims also live together? He warned that the
+                                        actual implementation of the two-nation solution would be extremely difficult.
+                                        With the transfer of huge population, there will also be the problem of border
+                                        dispute. This prediction was correct keeping in mind the violence that would
+                                        happen after India's independence.
+                                    </p><br>
+                                    <p class="font-light">
+                                        "What Congress and Gandhi have done to the Untouchables?" (What did the Congress
+                                        and Gandhi do for the Untouchables?) With this book, Ambedkar sharpened his
+                                        attacks on both Gandhi and the Congress, accusing them of hypocrisy.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Ambedkar saw his political party transform into the All India Scheduled Castes
+                                        Federation, although it fared poorly in the 1946 elections to the Constituent
+                                        Assembly of India. He was later elected to the Constituent Assembly from Bengal,
+                                        where the Muslim League was in power. Ambedkar contested the first Indian
+                                        Lok Sabha election of 1952 from Bombay North, but was defeated by his former
+                                        assistant and Congress Party candidate Narayan Kajolkar. Ambedkar became a
+                                        member of the Rajya Sabha in 1952. He tried to enter the Lok Sabha again in the
+                                        1954 by-election from Bhandara, but he finished third (the Congress party won).
+                                        By the time of the second general election in 1957, Ambedkar had passed away.
+
+                                        Ambedkar was twice a member of the Parliament of India representing Maharashtra
+                                        in the Rajya Sabha, the upper house of the Parliament of India. His first term
+                                        as a Rajya Sabha member was from 3 April 1952 to 2 April 1956, and his second
+                                        term was to be held from 3 April 1956 to 2 April 1962, but he died on 6 December
+                                        1956, before the term could expire Gay.
+                                    </p><br>
+                                    <p class="font-light">
+                                        On 30 September 1956, Ambedkar announced the establishment of the "Republican
+                                        Party of India", rejecting the "Scheduled Caste Federation", but he died on 6
+                                        December 1956, before the party could be formed. After that, his followers and
+                                        workers planned to form this party. A meeting of the Presidency was held at
+                                        Nagpur on 1 October 1957 to establish the party. N. Shivraj, Yashwant Ambedkar,
+                                        P. T. Borale, A. G. Pawar, Datta Katti, D. A. Rupwate were present in this
+                                        meeting. The Republican Party of India was formed on 3 October 1957 and N.
+                                        Shivraj was elected as the President of the party.
+
+                                        Ambedkar in his book Who Were the Shudras? (Who were the Shudras?) explained the
+                                        existence of the Shudras, the lowest caste in the hierarchy of the Hindu caste
+                                        system. He also emphasized how the Atishudras (untouchables) were different
+                                        from the Shudras. . Who Were the Shudras in 1948? In the sequel The
+                                        Untouchables: A Thesis on the Origin of Untouchability, Ambedkar lambasted
+                                        Hinduism.
+                                    </p><br>
+                                    <p class="font-light">
+                                        Hindu Civilization....which is a cruel device to enslave and suppress humanity
+                                        and its proper name would be infamy. What else can be said about a civilization
+                                        that has developed a vast mass of people who ... are considered inferior to a
+                                        human and whose mere touch is reason enough to spread pollution?
+
+                                        Ambedkar was also a great critic of the practices of Islam in South Asia. He
+                                        took the side of the partition of India but strongly condemned the practice of
+                                        child marriage prevalent among Muslims and the misbehavior with women. They
+                                        said,
+
+                                        Words cannot express the ill effects of polygamy and keeping concubines which
+                                        are especially a source of sorrow for a Muslim woman. Take the caste system,
+                                        everyone says that Islam should be free from slavery and caste, whereas slavery
+                                        exists and is supported by Islam and Islamic countries. While the Prophet's
+                                        prescriptions regarding justice and humane treatment of slaves contained in the
+                                        Qur'an are praiseworthy, there is nothing in Islam that supports the abolition
+                                        of this curse. Even if slavery is abolished, the caste system will remain among
+                                        Muslims.
+                                    </p><br>
+                                    <p class="font-light">
+                                        He wrote that there are more social evils in Muslim society than in Hindu
+                                        society and Muslims hide them by using soft words like "brotherhood". He also
+                                        criticized the discrimination by Muslims against the Arzal classes who were
+                                        considered "inferior" as well as the oppressive purdah system of oppression of
+                                        women in Muslim society. they said that veil is also seen in Hindus but
+                                        religious approval was given only by Muslims. He criticized the bigotry in
+                                        Islam, due to which the society has become very bigotry due to the strict
+                                        adherence to the rules of Islam and it has become very difficult to change it.
+                                        He further wrote that Indian Muslims have failed to reform their society, while
+                                        countries like Turkey, in contrast, have changed a lot.
+
+                                        Suffering from "communalism", both groups of Hindus and Muslims have neglected
+                                        the demand for social justice.
+
+                                    </p> <br>
+
+                                </div>
+                            </div>
+
+                            <div class="blog-profile box-center mb-lg-5 mb-4">
+                                <div class="image-profile">
+                                    <img src="{% static 'assets/images/inner-page/review-image/2.jpg' %}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="image-name text-weight">
+                                    <h3>Vishwaratna</h3>
+                                    <h6>22 September 2023</h6>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="minus-spacing mb-2">
+                                        <h3>Leave Comments</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
+                                        required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="example@example.com" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="textarea" class="form-label">Comments</label>
+                                    <textarea rows="3" class="form-control" id="textarea"
+                                        placeholder="Leave a comment here" required></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-solid-default btn-spacing mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="left-side">
+                        <!-- Search Bar Start -->
+                        <div class="search-section">
+                            <div class="input-group search-bar">
+                                <input type="search" class="form-control search-input" placeholder="Search">
+                                <button class="input-group-text search-button" id="basic-addon3">
+                                    <i class="fas fa-search text-color"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar End -->
+
+                        <!-- Popular Post Start -->
+                        <div class="popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Popular Blogs</h3>
+                            </div>
+
+                            <a href="/blog_details/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">01 -->
+                                            <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt="" class="card-img-top">
+                                        <!-- </h4> -->
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>14th Dalai Lama</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails1/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">02</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt="" class="card-img-top">
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Bhagat Singh</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails2/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">03</h4> -->
+                                        <img src=" {% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt="" class="card-img-top">
+                                    
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Dr. Bhim Rao Ambedkar</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails3/" class="blog-img">
+                                <div class="popular-image mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">04</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt="" class="card-img-top">
+                                        
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Mahatma Jyotiba Phule</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Popular Post End -->
+
+                        <!-- Category section Start -->
+                        <div class="category-section popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Category</h3>
+                            </div>
+                            <ul>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-globe text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Global</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-building text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Business</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-play text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Entertainmant</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-tshirt text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Sports</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-dumbbell text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Health</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Category section End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Details Blog Section End -->
+
+    <!-- related blog start -->
+    <section class="section-b-space block-shadow-space ratio3_2">
+        <div class="container">
+            <div class="slide-4 product-wrapper slick-lg-space">
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/9.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/8.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/4.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/16.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/13.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related blog end -->
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

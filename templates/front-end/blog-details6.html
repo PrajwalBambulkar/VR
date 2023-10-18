@@ -1,0 +1,699 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Details</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        .left-side .popular-post .popular-image .popular-number {
+            border-radius: 7px;
+            width: 70px;
+        }
+
+        .left-side .popular-post .popular-image img {
+            width: 80px;
+            height: 70px;
+            /* -o-object-fit: cover; */
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blog Details</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Details Blog Section Start -->
+    <section class="masonary-blog-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-9 col-md-8 order-md-1 ratio_square">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="blog-details">
+                                <div class="blog-image-box">
+                                    <img src="{% static 'assets/images/VR-img/DrbabaSaheb7.jpg' %}" alt=""
+                                        class="card-img-top">
+                                    <div class="blog-title">
+                                        <div>
+                                            <div class="social-media media-center">
+                                                <a href="https://www.facebook.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://twitter.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://in.pinterest.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-pinterest-p"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>A Voice for the Abolishment of Casteism : Towards an Equal and Inclusive Society
+                                    </h1>
+                                    <br>
+
+                                    <p class="font-light firt-latter">Casteism remains a persistent and deeply rooted
+                                        problem in societies, particularly in South Asia. The caste system's
+                                        hierarchical nature perpetuates discrimination and inequality, impeding social
+                                        advancement. This article highlights the significance of ending caste
+                                        discrimination and establishing a society that treats everyone fairly and
+                                        welcomes everyone, valuing their worth and freedoms regardless of their caste.
+                                        By addressing these unjust actions, we can construct a society where people are
+                                        not hindered by discrimination and can achieve success based on their skills and
+                                        qualifications.</p> <br>
+
+                                    <h2 class="card-title">1. Understanding Casteism :</h2>
+                                    <p class="font-light">Casteism is a deeply ingrained system of social discrimination
+                                        that is prevalent in certain societies. It operates based on birth and
+                                        hereditary hierarchies, dividing individuals into rigid social groups. This
+                                        categorisation determines not only their occupation and social status but also
+                                        their rights and opportunities in life. Sadly, discrimination and prejudice are
+                                        deeply woven into the social fabric, perpetuating inequality, and restricting
+                                        the prospects of those belonging to lower castes.
+
+                                        In some extreme cases, it even results in acts of violence and oppression
+                                        against individuals from lower castes. Overcoming casteism requires concerted
+                                        efforts to challenge and dismantle these discriminatory practises, promoting
+                                        social justice and equal opportunities for all.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">2. The Call for Abolishment :</h2>
+                                    <p class="font-light">Eliminating casteism is vital for the establishment of a fair
+                                        and egalitarian society. Caste-based discrimination directly contradicts the
+                                        principles of social justice and human dignity, impeding societal progress and
+                                        perpetuating long-standing inequalities between generations. To create a society
+                                        that truly values the intrinsic worth and potential of every person, it is
+                                        necessary to actively challenge and dismantle the systemic barriers that uphold
+                                        casteism.
+
+                                        To create a society that values the intrinsic worth and potential of every
+                                        person, it is essential to actively confront and dismantle the structural
+                                        barriers that uphold casteism.
+
+                                    </p><br>
+
+                                    <h2 class="card-title">3. Education and Awareness :</h2>
+                                    <p class="font-light">One of the most important roles played in removing the caste
+                                        system is that of education. It serves as a powerful tool for raising awareness
+                                        and fostering understanding about the unjust nature of the caste system. By
+                                        prioritising inclusivity, educational institutions can contribute to breaking
+                                        down prejudices and stereotypes associated with caste. It is important to
+                                        incorporate an anti-caste curriculum that addresses the historical and
+                                        contemporary issues surrounding caste-based discrimination.
+
+                                        Additionally, promoting social harmony and empathy through education enables
+                                        individuals to develop critical thinking skills and challenge deeply ingrained
+                                        casteist beliefs and practises.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">4. Legal Reforms and Enforcement :</h2>
+                                    <p class="font-light">Achieving the eradication of casteism necessitates the
+                                        establishment of strong legal frameworks and their diligent enforcement.
+                                        Legislation should unequivocally prohibit caste-based discrimination,
+                                        guaranteeing equal rights and opportunities for every citizen. Robust laws need
+                                        to be put in place to offer protection and support to individuals who endure
+                                        caste-based atrocities. More effective law enforcement mechanisms must be done
+                                        in order to make the output successful enough.
+
+                                        Additionally, creating accessible grievance redressal systems can provide a
+                                        pathway to justice for victims of caste-based discrimination.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">5. Economic Empowerment :</h2>
+                                    <p class="font-light">Addressing economic disparities is a key aspect of combating
+                                        casteism. It is vital to promote economic opportunities and implement
+                                        affirmative action programmes that specifically target marginalised communities.
+                                        These measures can help break the cycle of poverty and marginalisation that
+                                        lower caste individuals often find themselves in.
+
+                                        By encouraging entrepreneurship, providing skill development initiatives, and
+                                        improving access to financial resources, we can empower individuals from lower
+                                        castes to overcome the systemic barriers they face and actively participate in
+                                        the economy. Creating a more inclusive and equitable economy is essential for
+                                        fostering social mobility and dismantling the barriers that restrict the
+                                        progress of marginalised communities.
+                                    </p><br>
+
+                                    <h2>6. Promoting Social Integration :</h2>
+                                    <br>
+                                    <p class="font-light">
+                                        Building a society that upholds social integration and equality necessitates the
+                                        promotion of inter-caste marriages and fostering social interactions across
+                                        caste boundaries. By dismantling the caste-based social barriers and
+                                        facilitating meaningful interactions among people from different castes, we can
+                                        weaken the foundations of casteism. Initiatives that encourage cultural
+                                        exchanges, community-building activities, and social cohesion play a vital role
+                                        in breaking down the divisions created by caste.
+
+                                        Creating platforms for dialogue allows for the dismantling of stereotypes, the
+                                        forging of connections between communities, and the cultivation of a shared
+                                        sense of belonging. Through these endeavours, we can strive towards a future
+                                        characterised by harmony, equity, and a celebration of unity amidst our
+                                        differences.
+
+
+                                    </p><br>
+
+                                    <h2>7. Empowering Marginalised Communities :</h2>
+                                    <br>
+                                    <p class="font-light">
+                                        Empowering marginalised communities plays a pivotal role in dismantling
+                                        casteism. It is essential to provide equitable access to quality education,
+                                        healthcare, and social welfare schemes, bridging the gaps that hinder
+                                        individuals from lower castes from realising their full potential. Empowerment
+                                        programmes that focus on enhancing leadership skills, promoting political
+                                        representation, and strengthening community networks can amplify the voices of
+                                        marginalised communities.
+
+                                        By enabling active participation in decision-making processes, these initiatives
+                                        ensure that the concerns and perspectives of lower-caste individuals are
+                                        considered. Empowerment efforts go beyond providing opportunities; they foster a
+                                        sense of agency and self-determination, enabling marginalised communities to
+                                        challenge the systemic barriers imposed by casteism.
+
+                                    </p><br>
+                                    <h2>8. Changing Mindsets and Challenging Privilege :</h2>
+                                    <br>
+                                    <p class="font-light">
+                                        Overcoming casteism requires a profound transformation in societal attitudes,
+                                        entailing a conscious and deliberate endeavour to challenge privilege. It is
+                                        important to encourage individuals to unlearn casteist beliefs, critically
+                                        examine their own privileges, and actively participate in conversations
+                                        addressing caste discrimination. This collective effort fosters a culture of
+                                        empathy, understanding, and equality. Media, literature, and art have a crucial
+                                        role to play in challenging casteist narratives and promoting inclusive
+                                        representations.
+
+                                        By diversifying narratives and uplifting marginalised voices, these creative
+                                        mediums contribute to dismantling stereotypes and promoting social harmony.
+                                        Additionally, promoting intergenerational dialogue and encouraging open
+                                        discussions about caste discrimination can help break the cycle of inherited
+                                        biases.
+
+                                    </p><br>
+                                    <h2>8. Conclusion :</h>
+                                        <p class="font-light">
+                                            In conclusion, the eradication of casteism is imperative to forge a society
+                                            rooted in justice and equality. It necessitates a holistic approach
+                                            encompassing education, legal reforms, economic empowerment, social
+                                            integration, and a shift in societal perspectives. Achieving this goal
+                                            necessitates collective efforts, self-reflection, and genuine empathy to
+                                            dismantle deeply ingrained caste-based hierarchies. Cultivating a culture of
+                                            empathy and promoting equality will pave the way for a society where
+                                            caste-based discrimination becomes a relic of the past.
+
+                                        </p><br>
+                                </div>
+                            </div>
+
+                            <div class="blog-profile box-center mb-lg-5 mb-4">
+                                <div class="image-profile">
+                                    <img src="{% static 'assets/images/inner-page/review-image/2.jpg' %}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="image-name text-weight">
+                                    <h3>Vishwaratna</h3>
+                                    <h6>22 September 2023</h6>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="minus-spacing mb-2">
+                                        <h3>Leave Comments</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
+                                        required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="example@example.com" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="textarea" class="form-label">Comments</label>
+                                    <textarea rows="3" class="form-control" id="textarea"
+                                        placeholder="Leave a comment here" required></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-solid-default btn-spacing mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <div class="left-side">
+                        <!-- Search Bar Start -->
+                        <div class="search-section">
+                            <div class="input-group search-bar">
+                                <input type="search" class="form-control search-input" placeholder="Search">
+                                <button class="input-group-text search-button" id="basic-addon3">
+                                    <i class="fas fa-search text-color"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar End -->
+
+                        <!-- Popular Post Start -->
+                        <div class="popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Popular Blogs</h3>
+                            </div>
+
+                            <a href="/blog_details/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">01 -->
+                                            <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt="" class="card-img-top">
+                                        <!-- </h4> -->
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>14th Dalai Lama</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails1/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">02</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt="" class="card-img-top">
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Bhagat Singh</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails2/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">03</h4> -->
+                                        <img src=" {% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt="" class="card-img-top">
+                                    
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Dr. Bhim Rao Ambedkar</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails3/" class="blog-img">
+                                <div class="popular-image mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">04</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt="" class="card-img-top">
+                                        
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Mahatma Jyotiba Phule</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Popular Post End -->
+
+                        <!-- Category section Start -->
+                        <div class="category-section popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Category</h3>
+                            </div>
+                            <ul>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-globe text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Global</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-building text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Business</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-play text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Entertainmant</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-tshirt text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Sports</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-dumbbell text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Health</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Category section End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Details Blog Section End -->
+
+    <!-- related blog start -->
+    <section class="section-b-space block-shadow-space ratio3_2">
+        <div class="container">
+            <div class="slide-4 product-wrapper slick-lg-space">
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/9.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/8.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/4.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/16.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/13.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related blog end -->
+
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js"' %}></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

@@ -1,0 +1,437 @@
+{% extends 'back-end/seller-base.html' %}
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Contact Us</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        #images{
+            width: 100%;
+            position: relative;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper start -->
+    <div class="page-wrapper compact-wrapper dark-sidebar" id="pageWrapper">
+
+        <form class="theme-form theme-form-2 mega-form" method="post" action="{% url 'seller_add_product' %}"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Page Body start -->
+            <div class="page-body-wrapper">
+
+                <div class="page-body">
+                    <div class="title-header">
+                        <h5>Add New Product</h5>
+                    </div>
+
+                    <!-- New Product Add Start -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-header-2">
+                                                    <h5>Product Information</h5>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label for="first" class="form-label-title col-sm-2 mb-0">Product
+                                                            Title</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" id="first"
+                                                                name="title" placeholder="Product Name" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label for="sp" class="col-sm-2 col-form-label form-label-title">Selling
+                                                            Price</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="number" id="selling_price"
+                                                                name="selling_price" placeholder="Selling Price"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label for="dp" class="col-sm-2 col-form-label form-label-title">Discount
+                                                            Price</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="number"
+                                                                id="discount_price" name="discount_price"
+                                                                placeholder="Discount Price" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label for="category" class="col-sm-2 col-form-label form-label-title">Category</label>
+                                                        <div class="col-sm-10">
+                                                            <select class="js-example-basic-single w-100"
+                                                                name="category" id="category" aria-label="Default select example">
+                                                                <option selected>Choose Category</option>
+					                                            <option value="TS">T-shirt</option>
+					                                            <option value="AC">Accesories</option>
+					                                            <option value="BK"> Books</option>
+					                                            <option value="pt"> Paintings</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label for="brand" class="col-sm-2 col-form-label form-label-title">Brand</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" id="brand"
+                                                                name="brand" placeholder="Brand Name" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-header-2">
+                                                    <h5>Description</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <label for="description" class="form-label-title col-sm-2 mb-0">Product
+                                                                Description</label>
+                                                            <div class="col-sm-10">
+                                                                <!-- <div id="editor"></div> -->
+                                                                <textarea name="description" id="description"
+                                                                    class="form-control" cols="30" rows="10"
+                                                                    required></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-header-2">
+                                                    <h5>Product Images</h5>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label for="file-input" class="col-sm-2 col-form-label form-label-title">Product
+                                                            Front Image</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="file" class="form-control" id="file-input"
+                                                                accept="image/png, image/jpeg" name="myFile"
+                                                                onchange="preview('file-input', 'preview-front')"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row align-items-center">
+                                                        <label for="right-image-input" class="col-sm-2 col-form-label form-label-title">Product
+                                                            Right Image</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="file" class="form-control"
+                                                                id="right-image-input" accept="image/png, image/jpeg"
+                                                                name="right_image"
+                                                                onchange="preview('right-image-input', 'preview-right')"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row align-items-center">
+                                                        <label for="left-image-input" class="col-sm-2 col-form-label form-label-title">Product
+                                                            Left
+                                                            Image</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="file" class="form-control"
+                                                                id="left-image-input" accept="image/png, image/jpeg"
+                                                                name="left_image"
+                                                                onchange="preview('left-image-input', 'preview-left')"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row align-items-center">
+                                                        <label for="back-image-input" class="col-sm-2 col-form-label form-label-title">Product
+                                                            Back
+                                                            Image</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="file" class="form-control"
+                                                                id="back-image-input" accept="image/png, image/jpeg"
+                                                                name="back_image"
+                                                                onchange="preview('back-image-input', 'preview-back')"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="">
+                                                            <div class="ratio_portrait">
+                                                                <div class="row g-sm-3 g-2">
+
+                                                                    <div class="col-3">
+                                                                        <img id="preview-front" src="#" alt="Preview"
+                                                                            style="width: 100%; height: 200px; display: none;">
+                                                                    </div>
+
+                                                                    <div class="col-3">
+                                                                        <img id="preview-right" src="#" alt="Preview"
+                                                                            style="width: 100%; height: 200px; display: none;">
+                                                                    </div>
+
+                                                                    <div class="col-3">
+                                                                        <img id="preview-left" src="#" alt="Preview"
+                                                                            style="width: 100%; height: 200px; display: none;">
+                                                                    </div>
+
+                                                                    <div class="col-3">
+                                                                        <img id="preview-back" src="#" alt="Preview"
+                                                                            style="width: 100%; height: 200px; display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-header-2">
+                                                    <h5>Product Videos</h5>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label class="col-sm-2 col-form-label form-label-title">Product
+                                                            Video</label>
+                                                        <input type="file" class="form-control" id="videoInput"
+                                                            onchange="displayVideo()" accept="video/*"
+                                                            name="product_video" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <video id="videoElement" controls width="640" height="360"
+                                                        style="display: none;"></video>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="card">
+                                                <div class="card-body"> -->
+                                        <div class="card-header-2 mb-3">
+                                            <div class="col-auto">
+                                                <button class="btn btn-solid-default" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                        <!-- </div>
+                                            </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- New Product Add End -->
+
+                    <!-- footer Start -->
+                    <div class="container-fluid">
+                        <footer class="footer">
+                            <div class="row">
+                                <div class="col-md-12 footer-copyright text-center">
+                                    <p class="mb-0">Copyright 2021 © Voxo theme by pixelstrap</p>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- footer En -->
+                </div>
+                <!-- Container-fluid End -->
+            </div>
+            <!-- Page Body End -->
+        </form>
+    </div>
+    <!-- page-wrapper End -->
+
+    <!-- Modal Start for logout-->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no " data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- latest js -->
+    <script src="{%static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{%static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{%static 'assets/js/icons/feather-icon/feather.min.js' %}"></script>
+    <script src="{%static 'assets/js/icons/feather-icon/feather-icon.js' %}"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="{%static 'assets/js/scrollbar/simplebar.js' %}"></script>
+    <script src="{%static 'assets/js/scrollbar/custom.js' %}"></script>
+
+    <!-- Sidebar js -->
+    <script src="{%static 'assets/js/config.js' %}"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="{%static 'assets/js/bootstrap-tagsinput.min.js' %}"></script>
+    <script src="{%static 'assets/js/sidebar-menu.js' %}"></script>
+
+    <!-- customizer js -->
+    <script src="{%static 'assets/js/customizer.js' %}"></script>
+
+    <!--Dropzon js -->
+    <script src="{%static 'assets/js/dropzone/dropzone.js' %}"></script>
+    <script src="{%static 'assets/js/dropzone/dropzone-script.js' %}"></script>
+
+    <!-- Plugins js -->
+    <script src="{%static 'assets/js/notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{%static 'assets/js/notify/index.js' %}"></script>
+
+    <!-- ck editor js -->
+    <script src="{%static 'assets/js/ckeditor.js' %}"></script>
+    <script src="{%static 'assets/js/ckeditor-custom.js' %}"></script>
+
+    <!-- select2 js -->
+    <script src="{%static 'assets/js/select2.min.js' %}"></script>
+    <script src="{%static 'assets/js/select2-custom.js' %}"></script>
+
+    <!-- Theme js -->
+    <script src="{%static 'assets/js/script.js' %}"></script>
+
+    <!-- display iamges -->
+    <script>
+        function preview(inputId, previewId) {
+            const fileInput = document.getElementById(inputId);
+            const previewImage = document.getElementById(previewId);
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                previewImage.src = '#';
+                previewImage.style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- display video -->
+    <script>
+        function displayVideo() {
+            const videoInput = document.getElementById('videoInput');
+            const videoElement = document.getElementById('videoElement');
+
+            if (videoInput.files.length > 0) {
+                const videoFile = videoInput.files[0];
+                const videoURL = URL.createObjectURL(videoFile);
+                videoElement.src = videoURL;
+                videoElement.style.display = 'block';
+            } else {
+                videoElement.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+{% endblock %}

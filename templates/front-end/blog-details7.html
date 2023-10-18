@@ -1,0 +1,760 @@
+{% extends 'front-end/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="theme-color" content="#e22454" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Voxo" />
+    <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/2.png' %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="{% static 'assets/images/favicon/2.png' %}" type="image/x-icon" />
+    <title>Blog Details</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/demo2.css' %}">
+
+    <style>
+        .left-side .popular-post .popular-image .popular-number {
+            border-radius: 7px;
+            width: 70px;
+        }
+
+        .left-side .popular-post .popular-image img {
+            width: 80px;
+            height: 70px;
+            /* -o-object-fit: cover; */
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="theme-color2 light ltr">
+
+    <!-- Breadcrumb section start -->
+    <section class="breadcrumb-section section-b-space">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Blog Details</h3>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb section end -->
+
+    <!-- Details Blog Section Start -->
+    <section class="masonary-blog-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-9 col-md-8 order-md-1 ratio_square">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="blog-details">
+                                <div class="blog-image-box">
+                                    <img src="{% static 'assets/images/VR-img/8.jpg' %}" alt="" class="card-img-top">
+                                    <div class="blog-title">
+                                        <div>
+                                            <div class="social-media media-center">
+                                                <a href="https://www.facebook.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://twitter.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="https://in.pinterest.com/" target="new">
+                                                    <div class="social-icon-box social-color">
+                                                        <i class="fab fa-pinterest-p"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="blog-detail-contain">
+                                    <span class="font-light">August 15 2021</span>
+                                    <h1>India's Healthcare Inequality: Unveiling the Caste Divide
+                                    </h1>
+                                    <br>
+
+                                    <p class="font-light firt-latter">India grapples with significant healthcare
+                                        disparities, and the caste system plays a central role in perpetuating
+                                        inequality. Lower castes face barriers to healthcare access and discrimination
+                                        within the system. Limited resources, lack of education, and inadequate
+                                        awareness contribute to their marginalized position.
+
+                                        To address this divide, raising awareness, strengthening primary healthcare,
+                                        sensitizing providers, improving infrastructure, advocating for policy reforms,
+                                        empowering marginalized communities, and promoting inter-caste collaboration are
+                                        necessary.
+
+                                        By adopting a holistic and all-encompassing approach, India can strive towards
+                                        the development of a healthcare system that embodies equity, fostering equal
+                                        access and leading to enhanced health outcomes for every individual, thereby
+                                        promoting a more inclusive society.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">1. Understanding the Caste Divide in Healthcare :</h2>
+                                    <p class="font-light">The caste system, an ancient social structure, has permeated
+                                        healthcare, exacerbating health disparities and social inequalities. This system
+                                        categorizes individuals based on birth, leading to discrimination, stigma, and
+                                        limited access to quality healthcare for lower castes.
+
+                                        Barriers in healthcare perpetuate a cycle of poor health outcomes and limited
+                                        resources for marginalized castes, widening health disparities and deepening
+                                        social inequities. Addressing these inequalities requires comprehensive efforts
+                                        such as policy reforms, education, and awareness campaigns to foster an
+                                        inclusive healthcare system that recognizes the dignity of every individual,
+                                        regardless of their caste.
+
+                                        By dismantling caste-based barriers, society can strive towards a more equitable
+                                        and just healthcare landscape, where everyone has equal opportunities for a
+                                        healthy life.
+
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">2. Barriers to Healthcare Access :</h2>
+                                    <p class="font-light">The healthcare divide along caste lines in India is influenced
+                                        by multiple barriers. Socioeconomic factors such as poverty and limited
+                                        education impede access for marginalized communities, leading to delayed or
+                                        inadequate treatment. Discrimination within the healthcare system further
+                                        discourages individuals from lower castes to seek timely and appropriate care.
+
+                                        Limited financial resources, coupled with a lack of awareness about available
+                                        healthcare services, exacerbate the problem. Addressing this healthcare divide
+                                        requires addressing socioeconomic disparities, improving healthcare
+                                        infrastructure, and promoting awareness and sensitivity training among
+                                        healthcare professionals.
+
+                                        For guaranteeing equal rights and dignity to every individual of each caste an
+                                        inclusive healthcare system is crucial.
+
+
+                                    </p><br>
+
+                                    <h2 class="card-title">3. Quality of Care Disparities :</h2>
+                                    <p class="font-light">The caste-based healthcare divide extends beyond access,
+                                        affecting the quality of care for marginalized castes. Implicit biases among
+                                        healthcare professionals lead to differential treatment, neglect, or denial of
+                                        appropriate care.
+
+                                        The lack of sensitivity to cultural nuances and unique challenges faced by
+                                        different castes worsens unequal health outcomes. Addressing this divide
+                                        requires transforming mindsets, promoting cultural competency, and fostering an
+                                        inclusive healthcare environment.
+
+                                        Informing and convincing healthcare professionals about the issues of caste and
+                                        promising equal care to everyone is very crucial for a great healthcare
+                                        facility.
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">4. Health Disparities and Consequences :</h2>
+                                    <p class="font-light">The caste-based healthcare divide manifests in significant
+                                        health disparities for marginalized castes. Lower caste individuals experience
+                                        higher rates of malnutrition, infectious diseases, maternal and infant
+                                        mortality, and chronic conditions. Limited access to preventive care, early
+                                        interventions, and specialized treatments exacerbates these inequalities.
+
+                                        Consequently, they face a cycle of poor health, restricted economic
+                                        opportunities, and diminished quality of life. Addressing this healthcare divide
+                                        requires comprehensive efforts to ensure equitable access to quality healthcare
+                                        services.
+
+                                        By providing timely interventions, and specialized treatments, and addressing
+                                        socio-economic factors, society can break the cycle of poor health outcomes and
+                                        empower marginalized castes to lead healthier lives with improved socio-economic
+                                        prospects.
+
+
+
+                                    </p> <br>
+
+                                    <h2 class="card-title">5. Addressing the Caste-Based Healthcare Inequality :</h2>
+                                    <p class="font-light">To combat the caste-based healthcare inequality in India,
+                                        concerted efforts must be made at various levels:
+                                    </p><br>
+                                    <h3class="card-title">1. Promoting Health Awareness and Education</h3>
+
+                                        <p class="font-light">A key aspect of addressing the caste-based healthcare
+                                            divide is promoting health awareness and education. It is essential to raise
+                                            awareness about healthcare rights and the significance of preventive care
+                                            among individuals from marginalized castes. Implementing targeted
+                                            educational campaigns holds the potential to challenge misconceptions,
+                                            diminish social stigma, and empower individuals, enabling them to make
+                                            knowledgeable decisions concerning their health and well-being. By providing
+                                            accurate and accessible health information, society can foster a culture of
+                                            proactive healthcare and empower individuals to prioritize their well-being.
+                                        </p><br>
+
+                                        <h3 class="card-title">2. Strengthening Primary Healthcare</h3>
+
+                                        <p class="font-light">Addressing the healthcare gap necessitates urgent
+                                            attention towards bolstering primary healthcare services, with a specific
+                                            emphasis on rural and marginalized areas, in order to ensure equitable
+                                            access to quality healthcare and effectively bridge the disparities that
+                                            exist. This can be achieved by establishing well-equipped primary healthcare
+                                            centres that are easily accessible to these communities. These centres
+                                            should be staffed with culturally sensitive healthcare professionals who
+                                            understand the unique challenges and cultural nuances faced by different
+                                            castes. By ensuring equitable access to quality primary healthcare, society
+                                            can lay the foundation for early detection, timely interventions, and
+                                            continuity of care, ultimately reducing health disparities and promoting
+                                            overall well-being.
+                                        </p><br>
+
+                                        <h3 class="card-title">3. Sensitizing Healthcare Providers</h3>
+
+                                        <p class="font-light">Sensitizing healthcare providers is essential in
+                                            addressing the caste-based healthcare divide. Training programs should focus
+                                            on cultural sensitivity, anti-discrimination practices, and understanding
+                                            caste dynamics. Medical curricula should incorporate modules that raise
+                                            awareness about caste-based healthcare disparities, fostering empathy and
+                                            understanding among future practitioners. Enabling healthcare professionals
+                                            with comprehensive knowledge and honed skills to deliver impartial and
+                                            culturally sensitive care is a vital stride towards mitigating healthcare
+                                            disparities and fostering an all-encompassing healthcare system that
+                                            champions inclusivity and equitable access to services.
+                                        </p><BR>
+
+                                        <h3 class="card-title">4. Strengthening Healthcare Infrastructure</h3>
+
+                                        <p class="font-light">Strengthening healthcare infrastructure in marginalized
+                                            areas is a crucial step in improving healthcare access for lower castes.
+                                            This entails investing in hospitals, clinics, and diagnostic facilities,
+                                            particularly in underserved regions. By ensuring that healthcare facilities
+                                            are readily available and well-equipped in these areas, society can reduce
+                                            geographical disparities and improve healthcare outcomes for marginalized
+                                            communities.
+                                        </p><BR>
+
+
+                                        <h3>5. Advocating for Policy Reforms :</h3>
+                                        <br>
+                                        <p class="font-light">
+                                            Advocacy plays a pivotal role in bringing about policy reforms that address
+                                            the caste-based healthcare divide. Policies should focus on promoting equal
+                                            access to healthcare, implementing anti-discrimination measures, and
+                                            incorporating affirmative action in healthcare. By advocating for policies
+                                            that prioritize equitable opportunities and resources for marginalized
+                                            castes, society can strive toward a more inclusive healthcare system that
+                                            upholds the principles of social justice and equality.
+
+                                        </p><br>
+
+                                        <h3>6. Empowering Marginalized Communities :</h3>
+                                        <br>
+                                        <p class="font-light">
+                                            Empowering individuals from lower castes is essential to address the
+                                            caste-based healthcare divide. Education, skill development, and
+                                            socioeconomic opportunities are key factors in breaking the cycle of health
+                                            disparities. Providing scholarships, vocational training, and
+                                            entrepreneurship support can enable individuals to overcome barriers and
+                                            gain access to better healthcare. Through the provision of essential tools
+                                            and resources, empowering marginalized communities becomes a catalyst for
+                                            their upliftment, leading to enhanced socioeconomic status and a heightened
+                                            ability to prioritize their health and overall well-being within society.
+
+                                        </p><br>
+                                        <h3>7. Promoting Inter-caste Collaboration :</h3>
+                                        <br>
+                                        <p class="font-light">
+                                            Encouraging inter-caste collaboration and dialogue is crucial in challenging
+                                            the prejudices ingrained in the caste system. Community-based initiatives
+                                            that promote solidarity and inclusivity can play a significant role in
+                                            dismantling caste-based healthcare inequalities. By fostering social
+                                            cohesion and creating platforms for diverse castes to come together,
+                                            stereotypes and biases can be confronted. Such collaborations can foster
+                                            understanding, empathy, and collective efforts toward creating a more
+                                            equitable healthcare system that transcends caste divisions and ensures
+                                            equal access to quality healthcare for all.
+                                        </p><br>
+                                        <h2>8. Conclusion :</h>
+                                            <p class="font-light">
+                                                India's healthcare inequality is intrinsically tied to the caste divide,
+                                                perpetuating disparities in access and outcomes. To address this,
+                                                comprehensive measures are needed, including policy reforms,
+                                                sensitization of healthcare providers, empowerment of marginalized
+                                                communities, and fostering inter-caste collaboration.
+
+                                                Policy reforms should prioritize equal access, anti-discrimination
+                                                measures, and affirmative action in healthcare. Sensitizing healthcare
+                                                providers through cultural sensitivity training is vital while
+                                                empowering marginalized communities through education and opportunities
+                                                can break the cycle of inequality.
+
+                                                Promoting inter-caste collaboration and dialogue is essential in
+                                                challenging prejudices. By actively pursuing equity and inclusivity,
+                                                India can drive the transformation towards a society where the
+                                                fundamental principles of caste do not hinder equal access to
+                                                high-quality healthcare and contribute to an overall enhancement of
+                                                well-being for all individuals.
+
+
+                                            </p><br>
+                                </div>
+                            </div>
+
+                            <div class="blog-profile box-center mb-lg-5 mb-4">
+                                <div class="image-profile">
+                                    <img src="{% static 'assets/images/inner-page/review-image/2.jpg' %}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="image-name text-weight">
+                                    <h3>Vishwaratna</h3>
+                                    <h6>22 September 2023</h6>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="minus-spacing mb-2">
+                                        <h3>Leave Comments</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
+                                        required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="example@example.com" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="textarea" class="form-label">Comments</label>
+                                    <textarea rows="3" class="form-control" id="textarea"
+                                        placeholder="Leave a comment here" required></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-solid-default btn-spacing mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="left-side">
+                        <!-- Search Bar Start -->
+                        <div class="search-section">
+                            <div class="input-group search-bar">
+                                <input type="search" class="form-control search-input" placeholder="Search">
+                                <button class="input-group-text search-button" id="basic-addon3">
+                                    <i class="fas fa-search text-color"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar End -->
+
+                        <!-- Popular Post Start -->
+                        <div class="popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Popular Blogs</h3>
+                            </div>
+
+                            <a href="/blog_details/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">01 -->
+                                            <img src="{% static 'assets/images/VR-img/DalaiLama.jpg' %}" alt="" class="card-img-top">
+                                        <!-- </h4> -->
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>14th Dalai Lama</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails1/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">02</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/Bhagatsingh.jpg' %}" alt="" class="card-img-top">
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Bhagat Singh</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails2/" class="blog-img">
+                                <div class="popular-image  mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">03</h4> -->
+                                        <img src=" {% static 'assets/images/VR-img/DrBabaSaheb.jpg' %}" alt="" class="card-img-top">
+                                    
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Dr. Bhim Rao Ambedkar</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/blogdetails3/" class="blog-img">
+                                <div class="popular-image mt-3">
+                                    <div class="popular-number">
+                                        <!-- <h4 class="theme-color">04</h4> -->
+                                        <img src="{% static 'assets/images/VR-img/JyotiraoPhule.jpg' %}" alt="" class="card-img-top">
+                                        
+                                    </div>
+                                    <div class="popular-contain">
+                                        <h3>Mahatma Jyotiba Phule</h3>
+                                        <p class="font-light mb-1"><span>29  </span> Sept <span>2023</span></p>
+                                        <div class="review-box">
+                                            <span class="font-light clock-time"><i data-feather="clock"></i>15m
+                                                ago</span>
+                                            <span class="font-light eye-icon"><i data-feather="eye"></i>8641</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Popular Post End -->
+
+                        <!-- Category section Start -->
+                        <div class="category-section popular-post mt-4">
+                            <div class="popular-title">
+                                <h3>Category</h3>
+                            </div>
+                            <ul>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-globe text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Global</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-building text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Business</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-play text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Entertainmant</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-tshirt text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Sports</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="category-box">
+                                    <a href="blog-left-sidebar.html">
+                                        <div class="category-product">
+                                            <div class="cate-shape">
+                                                <i class="fas fa-dumbbell text-color"></i>
+                                            </div>
+
+                                            <div class="cate-contain">
+                                                <h5 class="text-color">Health</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Category section End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Details Blog Section End -->
+
+    <!-- related blog start -->
+    <section class="section-b-space block-shadow-space ratio3_2">
+        <div class="container">
+            <div class="slide-4 product-wrapper slick-lg-space">
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/9.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/8.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/4.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/16.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card blog-categority">
+                        <a href="blog-details.html" class="blog-img">
+                            <img src="{% static 'assets/images/inner-page/product/13.jpg' %}" alt=""
+                                class="card-img-top blur-up lazyload bg-img">
+                        </a>
+                        <div class="card-body">
+                            <a href="blog-details.html">
+                                <h2 class="card-title">How to make the perfect morning coffee, according to the
+                                    science
+                                </h2>
+                            </a>
+                            <div class="blog-profile">
+                                <div class="image-name">
+                                    <h3>John wike</h3>
+                                    <h6>15 Aug 2021</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related blog end -->
+
+
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
+    <div class="bg-overlay"></div>
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Add To Home js -->
+    <script src="{% static 'assets/js/pwa.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'assets/js/feather/feather.min.js' %}"></script>
+
+    <!-- lazyload js -->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
+
+    <!-- Slick js -->
+    <script src="{% static 'assets/js/slick/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slick/slick-animation.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js' %}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js' %}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js"' %}></script>
+
+</body>
+
+</html>
+
+{% endblock content %}
