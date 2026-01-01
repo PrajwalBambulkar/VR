@@ -26,7 +26,7 @@ All commands must be executed on the server by a sudo-enabled user.
 18. PM2 Startup Configuration  
 
 ---
----
+
 
 # 1. Set System Timezone
 
