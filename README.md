@@ -25,3 +25,5 @@ sudo apt install -y build-essential
 sudo apt install -y python3 g++ make
 sudo apt install -y bzip2
 ```
+
+# 4. Mail Server (Postfix) Setup
