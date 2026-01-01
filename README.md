@@ -3,6 +3,29 @@
 This document contains step-by-step manual deployment instructions for the UAT environment.  
 All commands must be executed on the server by a sudo-enabled user.
 
+
+
+## Table of Contents
+1. System Timezone Configuration  
+2. User Creation  
+3. System Update & Base Packages  
+4. Mail Server (Postfix) Setup  
+5. Redis Installation (Local)  
+6. Sudo Access Configuration  
+7. Disk Setup & Home Directory Migration  
+8. Node.js & PM2 Setup (NVM)  
+9. MongoDB 8.0 Installation  
+10. MongoDB Atlas Connection  
+11. Java Installation  
+12. Git Repository Configuration  
+13. AWS SES Integration with Postfix  
+14. External Service Networking  
+15. Swap Memory Configuration  
+16. Redis Architecture Decision (UAT)  
+17. Application Certificates & Keys  
+18. PM2 Startup Configuration  
+
+---
 ---
 
 # 1. Set System Timezone
