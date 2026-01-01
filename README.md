@@ -214,15 +214,14 @@ sudo sysctl vm.swappiness=10
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
 ```
 # 16. Redis Decision (UAT)
-AWS Redis currently disabled on UAT
-Decision pending:
-Use local Redis, OR
-Migrate AWS Redis to new VPC if required
+- AWS Redis currently disabled on UAT
+- Decision pending:
+- Use local Redis, OR
+- Migrate AWS Redis to new VPC if required
 
 # 17. Application Certificates & Keys
-Copy advisory certs into:
-Incredmoney_api/certs
-Copy jwtkeys folder into API repository
+- Copy advisory certs into:Incredmoney_api/certs
+- Copy jwtkeys folder into API repository
 
 # 18. PM2 Startup Configuration
 
@@ -230,7 +229,7 @@ Copy jwtkeys folder into API repository
 pm2 startup
 ```
 
-Follow on-screen instructions to enable PM2 on boot.
+- Follow on-screen instructions to enable PM2 on boot.
 
 
 
