@@ -1,4 +1,4 @@
-# UAT Server Deployment Guide
+# BIDD Deployment – Step-by-Step Guide
 
 This document contains step-by-step manual deployment instructions for the UAT environment.  
 All commands must be executed on the server by a sudo-enabled user.
