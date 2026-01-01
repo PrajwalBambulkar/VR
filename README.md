@@ -5,19 +5,19 @@ All commands must be executed on the server by a sudo-enabled user.
 
 ---
 
-## 1. Set System Timezone
+# 1. Set System Timezone
 
 ```bash
 sudo timedatectl set-timezone Asia/Kolkata
 sudo timedatectl
 ```
 
-## 2. User Creation
+# 2. User Creation
 ```bash
 sudo adduser biddbeuat
 ```
 
-## 3. System Update & Basic Utilities
+# 3. System Update & Basic Utilities
 ```bash
 sudo apt update
 sudo apt install -y curl net-tools
@@ -43,7 +43,7 @@ echo "This is a test mail" | mail -s "Test Email" your_email@example.com
 mailq
 sudo postqueue -f
 ```
-## 5. Redis Installation (Local)
+# 5. Redis Installation (Local)
 
 ```bash
 sudo apt install -y redis-server
@@ -54,7 +54,7 @@ redis-cli ping
 ```
 
 
-## 6. Sudo Access Configuration
+# 6. Sudo Access Configuration
 ```bash
 sudo visudo
 ```
@@ -233,12 +233,5 @@ pm2 startup
 Follow on-screen instructions to enable PM2 on boot.
 
 
-
-
-# 5. Redis Installation (Local)
-
-
-
-# 5. Redis Installation (Local)
 
 
