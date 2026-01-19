@@ -1,5 +1,7 @@
 # Infrastructure Documentation
 <img width="1643" height="885" alt="image" src="https://github.com/user-attachments/assets/aa872f59-c096-4a98-818b-909356ce8c6e" />
+<img width="1644" height="885" alt="image" src="https://github.com/user-attachments/assets/3739bec6-7bb1-4af7-9bf8-0db7c1fa7426" />
+
 
 
 ## VPC (Virtual Private Cloud)
