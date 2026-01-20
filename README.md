@@ -585,20 +585,35 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 | Custom TCP  | TCP      | 3002 | sg-05f2f928dcf... | App traffic                |
 #### Outbound Traffic
 
-<img width="1199" alt="prod-be-outbound" src="https://github.com/user-attachments/assets/0127cae8-c6f8-4b2f-b409-0869026fa347" />
-
+| Rule Type   | Protocol | Port  | Destination        | Purpose |
+|------------|----------|-------|--------------------|---------|
+| SSH        | TCP      | 22    | 10.90.11.0/24      | Allow outbound SSH access to internal subnet |
+| HTTP       | TCP      | 80    | 0.0.0.0/0          | Allow outbound web traffic (HTTP) |
+| DNS (TCP)  | TCP      | 53    | 10.90.0.2/32       | Allow DNS queries over TCP to internal DNS server |
+| Custom TCP | TCP      | 27017 | 192.168.248.0/21   | Allow outbound MongoDB traffic |
+| HTTPS      | TCP      | 443   | sg-065ac49399552e7ed  | Allow HTTPS traffic to resources within referenced security group |
+| HTTPS      | TCP      | 443   | 0.0.0.0/0          | Allow outbound secure web traffic (HTTPS) |
+| Custom TCP | TCP      | 6379  | 10.90.12.0/24      | Allow Redis traffic to internal subnet |
+| DNS (UDP)  | UDP      | 53    | 10.90.0.2/32       | Allow DNS queries over UDP to internal DNS server |
+| SSH        | TCP      | 22    | 10.90.12.0/24      | Allow outbound SSH access to another internal subnet |
+| Custom TCP | TCP      | 587   | 0.0.0.0/0          | Allow outbound SMTP (email sending) |
+| SSH        | TCP      | 22    | 20.207.73.82/32    | Allow SSH access to specific external IP |
+| Custom TCP | TCP      | 6379  | 10.90.11.0/24      | Allow Redis traffic to another internal subnet |
 ---
 
 ### prod-biddEasy-vpc-endpoint-sg
 
 #### Inbound Traffic
 
-<img width="1199" alt="prod-vpc-endpoint-inbound" src="https://github.com/user-attachments/assets/a488b8e4-34fd-41f2-bebe-ee370dbc9fd1" />
-
+| Rule Type | Protocol | Port |  Source | Purpose |
+|----------|----------|------|----------------------|---------|
+| HTTPS    | TCP      | 443  | sg-07d2f4532..    | Allow inbound HTTPS traffic from application/load balancer security group |
+| HTTPS    | TCP      | 443  | sg-05f2f9..   | Allow inbound HTTPS traffic from trusted production security group |
 #### Outbound Traffic
 
-<img width="1199" alt="prod-vpc-endpoint-outbound" src="https://github.com/user-attachments/assets/0a23f8fa-bdd0-4849-b4f8-9173c8853312" />
-
+| Rule Type | Protocol | Port | Destination | Purpose |
+|----------|----------|------|-------------|---------|
+| All Traffic | All | All | 0.0.0.0/0 | Allow all outbound traffic to any destination (full internet access) |
 ---
 
 ## NACL (Network Access Control List)
