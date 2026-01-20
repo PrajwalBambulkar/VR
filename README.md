@@ -1,8 +1,119 @@
 # Infrastructure Documentation
-<img width="1643" height="885" alt="image" src="https://github.com/user-attachments/assets/aa872f59-c096-4a98-818b-909356ce8c6e" />
-<img width="1644" height="885" alt="image" src="https://github.com/user-attachments/assets/3739bec6-7bb1-4af7-9bf8-0db7c1fa7426" />
 
+## Table of Contents
 
+### 1. [Architecture Overview](#architecture-overview)
+
+### 2. [EC2 (Elastic Compute Cloud)](#ec2-elastic-compute-cloud)
+   - [EC2 Instances](#ec2-instances)
+
+### 3. [Load Balancer](#load-balancer)
+   - [Load Balancer Configuration](#load-balancer-configuration)
+
+### 4. [VPC (Virtual Private Cloud)](#vpc-virtual-private-cloud)
+   - [VPC Configuration](#vpc-configuration)
+
+### 5. [Routing Tables](#routing-tables)
+   - [UAT Environment](#uat-environment)
+   - [Staging Environment](#staging-environment)
+   - [Production Environment](#production-environment)
+
+### 6. [NAT (Network Address Translation)](#nat-network-address-translation)
+
+### 7. [IGW (Internet Gateway)](#igw-internet-gateway)
+
+### 8. [VPC Endpoints](#vpc-endpoints)
+   - [UAT Environment](#uat-environment-1)
+   - [Staging Environment](#staging-environment-1)
+   - [Production Environment](#production-environment-1)
+
+### 9. [Security Groups](#security-groups)
+   - [UAT Environment](#uat-environment-2)
+     - [uat-biddEasy-app-be-sg](#uat-biddeasy-app-be-sg)
+     - [uat-biddEasy-alb-sg](#uat-biddeasy-alb-sg)
+     - [uat-biddEasy-app-fe-sg](#uat-biddeasy-app-fe-sg)
+     - [uat-biddEasy-vpc-endpoint-sg](#uat-biddeasy-vpc-endpoint-sg)
+   - [Staging Environment](#staging-environment-2)
+     - [staging-biddEasy-app-fe-sg](#staging-biddeasy-app-fe-sg)
+     - [staging-biddEasy-vpc-endpoint-sg](#staging-biddeasy-vpc-endpoint-sg)
+     - [staging-biddEasy-bastion-sg](#staging-biddeasy-bastion-sg)
+     - [staging-biddEasy-alb-sg](#staging-biddeasy-alb-sg)
+   - [Production Environment](#production-environment-2)
+     - [prod-biddEasy-app-fe-sg](#prod-biddeasy-app-fe-sg)
+     - [prod-biddEasy-bastion-sg](#prod-biddeasy-bastion-sg)
+     - [prod-biddEasy-redis-sg](#prod-biddeasy-redis-sg)
+     - [prod-biddEasy-alb-sg](#prod-biddeasy-alb-sg)
+     - [prod-biddEasy-app-be-sg](#prod-biddeasy-app-be-sg)
+     - [prod-biddEasy-vpc-endpoint-sg](#prod-biddeasy-vpc-endpoint-sg)
+
+### 10. [NACL (Network Access Control List)](#nacl-network-access-control-list)
+   - [UAT Environment](#uat-environment-3)
+     - [uat-biddEasy-private-nacl](#uat-biddeasy-private-nacl)
+     - [uat-biddEasy-public-nacl](#uat-biddeasy-public-nacl)
+   - [Staging Environment](#staging-environment-3)
+     - [staging-biddEasy-private-nacl](#staging-biddeasy-private-nacl)
+     - [staging-biddEasy-public-nacl](#staging-biddeasy-public-nacl)
+   - [Production Environment](#production-environment-3)
+     - [prod-biddEasy-private-nacl](#prod-biddeasy-private-nacl)
+     - [prod-biddEasy-public-nacl](#prod-biddeasy-public-nacl)
+
+### 11. [VPC Peering Connections](#vpc-peering-connections)
+
+### 12. [Route53](#route53)
+   - [Hosted Zone Details](#hosted-zone-details)
+   - [UAT-Specific DNS Records](#uat-specific-dns-records)
+
+### 13. [AWS Certificate Manager (ACM)](#aws-certificate-manager-acm)
+   - [Certificate Details](#certificate-details)
+
+### 14. [CloudFront](#cloudfront)
+   - [UAT Environment](#uat-environment-4)
+   - [Staging Environment](#staging-environment-4)
+   - [Production Environment](#production-environment-4)
+
+### 15. [Deployment Steps](#deployment-steps)
+
+---
+
+## Architecture Overview
+
+<img width="1643" alt="Infrastructure Architecture Diagram" src="https://github.com/user-attachments/assets/aa872f59-c096-4a98-818b-909356ce8c6e" />
+
+---
+
+## EC2 (Elastic Compute Cloud)
+
+AWS EC2 (Elastic Compute Cloud) is a web service that provides resizable virtual servers, known as instances.
+
+### EC2 Instances
+
+| Name | Public IP | Private IP |
+|------|-----------|------------|
+| `bidd-fe-uat` | N/A | `10.70.11.128` |
+| `bidd-fe-staging` | N/A | `10.80.11.246` |
+| `bidd-fe-prod` | N/A | `10.90.11.92` |
+| `bidd-be-uat` | N/A | `10.70.11.9` |
+| `bidd-be-staging` | N/A | `10.80.11.36` |
+| `bidd-be-prod` | N/A | `10.90.11.182` |
+| `bidd-uat-bastion` | `65.2.33.169` | `10.70.1.36` |
+| `bidd-prod-bastion` | `13.201.66.198` | `10.90.1.30` |
+| `bidd-staging-bastion` | `13.233.197.44` | `10.80.1.115` |
+
+---
+
+## Load Balancer
+
+An AWS Load Balancer (LB) acts as a traffic controller that automatically distributes incoming application requests across multiple EC2 instances to prevent any single server from overloading. It ensures high availability by redirecting traffic away from unhealthy servers to those that are working correctly.
+
+### Load Balancer Configuration
+
+| Name | VPC ID | Security Group | DNS Name |
+|------|--------|----------------|----------|
+| `bidd-uat` | `vpc-0b1f4a3ecc95086e2` | `sg-00c0211b331681f00` | `bidd-uat-874321850.ap-south-1.elb.amazonaws.com` |
+| `bidd-staging` | `vpc-01aa775625bdbc866` | `sg-0c6a42a3a92d28043` | `bidd-staging-577559865.ap-south-1.elb.amazonaws.com` |
+| `bidd-prod` | `vpc-0ba146c7ffff6ddf4` | `sg-00ae433905f817a9a` | `bidd-prod-1822383629.ap-south-1.elb.amazonaws.com` |
+
+---
 
 ## VPC (Virtual Private Cloud)
 
@@ -284,7 +395,7 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 ---
 
-## Staging Environment
+### Staging Environment
 
 | Name | Security Group ID | Security Group Name | VPC ID | Description | Owner |
 |------|-------------------|---------------------|--------|-------------|-------|
@@ -344,7 +455,7 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 ---
 
-## Production Environment
+### Production Environment
 
 <img width="1188" alt="prod-security-groups-overview" src="https://github.com/user-attachments/assets/f519ae17-6c67-406d-a32d-2c3eb6d03f25" />
 
@@ -486,10 +597,11 @@ A NACL (Network Access Control List) is a stateless network firewall in AWS that
 | * | All | All | All | `0.0.0.0/0` | Deny |
 
 #### Outbound Rules
-<img width="1199" height="367" alt="image" src="https://github.com/user-attachments/assets/463a8772-2ef1-44a0-91b1-16118d161f96" />
 
+<img width="1199" alt="uat-public-nacl-outbound" src="https://github.com/user-attachments/assets/463a8772-2ef1-44a0-91b1-16118d161f96" />
 
 ---
+
 ### Staging Environment
 
 | Name | VPC ID |
@@ -563,6 +675,7 @@ A NACL (Network Access Control List) is a stateless network firewall in AWS that
 | * | All traffic | All | All | `0.0.0.0/0` | Deny |
 
 ---
+
 ### Production Environment
 
 | Name | VPC ID |
@@ -649,6 +762,7 @@ A NACL (Network Access Control List) is a stateless network firewall in AWS that
 | * | All traffic | All | All | `0.0.0.0/0` | Deny |
 
 ---
+
 ## VPC Peering Connections
 
 VPC Peering is a networking connection between two VPCs that allows them to communicate privately using private IP addresses. It enables secure data transfer between VPCs without using the internet, VPN, or NAT.
@@ -691,6 +805,7 @@ This hosted zone is the authoritative DNS for all Biddeasy environments such as 
 | **Purpose** | Main UAT frontend |
 
 **User Access Flow:**
+
 `uat.biddeasy.com` → Route53 routes traffic to CloudFront → CloudFront forwards requests to ALB for API and S3 static sites for prelogin and postlogin.
 
 ---
@@ -765,5 +880,8 @@ For detailed deployment procedures, refer to the deployment documentation:
 
 ---
 
+**Document Version:** 1.0  
+**Last Updated:** January 2026  
+**Maintained By:** Infrastructure Team
 
-
+---
