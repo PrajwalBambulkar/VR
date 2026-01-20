@@ -455,11 +455,16 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Inbound Traffic
 
-<img width="1188" alt="staging-bastion-inbound" src="https://github.com/user-attachments/assets/4ee2f3ae-9284-4b35-bdad-709f7a5b804c" />
+| Rule Type | Protocol | Port | Source     | Purpose                  |
+|----------|----------|------|------------|--------------------------|
+| SSH      | TCP      | 22   | 0.0.0.0/0  | Allow SSH remote access  |
 
 #### Outbound Traffic
 
-<img width="1188" alt="staging-bastion-outbound" src="https://github.com/user-attachments/assets/0b1537ac-0a48-4c77-8638-d89c54276acf" />
+| Rule Type | Protocol | Port | Destination   | Purpose                                      |
+|----------|----------|------|---------------|----------------------------------------------|
+| SSH      | TCP      | 22   | 10.80.11.0/24 | Allow SSH access to private subnet 10.80.11.0 |
+| SSH      | TCP      | 22   | 10.80.12.0/24 | Allow SSH access to private subnet 10.80.12.0 |
 
 ---
 
@@ -467,12 +472,16 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Inbound Traffic
 
-<img width="1188" alt="staging-alb-inbound" src="https://github.com/user-attachments/assets/002e2680-dc8c-4c29-9e72-3bf8167e8b4e" />
+| Rule Type | Protocol | Port | Source     | Purpose                             |
+|----------|----------|------|------------|-------------------------------------|
+| HTTPS    | TCP      | 443  | 0.0.0.0/0  | Allow secure HTTPS traffic from internet |
 
 #### Outbound Traffic
 
-<img width="1188" alt="staging-alb-outbound" src="https://github.com/user-attachments/assets/0394c3f1-4176-4076-950a-13513f4bc4ba" />
-
+| Rule Type   | Protocol | Port | Destination                     | Purpose                                           |
+|------------|----------|------|----------------------------------|---------------------------------------------------|
+| Custom TCP | TCP      | 3000 | Target Security Group (sg-02dbc6…) | Allow application traffic on port 3000 to backend |
+| Custom TCP | TCP      | 3000 | Target Security Group (sg-044d45…) | Allow application traffic on port 3000 to backend |
 ---
 
 ### Production Environment
