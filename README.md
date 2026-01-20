@@ -485,8 +485,18 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 ---
 
 ### Production Environment
+## Security Groups
 
-<img width="1188" alt="prod-security-groups-overview" src="https://github.com/user-attachments/assets/f519ae17-6c67-406d-a32d-2c3eb6d03f25" />
+
+| Name                         | Security Group ID        | Security Group Name              | VPC ID                    | Description                     |
+|------------------------------|--------------------------|----------------------------------|---------------------------|---------------------------------|
+| prod-biddEasy-app-fe-sg      | sg-07d2f4532e2fce7f2     | prod-biddEasy-app-fe-sg          | vpc-0ba146c7fff6ddf4      | prod-biddEasy-app-fe-sg         |
+| prod-biddEasy-vpc-default-sg | sg-01363995f2edb1c1     | default                          | vpc-0ba146c7fff6ddf4      | default VPC security group      |
+| prod-biddEasy-bastion-sg     | sg-0352d1090ef27713     | prod-biddEasy-bastion-sg         | vpc-0ba146c7fff6ddf4      | prod-biddEasy-bastion-sg        |
+| prod-biddEasy-redis-sg       | sg-0ebd47486429bed60    | prod-biddEasy-redis-sg           | vpc-0ba146c7fff6ddf4      | prod-biddEasy-redis-sg          |
+| prod-biddEasy-alb-sg         | sg-0ae433905f817a5a     | prod-biddEasy-alb-sg             | vpc-0ba146c7fff6ddf4      | prod-biddEasy-alb-sg            |
+| prod-biddEasy-app-be-sg      | sg-05f2f928d8cfa96b2    | prod-biddEasy-app-be-sg          | vpc-0ba146c7fff6ddf4      | prod-biddEasy-app-be-sg         |
+| prod-biddEasy-vpc-endpoint-sg| sg-065ac4939552e7ed     | prod-biddEasy-vpc-endpoint-sg    | vpc-0ba146c7fff6ddf4      | prod-biddEasy-vpc-endpoint-sg   |
 
 ---
 
