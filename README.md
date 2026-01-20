@@ -422,7 +422,15 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Outbound Traffic
 
-<img width="1189" alt="staging-fe-outbound" src="https://github.com/user-attachments/assets/ac1171e5-9d01-484e-9725-11c29395060c" />
+| Rule Type | Protocol | Port | Destination | Purpose |
+|----------|----------|------|-------------|---------|
+| HTTPS    | TCP      | 443  | sg-0216a428de288402 (staging) | HTTPS to ALB / service |
+| HTTPS    | TCP      | 443  | 0.0.0.0/0   | Public HTTPS access |
+| DNS (UDP)| UDP      | 53   | 10.80.0.2/32| DNS resolution |
+| HTTP     | TCP      | 80   | 0.0.0.0/0   | Public HTTP access |
+| SSH      | TCP      | 22   | 20.207.73.82/32 | SSH access |
+| DNS (TCP)| TCP      | 53   | 10.80.0.2/32| DNS resolution |
+
 
 ---
 
