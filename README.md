@@ -561,20 +561,28 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Inbound Traffic
 
-<img width="1199" alt="prod-alb-inbound" src="https://github.com/user-attachments/assets/fa3e98c5-c4df-49ff-a807-25f52a3dfc74" />
-
+| Rule Type  | Protocol | Port | Source            | Purpose            |
+|------------|----------|------|-------------------|--------------------|
+| HTTPS      | TCP      | 443  | 0.0.0.0/0         | Public web traffic |
 #### Outbound Traffic
 
-<img width="1199" alt="prod-alb-outbound" src="https://github.com/user-attachments/assets/4b990d57-18d7-403f-bffa-4168f0c18e0c" />
-
+| Rule Type   | Protocol | Port | Destination       | Purpose                    |
+|-------------|----------|------|-------------------|----------------------------|
+| All traffic | All      | All  | 0.0.0.0/0         | Allow all outbound traffic |
+| Custom TCP  | TCP      | 3000 | sg-05f2f928dcf... | App traffic                |
+| Custom TCP  | TCP      | 3000 | sg-07d2f4532e2... | App traffic                |
+| Custom TCP  | TCP      | 3002 | sg-05f2f928dcf... | App traffic                |
 ---
 
 ### prod-biddEasy-app-be-sg
 
 #### Inbound Traffic
 
-<img width="1199" alt="prod-be-inbound" src="https://github.com/user-attachments/assets/4eda1b73-f95f-4ad5-8c09-c2c7934c0294" />
-
+| Rule Type   | Protocol | Port | Source            | Purpose                    |
+|-------------|----------|------|-------------------|----------------------------|
+| All traffic | All      | 22  | 10.90.11.0/24      | Allow all outbound traffic |
+| Custom TCP  | TCP      | 3000 | sg-05f2f928dcf... | App traffic                |
+| Custom TCP  | TCP      | 3002 | sg-05f2f928dcf... | App traffic                |
 #### Outbound Traffic
 
 <img width="1199" alt="prod-be-outbound" src="https://github.com/user-attachments/assets/0127cae8-c6f8-4b2f-b409-0869026fa347" />
