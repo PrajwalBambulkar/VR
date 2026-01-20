@@ -484,8 +484,8 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 | Custom TCP | TCP      | 3000 | Target Security Group (sg-044d45…) | Allow application traffic on port 3000 to backend |
 ---
 
-### Production Environment
-## Security Groups
+## Production Environment
+#### Security Groups
 
 
 | Name                         | Security Group ID        | Security Group Name              | VPC ID                    | Description                     |
