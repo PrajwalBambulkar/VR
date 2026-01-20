@@ -504,11 +504,26 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Inbound Traffic
 
-<img width="1204" alt="prod-fe-inbound" src="https://github.com/user-attachments/assets/c7d55113-5ee1-483f-9eeb-97a257f41b44" />
+| Rule Type   | Protocol | Port | Source           | Purpose                                  |
+|------------|----------|------|------------------|------------------------------------------|
+| SSH        | TCP      | 22   | 10.90.12.0/24    | Allow SSH access from private subnet     |
+| SSH        | TCP      | 22   | 10.100.0.0/16    | Allow SSH access from internal network   |
+| SSH        | TCP      | 22   | 10.90.11.0/24    | Allow SSH access from private subnet     |
+| SSH        | TCP      | 22   | 10.90.1.30/32    | Allow SSH access from specific host      |
+| Custom TCP | TCP      | 3000 | Backend SG       | Allow web/application traffic on port 3000 |
 
 #### Outbound Traffic
 
-<img width="1199" alt="prod-fe-outbound" src="https://github.com/user-attachments/assets/ecdff417-3fa8-4e6c-918d-a1d562ad9989" />
+| Rule Type | Protocol | Port | Source / Destination | Purpose                                      |
+|----------|----------|------|----------------------|----------------------------------------------|
+| SSH      | TCP      | 22   | 10.90.11.0/24        | Allow SSH access to private subnet           |
+| HTTP     | TCP      | 80   | 0.0.0.0/0            | Allow outbound HTTP internet access          |
+| HTTPS    | TCP      | 443  | prod VPC endpoint SG | Allow HTTPS access via VPC endpoint          |
+| DNS      | TCP      | 53   | 10.90.0.2/32         | Allow DNS resolution (TCP)                   |
+| DNS      | UDP      | 53   | 10.90.0.2/32         | Allow DNS resolution (UDP)                   |
+| SSH      | TCP      | 22   | 10.90.12.0/24        | Allow SSH access to private subnet           |
+| HTTPS    | TCP      | 443  | 0.0.0.0/0            | Allow outbound HTTPS internet access         |
+| SSH      | TCP      | 22   | 20.207.73.82/32      | Allow SSH access to specific external host   |
 
 ---
 
@@ -516,7 +531,9 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Inbound Traffic
 
-<img width="1199" alt="prod-bastion-inbound" src="https://github.com/user-attachments/assets/d3c78ea0-58a9-4a3a-a551-f20b43cc7254" />
+| Rule Type | Protocol | Port | Source     | Purpose                         |
+|----------|----------|------|------------|---------------------------------|
+| SSH      | TCP      | 22   | 0.0.0.0/0  | Allow SSH access from anywhere  |
 
 #### Outbound Traffic
 
