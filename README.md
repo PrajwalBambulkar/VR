@@ -537,20 +537,24 @@ A Security Group is a virtual firewall in AWS that controls inbound and outbound
 
 #### Outbound Traffic
 
-<img width="1199" alt="prod-bastion-outbound" src="https://github.com/user-attachments/assets/5f1fba01-0c0c-4401-9a3a-28171c288590" />
-
+| Rule Type | Protocol | Port | Destination     | Purpose    |
+|-----------|----------|------|-----------------|------------|
+| SSH       | TCP      | 22   | 10.90.12.0/24   | SSH access |
+| SSH       | TCP      | 22   | 10.90.11.0/24   | SSH access |
 ---
 
 ### prod-biddEasy-redis-sg
 
 #### Inbound Traffic
 
-<img width="1199" alt="prod-redis-inbound" src="https://github.com/user-attachments/assets/156099c8-1ae8-4c07-9ff2-08654b76db09" />
-
+| Rule Type  | Protocol | Port | Source                         | Purpose       |
+|------------|----------|------|--------------------------------|---------------|
+| Custom TCP | TCP      | 6379 | sg-05f2f928dcfa9b67 / prod...  | Redis traffic |
 #### Outbound Traffic
 
-<img width="1199" alt="prod-redis-outbound" src="https://github.com/user-attachments/assets/165d3609-a426-40df-b6d6-f2dbc8988539" />
-
+| Rule Type   | Protocol | Port | Destination| Purpose                    |
+|-------------|----------|------|-----------|----------------------------|
+| All traffic | All      | All  | 0.0.0.0/0 | Allow all outbound traffic |
 ---
 
 ### prod-biddEasy-alb-sg
