@@ -681,8 +681,19 @@ A NACL (Network Access Control List) is a stateless network firewall in AWS that
 
 #### Outbound Rules
 
-<img width="1199" alt="uat-public-nacl-outbound" src="https://github.com/user-attachments/assets/463a8772-2ef1-44a0-91b1-16118d161f96" />
-
+| Rule Number | Type        | Protocol | Port         | Destination     | Allow / Deny |
+|------------|-------------|----------|--------------|-----------------|--------------|
+| 100        | HTTPS (443) | TCP      | 443          | 0.0.0.0/0       | Allow |
+| 110        | Custom TCP  | TCP      | 3000         | 10.70.11.0/24   | Allow |
+| 120        | Custom TCP  | TCP      | 3000         | 10.70.12.0/24   | Allow |
+| 130        | Custom TCP  | TCP      | 3002         | 10.70.11.0/24   | Allow |
+| 140        | Custom TCP  | TCP      | 3002         | 10.70.12.0/24   | Allow |
+| 150        | Custom TCP  | TCP      | 3515         | 10.70.11.0/24   | Allow |
+| 160        | Custom TCP  | TCP      | 3515         | 10.70.12.0/24   | Allow |
+| 170        | Custom TCP  | TCP      | 1024–65535   | 0.0.0.0/0       | Allow |
+| 180        | SSH (22)    | TCP      | 22           | 10.70.11.0/24   | Allow |
+| 190        | SSH (22)    | TCP      | 22           | 10.70.12.0/24   | Allow |
+| *         | All traffic | All      | All          | 0.0.0.0/0       | Deny |
 ---
 
 ### Staging Environment
