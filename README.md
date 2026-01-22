@@ -1,981 +1,800 @@
-# Infrastructure Documentation
+# Nexus Repository Manager Documentation
 
 ## Table of Contents
 
-### 1. [Architecture Overview](#architecture-overview)
-
-### 2. [EC2 (Elastic Compute Cloud)](#ec2-elastic-compute-cloud)
-   - [EC2 Instances](#ec2-instances)
-
-### 3. [Load Balancer](#load-balancer)
-   - [Load Balancer Configuration](#load-balancer-configuration)
-
-### 4. [VPC (Virtual Private Cloud)](#vpc-virtual-private-cloud)
-   - [VPC Configuration](#vpc-configuration)
-
-### 5. [Routing Tables](#routing-tables)
-   - [UAT Environment](#uat-environment)
-   - [Staging Environment](#staging-environment)
-   - [Production Environment](#production-environment)
-
-### 6. [NAT (Network Address Translation)](#nat-network-address-translation)
-
-### 7. [IGW (Internet Gateway)](#igw-internet-gateway)
-
-### 8. [VPC Endpoints](#vpc-endpoints)
-   - [UAT Environment](#uat-environment-1)
-   - [Staging Environment](#staging-environment-1)
-   - [Production Environment](#production-environment-1)
-
-### 9. [Security Groups](#security-groups)
-   - [UAT Environment](#uat-environment-2)
-     - [uat-biddEasy-app-be-sg](#uat-biddeasy-app-be-sg)
-     - [uat-biddEasy-alb-sg](#uat-biddeasy-alb-sg)
-     - [uat-biddEasy-app-fe-sg](#uat-biddeasy-app-fe-sg)
-     - [uat-biddEasy-vpc-endpoint-sg](#uat-biddeasy-vpc-endpoint-sg)
-   - [Staging Environment](#staging-environment-2)
-     - [staging-biddEasy-app-fe-sg](#staging-biddeasy-app-fe-sg)
-     - [staging-biddEasy-vpc-endpoint-sg](#staging-biddeasy-vpc-endpoint-sg)
-     - [staging-biddEasy-bastion-sg](#staging-biddeasy-bastion-sg)
-     - [staging-biddEasy-alb-sg](#staging-biddeasy-alb-sg)
-   - [Production Environment](#production-environment-2)
-     - [prod-biddEasy-app-fe-sg](#prod-biddeasy-app-fe-sg)
-     - [prod-biddEasy-bastion-sg](#prod-biddeasy-bastion-sg)
-     - [prod-biddEasy-redis-sg](#prod-biddeasy-redis-sg)
-     - [prod-biddEasy-alb-sg](#prod-biddeasy-alb-sg)
-     - [prod-biddEasy-app-be-sg](#prod-biddeasy-app-be-sg)
-     - [prod-biddEasy-vpc-endpoint-sg](#prod-biddeasy-vpc-endpoint-sg)
-
-### 10. [NACL (Network Access Control List)](#nacl-network-access-control-list)
-   - [UAT Environment](#uat-environment-3)
-     - [uat-biddEasy-private-nacl](#uat-biddeasy-private-nacl)
-     - [uat-biddEasy-public-nacl](#uat-biddeasy-public-nacl)
-   - [Staging Environment](#staging-environment-3)
-     - [staging-biddEasy-private-nacl](#staging-biddeasy-private-nacl)
-     - [staging-biddEasy-public-nacl](#staging-biddeasy-public-nacl)
-   - [Production Environment](#production-environment-3)
-     - [prod-biddEasy-private-nacl](#prod-biddeasy-private-nacl)
-     - [prod-biddEasy-public-nacl](#prod-biddeasy-public-nacl)
-
-### 11. [VPC Peering Connections](#vpc-peering-connections)
-
-### 12. [Route53](#route53)
-   - [Hosted Zone Details](#hosted-zone-details)
-   - [UAT-Specific DNS Records](#uat-specific-dns-records)
-
-### 13. [AWS Certificate Manager (ACM)](#aws-certificate-manager-acm)
-   - [Certificate Details](#certificate-details)
-
-### 14. [CloudFront](#cloudfront)
-   - [UAT Environment](#uat-environment-4)
-   - [Staging Environment](#staging-environment-4)
-   - [Production Environment](#production-environment-4)
-
-### 15. [Deployment Steps](#deployment-steps)
+1. [Current Infrastructure Challenges](#current-infrastructure-challenges)
+   - [External Dependency Risks](#external-dependency-risks)
+   - [Security Vulnerabilities](#security-vulnerabilities)
+   - [Performance Issues](#performance-issues)
+2. [Why Nexus Repository Manager?](#why-nexus-repository-manager)
+   - [Key Benefits](#key-benefits)
+   - [Performance Improvements](#performance-improvements)
+   - [Security Enhancements](#security-enhancements)
+3. [Nexus Architecture](#nexus-architecture)
+   - [Repository Types](#repository-types)
+   - [Technology Support](#technology-support)
+4. [High Availability Setup](#high-availability-setup)
+   - [OSS vs PRO Comparison](#oss-vs-pro-comparison)
+   - [HA Components](#ha-components)
+   - [Deployment Configuration](#deployment-configuration)
+5. [Post-Installation Setup](#post-installation-setup)
+   - [Initial Configuration](#initial-configuration)
+   - [Repository Creation](#repository-creation)
 
 ---
 
-## Architecture Overview
+## Current Infrastructure Challenges
 
-<img width="1643" alt="Infrastructure Architecture Diagram" src="https://github.com/user-attachments/assets/aa872f59-c096-4a98-818b-909356ce8c6e" />
+### Current Setup Overview
 
----
+Our Jenkins deployment is configured as follows:
 
-## EC2 (Elastic Compute Cloud)
+- **Location**: Private subnet without direct internet access
+- **Network Path**: Outbound traffic → NAT Gateway → Internet Gateway
+- **Security**: Jenkins is not publicly exposed (good practice)
+- **Artifact Management**: No Nexus/Artifactory - direct internet downloads
 
-AWS EC2 (Elastic Compute Cloud) is a web service that provides resizable virtual servers, known as instances.
+### External Dependency Risks
 
-### EC2 Instances
+#### The Problem
 
-| Name | Public IP | Private IP |
-|------|-----------|------------|
-| `bidd-fe-uat` | N/A | `10.70.11.128` |
-| `bidd-fe-staging` | N/A | `10.80.11.246` |
-| `bidd-fe-prod` | N/A | `10.90.11.92` |
-| `bidd-be-uat` | N/A | `10.70.11.9` |
-| `bidd-be-staging` | N/A | `10.80.11.36` |
-| `bidd-be-prod` | N/A | `10.90.11.182` |
-| `bidd-uat-bastion` | `65.2.33.169` | `10.70.1.36` |
-| `bidd-prod-bastion` | `13.201.66.198` | `10.90.1.30` |
-| `bidd-staging-bastion` | `13.233.197.44` | `10.80.1.115` |
+Every Jenkins build is **100% dependent on external services**. During each build:
 
----
+1. Jenkins reaches out to multiple third-party registries over the internet
+2. Dependencies are downloaded repeatedly
+3. Any slow, rate-limited, or unavailable service causes build failures
 
-## Load Balancer
+#### Why This Matters
 
-An AWS Load Balancer (LB) acts as a traffic controller that automatically distributes incoming application requests across multiple EC2 instances to prevent any single server from overloading. It ensures high availability by redirecting traffic away from unhealthy servers to those that are working correctly.
+Even when everything internal is perfect:
 
-### Load Balancer Configuration
+- ✅ Application code has no issues
+- ✅ Jenkins service is healthy
+- ✅ EC2/Kubernetes infrastructure is up
+- ✅ Resources (CPU, memory, disk) are normal
+- ✅ NAT Gateway and routing are functional
 
-| Name | VPC ID | Security Group | DNS Name |
-|------|--------|----------------|----------|
-| `bidd-uat` | `vpc-0b1f4a3ecc95086e2` | `sg-00c0211b331681f00` | `bidd-uat-874321850.ap-south-1.elb.amazonaws.com` |
-| `bidd-staging` | `vpc-01aa775625bdbc866` | `sg-0c6a42a3a92d28043` | `bidd-staging-577559865.ap-south-1.elb.amazonaws.com` |
-| `bidd-prod` | `vpc-0ba146c7ffff6ddf4` | `sg-00ae433905f817a9a` | `bidd-prod-1822383629.ap-south-1.elb.amazonaws.com` |
+**Builds can still fail** because dependency resolution happens outside our control.
 
----
+#### NAT Gateway Limitations
 
-## VPC (Virtual Private Cloud)
+Common misconception: *"We have NAT, so internet access is reliable"*
 
-A VPC (Virtual Private Cloud) is a logically isolated private network in AWS where you can launch and manage resources securely. It allows you to define your own IP range, subnets, routing, and security controls.
+Reality:
 
-### VPC Configuration
+- NAT provides only a **network path**
+- Does NOT guarantee:
+  - Service availability
+  - Bandwidth fairness
+  - API rate acceptance
+  - CDN responsiveness
+- NAT IPs can be throttled by external services
+- Multiple concurrent builds amplify throttling issues
 
-| S/N | VPC Name | VPC ID | IPv4 CIDR |
-|-----|----------|--------|-----------|
-| 1 | `bidd-uat-vpc` | `vpc-0b1f4a3ecc95086e2` | `10.70.0.0/16` |
-| 2 | `bidd-staging-vpc` | `vpc-01aa775625bdbc866` | `10.80.0.0/16` |
-| 3 | `bidd-prod-vpc` | `vpc-0ba146c7ffff6ddf4` | `10.90.0.0/16` |
+### Security Vulnerabilities
 
----
+#### Current Security Risks
 
-## Routing Tables
+| Risk | Description | Impact |
+|------|-------------|--------|
+| **Supply Chain Attacks** | Blindly trusts public registries | Compromised packages reach production |
+| **No Payload Inspection** | NAT cannot inspect content | Malicious code goes undetected |
+| **Version Control** | No control over dependency versions | Unstable/vulnerable versions can be pulled |
+| **No Auditing** | Cannot track what was downloaded | Compliance failures |
 
-### UAT Environment
+#### Common Threats
 
-| S/N | Route Table Name | Type | Associated Subnet | AZ | Target | VPC Name | ENV |
-|-----|------------------|------|-------------------|-------|--------|----------|-----|
-| 1 | `bidd-uat-rtb-public` | Public | `bidd-uat-subnet-public1-ap-south-1a` | `ap-south-1a` | IGW (`bidd-uat-igw`) | `bidd-uat-vpc` | UAT |
-| 2 | `bidd-uat-rtb-public` | Public | `bidd-uat-subnet-public2-ap-south-1b` | `ap-south-1b` | IGW (`bidd-uat-igw`) | `bidd-uat-vpc` | UAT |
-| 3 | `bidd-uat-rtb-private1-ap-south-1a` | Private | `bidd-uat-subnet-private1-ap-south-1a` | `ap-south-1a` | NAT (`bidd-uat-regional-nat`) | `bidd-uat-vpc` | UAT |
-| 4 | `bidd-uat-rtb-private2-ap-south-1b` | Private | `bidd-uat-subnet-private2-ap-south-1b` | `ap-south-1b` | NAT (`bidd-uat-regional-nat`) | `bidd-uat-vpc` | UAT |
+- Compromised npm packages
+- Malicious Docker images
+- Upstream dependency replacements
+- Hijacked library versions
 
-#### Routes Configuration - bidd-uat-rtb-public
+### Performance Issues
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | `igw-08e2396be919a0246` |
-| 2 | `10.70.0.0/16` | `local` |
+#### No Central Artifact Storage
 
-#### Routes Configuration - bidd-uat-rtb-private2-ap-south-1b
+**Current Behavior:**
+- Build artifacts stored temporarily on Jenkins agents
+- Artifacts lost when workspace is cleaned or agent recreated
+- No centralized, persistent system of record
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | `nat-1d76874913dfc8bb6` |
-| 2 | `10.0.0.0/16` | `pcx-0761b6447a5af5541` |
-| 3 | `10.70.0.0/16` | `local` |
-| 4 | `192.168.248.0/21` | `pcx-0f9c6969527912b03` |
-
-#### Routes Configuration - bidd-uat-rtb-private1-ap-south-1a
-
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | `nat-1d76874913dfc8bb6` |
-| 2 | `10.0.0.0/16` | `pcx-0761b6447a5af5541` |
-| 3 | `10.70.0.0/16` | `local` |
-| 4 | `10.100.0.0/16` | `pcx-0bfb406f33d3f9d39` |
-| 5 | `192.168.248.0/21` | `pcx-0f9c6969527912b03` |
+**Consequences:**
+- Cannot rollback to previous versions easily
+- Must rebuild from source for rollbacks (risky)
+- No artifact traceability
+- Inconsistent deployments
 
 ---
 
-### Staging Environment
+## Why Nexus Repository Manager?
 
-| S/N | Route Table Name | Type | Associated Subnet | AZ | Target | VPC Name | ENV |
-|-----|------------------|------|-------------------|-------|--------|----------|---------|
-| 1 | `bidd-staging-rtb-public` | Public | `bidd-staging-subnet-public1-ap-south-1a` | `ap-south-1a` | IGW (`bidd-staging-igw`) | `bidd-staging-vpc` | STAGING |
-| 2 | `bidd-staging-rtb-public` | Public | `bidd-staging-subnet-public2-ap-south-1b` | `ap-south-1b` | IGW (`bidd-staging-igw`) | `bidd-staging-vpc` | STAGING |
-| 3 | `bidd-staging-rtb-private1-ap-south-1a` | Private | `bidd-staging-subnet-private1-ap-south-1a` | `ap-south-1a` | NAT (`bidd-staging-regional-nat`) | `bidd-staging-vpc` | STAGING |
-| 4 | `bidd-staging-rtb-private2-ap-south-1b` | Private | `bidd-staging-subnet-private2-ap-south-1b` | `ap-south-1b` | NAT (`bidd-staging-regional-nat`) | `bidd-staging-vpc` | STAGING |
+### Key Benefits
 
-#### Routes Configuration - bidd-staging-rtb-public
+#### 1. Faster Builds (30-70% improvement)
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | Internet Gateway (`bidd-staging-igw`) |
-| 2 | `10.80.0.0/16` | `local` |
+**How It Works:**
 
-#### Routes Configuration - bidd-staging-rtb-private1-ap-south-1a
+Every software project relies on dependencies:
+- Java → Maven/Gradle (.jar files)
+- Node.js → npm modules
+- Docker → base images
+- Python → pip packages
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | NAT Gateway (`bidd-staging-regional-nat`) |
-| 2 | `10.80.0.0/16` | `local` |
-| 3 | `10.0.0.0/16` | `pcx-024ff73829ebc9b74` |
-| 4 | `10.100.0.0/16` | `pcx-0a2f5318908894785` |
-| 5 | `192.168.248.0/21` | `pcx-02ab332191c3e1c47` |
+**Without Nexus:**
+- Dependencies downloaded from internet every build
+- Large projects have hundreds/thousands of dependencies
+- Each download takes time (several minutes)
+- Slow and unreliable builds
 
-#### Routes Configuration - bidd-staging-rtb-private2-ap-south-1b
+**With Nexus:**
+- Local copy stored on first download
+- Subsequent builds pull directly from Nexus
+- Much faster than internet downloads
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | `nat-105148f1e51dc6e7e` |
-| 2 | `10.0.0.0/16` | `pcx-024ff73829ebc9b74` |
-| 3 | `10.80.0.0/16` | `local` |
-| 4 | `192.168.248.0/21` | `pcx-02ab332191c3e1c47` |
+**Example Time Savings:**
 
----
+| Build Time | Without Nexus | 30% Reduction | 70% Reduction |
+|------------|---------------|---------------|---------------|
+| Original | 20 minutes | 14 minutes | 6 minutes |
+| Daily Builds (10x) | 200 minutes | 140 minutes | 60 minutes |
+| **Weekly Savings** | - | **6 hours** | **14 hours** |
 
-### Production Environment
+#### 2. Reduced Internet Dependency
 
-| S/N | Route Table Name | Type | Associated Subnet | AZ | Target | VPC Name |
-|-----|------------------|------|-------------------|-------|--------|----------|
-| 1 | `bidd-prod-rtb-public` | Public | `bidd-prod-subnet-public1-ap-south-1a` | `ap-south-1a` | IGW (`bidd-prod-igw`) | `bidd-prod-vpc` |
-| 2 | `bidd-prod-rtb-public` | Public | `bidd-prod-subnet-public2-ap-south-1b` | `ap-south-1b` | IGW (`bidd-prod-igw`) | `bidd-prod-vpc` |
-| 3 | `bidd-prod-rtb-private1-ap-south-1a` | Private | `bidd-prod-subnet-private1-ap-south-1a` | `ap-south-1a` | NAT (`bidd-prod-regional-nat`) | `bidd-prod-vpc` |
-| 4 | `bidd-prod-rtb-private2-ap-south-1b` | Private | `bidd-prod-subnet-private2-ap-south-1b` | `ap-south-1b` | NAT (`bidd-prod-regional-nat`) | `bidd-prod-vpc` |
+**Problem Without Nexus:**
+- Every build fetches from internet via NAT
+- Build failures if NAT is down
+- Slower builds due to network latency
+- Risk from external registry unavailability
 
-#### Routes Configuration - bidd-prod-rtb-public
+**Solution With Nexus:**
+- Acts as local cache and proxy
+- First fetch from internet, then cached locally
+- Subsequent builds work without internet access
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | Internet Gateway (`bidd-prod-igw`) |
-| 2 | `10.90.0.0/16` | `local` |
+**Builds continue working even if:**
+- ✅ NAT Gateway fails
+- ✅ Internet outage occurs
+- ✅ External registry is down
+- ✅ Network maintenance in progress
 
-#### Routes Configuration - bidd-prod-rtb-private1-ap-south-1a
+#### 3. Enhanced Security & Supply Chain Control
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | `nat-1cdee5a37f1ea8ca2` |
-| 2 | `10.0.0.0/16` | `pcx-05402c462d8fec793` |
-| 3 | `10.90.0.0/16` | `local` |
-| 4 | `10.100.0.0/16` | `pcx-0b8b49e9767982f89` |
-| 5 | `192.168.248.0/21` | `pcx-01dea8349861b7e63` |
+**Without Nexus:**
+- No control over dependency versions
+- Direct pulls from public registries
+- Risk of compromised upstream libraries
+- No vulnerability scanning
 
-#### Routes Configuration - bidd-prod-rtb-private2-ap-south-1b
+**With Nexus:**
+- **Approved repositories only** - whitelist trusted sources
+- **Version blocking** - prevent vulnerable/unapproved versions
+- **Security integrations:**
+  - **Sonatype IQ** - vulnerability and license scanning
+  - **Snyk** - code and dependency security
+  - **Trivy** - Docker image vulnerability scanning
+- **Automated detection** before deployment
 
-| S/N | Destination CIDR | Target |
-|-----|------------------|--------|
-| 1 | `0.0.0.0/0` | `nat-1cdee5a37f1ea8ca2` |
-| 2 | `10.0.0.0/16` | `pcx-05402c462d8fec793` |
-| 3 | `10.90.0.0/16` | `local` |
-| 4 | `10.100.0.0/16` | `pcx-0b8b49e9767982f89` |
-| 5 | `192.168.248.0/21` | `pcx-01dea8349861b7e63` |
+#### 4. Artifact Versioning & Rollback
 
----
+**Without Nexus:**
+- Artifacts lost after deployment
+- Rollback requires rebuild from source
+- Rebuild risks:
+  - Changed dependencies
+  - Different build environment
+  - Inconsistent artifacts
 
-## NAT (Network Address Translation)
+**With Nexus:**
+- Every artifact stored with unique version
+  - `myapp-1.2.3.jar`
+  - `myapp-1.2.4.jar`
+- Easy rollback to any previous version
+- No rebuild required
+- Guaranteed exact same artifact
+- Reproducible builds for compliance
 
-NAT allows instances in a private subnet to access the internet while preventing inbound internet traffic to them.
+### Performance Improvements
 
-| S/N | Name | NAT ID | Route Table ID | IPv4 | VPC |
-|-----|------|--------|----------------|------|-----|
-| 1 | `bidd-uat-regional-nat` | `nat-1d76874913dfc8bb6` | `rtb-0623edd2b67f1d398` | `3.108.176.63` | `vpc-0b1f4a3ecc95086e2` |
-| 2 | `bidd-staging-regional-nat` | `nat-105148f1e51dc6e7e` | `rtb-005ba9c89a71a0c06` | `13.200.188.24` | `vpc-01aa775625bdbc866` |
-| 3 | `bidd-prod-regional-nat` | `nat-1cdee5a37f1ea8ca2` | `rtb-032b4d028c71515ef` | `13.204.162.227` | `vpc-0ba146c7ffff6ddf4` |
+#### Build Speed Optimization
 
----
+**No Repeated Downloads:**
+- Central cache for all dependencies
+- Any Jenkins agent or developer can reuse
+- Reduces redundancy across teams
+- Improves efficiency organization-wide
 
-## IGW (Internet Gateway)
+#### Comparison Tables
 
-An Internet Gateway (IGW) is an AWS-managed component that is attached to a VPC to enable internet connectivity. It allows public subnet resources, such as EC2 instances with public IPs, to send and receive traffic from the internet and works with route tables to route traffic outside the VPC securely.
+**Security Comparison:**
 
-| S/N | Name | IGW ID | VPC ID |
-|-----|------|--------|--------|
-| 1 | `bidd-uat-igw` | `igw-08e2396be919a0246` | `vpc-0b1f4a3ecc95086e2` |
-| 2 | `bidd-staging-igw` | `igw-09d4e19ae3bed1de0` | `vpc-01aa775625bdbc866` |
-| 3 | `bidd-prod-igw` | `igw-0e9990549df1a2783` | `vpc-0ba146c7ffff6ddf4` |
+| Aspect | NAT Only | NAT + Nexus |
+|--------|----------|-------------|
+| Internet isolation | ✅ | ✅ |
+| Malicious dependency blocking | ❌ | ✅ |
+| Approved repo enforcement | ❌ | ✅ |
+| Audit trail | ❌ | ✅ |
+| Checksum verification | ❌ | ✅ |
 
----
+> **Key Insight:** NAT protects network, Nexus protects software supply chain
 
-## VPC Endpoints
+**Performance & Stability:**
 
-### UAT Environment
+| Aspect | NAT Only | NAT + Nexus |
+|--------|----------|-------------|
+| Dependency caching | ❌ | ✅ |
+| Build speed | Slow | Fast (30-70% improvement) |
+| Offline builds | ❌ | Partial ✅ |
+| External repo outage | CI down ❌ | CI safe ✅ |
 
-| S/N | Name | VPC Endpoint ID | VPC ID |
-|-----|------|-----------------|--------|
-| 1 | `uat-ssm-endpoint` | `vpce-0751bb4b2ec44c22e` | `vpc-0b1f4a3ecc95086e2` |
-| 2 | `uat-ssmmessages-endpoint` | `vpce-09ead38be8e3c183a` | `vpc-0b1f4a3ecc95086e2` |
-| 3 | `uat-ec2msg-endpoint` | `vpce-007c1d33200aa4f4e` | `vpc-0b1f4a3ecc95086e2` |
+**Artifact Management:**
 
-### Staging Environment
-
-| S/N | Name | VPC Endpoint ID | VPC ID |
-|-----|------|-----------------|--------|
-| 1 | `staging-ssm-endpoint` | `vpce-0b6c384e50ca88975` | `vpc-01aa775625bdbc866` |
-| 2 | `staging-ssmmessages-endpoint` | `vpce-0d14c04c15f1a148d` | `vpc-01aa775625bdbc866` |
-| 3 | `staging-ec2msg-endpoint` | `vpce-09ddeb1a93aac6895` | `vpc-01aa775625bdbc866` |
-
-### Production Environment
-
-| S/N | Name | VPC Endpoint ID | VPC ID |
-|-----|------|-----------------|--------|
-| 1 | `prod-ssm-endpoint` | `vpce-08623dd6f1f37e065` | `vpc-0ba146c7ffff6ddf4` |
-| 2 | `prod-ssmmessages-endpoint` | `vpce-042d39681230fd098` | `vpc-0ba146c7ffff6ddf4` |
-| 3 | `prod-ec2msg-endpoint` | `vpce-0caa85ad654348679` | `vpc-0ba146c7ffff6ddf4` |
-
----
-
-## Security Groups
-
-A Security Group is a virtual firewall in AWS that controls inbound and outbound traffic for resources like EC2 instances. It works at the instance level and allows traffic only if it is explicitly permitted by defined rules.
-
-### UAT Environment
-
-| S/N | Name | Security Group ID | VPC ID |
-|-----|------|-------------------|--------|
-| 1 | `uat-biddEasy-app-be-sg` | `sg-069e32c90baab413e` | `vpc-0b1f4a3ecc95086e2` |
-| 2 | `uat-biddEasy-alb-sg` | `sg-00c0211b331681f00` | `vpc-0b1f4a3ecc95086e2` |
-| 3 | `uat-biddEasy-app-fe-sg` | `sg-05af5fbadce17ccc6` | `vpc-0b1f4a3ecc95086e2` |
-| 4 | `uat-biddEasy-vpc-endpoint-sg` | `sg-082d9aa6b1b65ad74` | `vpc-0b1f4a3ecc95086e2` |
+| Feature | NAT Only | Nexus |
+|---------|----------|-------|
+| Store build outputs | ❌ | ✅ |
+| Versioning | ❌ | ✅ |
+| Environment promotion (QA → UAT → PROD) | ❌ | ✅ |
+| Rollback capability | ❌ | ✅ |
 
 ---
 
-### uat-biddEasy-app-be-sg
+## Nexus Architecture
+<img width="605" height="401" alt="image" src="https://github.com/user-attachments/assets/30f70ca0-7c6f-4aa6-8256-6075f3ab8f9a" />
 
-#### Inbound Traffic
+### Repository Types
 
-| Rule Type | Protocol | Port | Source | Purpose |
-|-----------|----------|------|--------|---------|
-| SSH | TCP | 22 | `10.90.0.0/16` | Admin access from internal network |
-| SSH | TCP | 22 | `10.100.0.0/16` | Admin access from internal network |
-| Custom TCP | TCP | 3515 | `sg-00c0211b331681f00` | Application service communication |
-| Custom TCP | TCP | 3000 | `sg-00c0211b331681f00` | Web application access |
-| Custom TCP | TCP | 3002 | `sg-00c0211b331681f00` | Internal service / API access |
+Nexus provides three types of repositories to manage artifacts effectively:
 
-#### Outbound Traffic
+#### A) Hosted Repository
 
-| Rule Type | Protocol | Port | Destination | Purpose |
-|-----------|----------|------|-------------|---------|
-| Custom TCP | TCP | 587 | `0.0.0.0/0` | Outbound email via AWS SES (SMTP) |
-| Custom TCP | TCP | 27017 | `192.168.248.0/21` | Application access to MongoDB (Atlas / DB network) |
-| HTTP | TCP | 80 | `0.0.0.0/0` | Outbound internet HTTP traffic |
-| SSH | TCP | 22 | `20.207.73.82/32` | SSH access for GitHub repository clone |
-| DNS (TCP) | TCP | 53 | `10.70.0.2/32` | DNS resolution (fallback) |
-| DNS (UDP) | UDP | 53 | `10.70.0.2/32` | DNS resolution |
-| HTTPS | TCP | 443 | `sg-082d9aa6b1b65ad74` | AWS SSM connectivity |
-| HTTPS | TCP | 443 | `0.0.0.0/0` | Outbound internet HTTPS traffic |
+**Purpose:** Store internal company artifacts
 
----
+**Use Cases:**
+- Internal Docker images
+- Internal npm packages
+- Internal Helm charts
+- Private libraries and tools
 
-### uat-biddEasy-alb-sg
+**Benefits:**
+- Full control over internal artifacts
+- Version management
+- Access control
+- Audit trails
 
-#### Inbound Traffic
+#### B) Proxy Repository
 
-| Rule Type | Protocol | Port | Source | Purpose |
-|-----------|----------|------|--------|---------|
-| HTTPS | TCP | 443 | `0.0.0.0/0` | For HTTPS requests |
+**Purpose:** Cache external dependencies locally
 
-#### Outbound Traffic
+**How It Works:**
 
-| Rule Type | Protocol | Port | Destination | Purpose |
-|-----------|----------|------|-------------|---------|
-| Custom TCP | TCP | 3002 | `sg-069e32c90baab413e` | For Exchange Service |
-| Custom TCP | TCP | 3000 | `sg-069e32c90baab413e` | For BE services |
-| Custom TCP | TCP | 3000 | `sg-05af5fbadce17ccc6` | For FE services |
+1. Connects to public internet registry (Docker Hub, npmjs, Ubuntu apt, etc.)
+2. Downloads package **only once**
+3. Caches inside Nexus
+4. Subsequent requests served from cache (no internet required)
 
----
+**Examples:**
+- `docker-proxy` → pulls from Docker Hub
+- `npm-proxy` → pulls from registry.npmjs.org
+- `apt-proxy` → pulls from archive.ubuntu.com
 
-### uat-biddEasy-app-fe-sg
+**Key Benefits:**
+- Solves security issues
+- Dramatically improves speed
+- Reduces internet dependency
+- Provides offline capability
 
-#### Inbound Traffic
+#### C) Group Repository
 
-| Rule Type | Protocol | Port | Source | Purpose |
-|-----------|----------|------|--------|---------|
-| Custom TCP | TCP | 3000 | `sg-00c0211b331681f00` | Web Requests from UAT ALB |
-| SSH | TCP | 22 | `10.90.0.0/16` | SSH from bidd Prod VPC |
-| SSH | TCP | 22 | `10.100.0.0/16` | SSH from old bidd Prod VPC |
+**Purpose:** Combine hosted and proxy repositories into single endpoint
 
-#### Outbound Traffic
+**Benefits:**
+- Developers configure **ONE URL** only
+- Transparent routing to hosted/proxy repos
+- Simplified configuration management
 
-| Rule Type | Protocol | Port | Destination | Purpose |
-|-----------|----------|------|-------------|---------|
-| HTTPS | TCP | 443 | `sg-082d9aa6b1b65ad74` | For SSM connect |
-| SSH | TCP | 22 | `20.207.73.82/32` | SSH clone from GitHub |
-| HTTPS | TCP | 443 | `0.0.0.0/0` | Internet requests goes via NAT only for port 443 |
-| DNS (UDP) | UDP | 53 | `10.70.0.2/32` | DNS |
-| DNS (TCP) | TCP | 53 | `10.70.0.2/32` | DNS fallback |
-| HTTP | TCP | 80 | `0.0.0.0/0` | Internet requests goes via NAT only for port 80 |
+**Example:**
+- `npm-group` = `npm-hosted` + `npm-proxy`
+- `docker-group` = `docker-hosted` + `docker-proxy`
 
----
+### How Proxy Repository Works
 
-### uat-biddEasy-vpc-endpoint-sg
+**Example:** Developer runs `npm install express`
 
-#### Inbound Traffic
+**Request Flow:**
+```
+Developer → Nexus → npm-group → [npm-hosted + npm-proxy]
+```
 
-| Rule Type | Protocol | Port | Source | Purpose |
-|-----------|----------|------|--------|---------|
-| HTTPS | TCP | 443 | `sg-05af5fbadce17ccc6` | For SSM connect [Frontend EC2] |
-| HTTPS | TCP | 443 | `sg-069e32c90baab413e` | For SSM connect [Backend EC2] |
+**Process:**
 
-#### Outbound Traffic
+1. **Check Cache:** npm-proxy checks if `express` is cached locally
+2. **Cache Hit:** If cached → return immediately (fast)
+3. **Cache Miss:** If not cached → fetch from `https://registry.npmjs.org/`
+4. **Store:** Nexus caches the package
+5. **Return:** Package delivered to developer
 
-| Rule Type | Protocol | Port | Destination | Purpose |
-|-----------|----------|------|-------------|---------|
-| All | ALL | ALL | `0.0.0.0/0` | Required for AWS SSM endpoint communication |
+**Subsequent Requests:** Served directly from cache (no internet)
 
----
+### Technology Support
 
-### Staging Environment
+Nexus supports all major package formats and registries:
 
-| Name | Security Group ID | Security Group Name | VPC ID | Description | Owner |
-|------|-------------------|---------------------|--------|-------------|-------|
-| `staging-biddEasy-app-be-sg` | `sg-0c31cb184a901dea9` | `staging-biddEasy-app-be-sg` | `vpc-01aa775625bdbc866` | `staging-biddEasy-app-be-sg` | `851721469379` |
-| `staging-biddEasy-vpc-endpoint-sg` | `sg-0b13e44deabb8aee4` | `staging-biddEasy-vpc-endpoint-sg` | `vpc-01aa775625bdbc866` | `staging-biddEasy-vpc-endpoint-sg` | `851721469379` |
-| `staging-portald-app-sg` | `sg-0c12c1b87cb0ef204` | `staging-portald-app-sg` | `default` | `staging-portald-app-sg` | `851721469379` |
-| `staging-biddEasy-alb-sg` | `sg-04c9e125628a0f9043` | `staging-biddEasy-alb-sg` | `vpc-01aa775625bdbc866` | `staging-biddEasy-alb-sg` | `851721469379` |
-| `staging-biddEasy-app-fe-sg` | `sg-01e4a7758325d8afc` | `staging-biddEasy-app-fe-sg` | `vpc-01aa775625bdbc866` | `staging-biddEasy-app-fe-sg` | `851721469379` |
+| Technology | Proxy Target | Hosted Repo | Group Repo |
+|------------|--------------|-------------|------------|
+| **npm/yarn/pnpm** | `registry.npmjs.org` | `npm-hosted` | `npm-group` |
+| **Docker** | `registry-1.docker.io` | `docker-hosted` | `docker-group` |
+| **Ubuntu apt** | `archive.ubuntu.com` | `apt-hosted` | `apt-group` |
+| **Helm** | `charts.helm.sh` | `helm-hosted` | `helm-group` |
+| **Python (pip)** | `pypi.org` | `pypi-hosted` | `pypi-group` |
+| **Maven/Java** | `repo.maven.apache.org` | `maven-hosted` | `maven-group` |
 
----
+### Jenkins Integration
 
-### staging-biddEasy-app-fe-sg
+**Jenkins pulls everything from Nexus:**
+- npm installs
+- Maven builds
+- Docker image builds
+- apt package installs
+- Helm chart downloads
 
-#### Inbound Traffic
-
-| Rule Type   | Protocol | Port | Source                     | Purpose        |
-|------------|----------|------|----------------------------|----------------|
-| SSH        | TCP      | 22   | 10.80.11.0/24              | SSH access     |
-| SSH        | TCP      | 22   | 10.80.1.115/32             | SSH access     |
-| SSH        | TCP      | 22   | 10.80.12.0/24              | SSH access     |
-| SSH        | TCP      | 22   | 10.100.0.0/16              | SSH access     |
-| Custom TCP | TCP      | 3000 | sg-0c64a2a392d28043 (staging) | App traffic    |
-
-
-#### Outbound Traffic
-
-| Rule Type | Protocol | Port | Destination | Purpose |
-|----------|----------|------|-------------|---------|
-| HTTPS    | TCP      | 443  | sg-0216a428de288402 (staging) | HTTPS to ALB / service |
-| HTTPS    | TCP      | 443  | 0.0.0.0/0   | Public HTTPS access |
-| DNS (UDP)| UDP      | 53   | 10.80.0.2/32| DNS resolution |
-| HTTP     | TCP      | 80   | 0.0.0.0/0   | Public HTTP access |
-| SSH      | TCP      | 22   | 20.207.73.82/32 | SSH access |
-| DNS (TCP)| TCP      | 53   | 10.80.0.2/32| DNS resolution |
-
+**Result:** Everything is secure, cached, and controlled
 
 ---
 
-### staging-biddEasy-vpc-endpoint-sg
+## High Availability Setup
 
-#### Inbound Traffic
+### OSS vs PRO Comparison
 
-| Rule Type | Protocol | Port | Source | Purpose |
-|----------|----------|------|--------|---------|
-| HTTPS    | TCP      | 443  | sg-02db63abe62c2ab (staging) | HTTPS traffic from ALB |
-| HTTPS    | TCP      | 443  | sg-044d45788fa456469 (staging) | HTTPS traffic from FE SG |
+#### Important Reality Check
 
-#### Outbound Traffic
+> ⚠️ **Nexus OSS (free version) does NOT support true clustered HA**
+> 
+> Only **Nexus PRO** supports official HA (multiple active nodes + shared blob storage + shared database)
 
-| Rule Type   | Protocol | Port | Destination | Purpose |
-|------------|----------|------|-------------|---------|
-| All traffic| All      | All  | 0.0.0.0/0   | Allow outbound internet access |
+#### What You GET with OSS on Kubernetes
 
----
+| Feature | Status | Description |
+|---------|--------|-------------|
+| **Automatic pod restart** | ✅ | Kubernetes restarts crashed pods → Basic resilience |
+| **Persistent storage** | ✅ | PVC keeps data safe → No data loss on pod recreation |
+| **Easy upgrades** | ✅ | Helm-based rolling upgrades → Controlled downtime |
+| **Scalable storage** | ✅ | S3, PVC, NFS support → Better reliability |
+| **Small/medium teams** | ✅ | Free version sufficient for most use cases |
 
-### staging-biddEasy-bastion-sg
+#### What You DON'T GET with OSS on Kubernetes
 
-#### Inbound Traffic
+| Limitation | Status | Description |
+|------------|--------|-------------|
+| **Multi-pod load balancing** | ❌ | `replicaCount` must be 1 |
+| **Active-active clustering** | ❌ | Only Nexus PRO supports this |
+| **True High Availability** | ❌ | Pod restart ≠ HA cluster |
+| **Horizontal scaling** | ❌ | Cannot run multiple replicas |
 
-| Rule Type | Protocol | Port | Source     | Purpose                  |
-|----------|----------|------|------------|--------------------------|
-| SSH      | TCP      | 22   | 0.0.0.0/0  | Allow SSH remote access  |
+### HA Components
 
-#### Outbound Traffic
+For **Nexus PRO High Availability**, you need:
 
-| Rule Type | Protocol | Port | Destination   | Purpose                                      |
-|----------|----------|------|---------------|----------------------------------------------|
-| SSH      | TCP      | 22   | 10.80.11.0/24 | Allow SSH access to private subnet 10.80.11.0 |
-| SSH      | TCP      | 22   | 10.80.12.0/24 | Allow SSH access to private subnet 10.80.12.0 |
+#### 1. Multiple Nexus PRO Application Pods (2-3 nodes)
 
----
+- All nodes active-active
+- Behind single Kubernetes Ingress or LoadBalancer
+- Load distributed across pods
 
-### staging-biddEasy-alb-sg
+#### 2. External PostgreSQL Database
 
-#### Inbound Traffic
+**Why Required:**
 
-| Rule Type | Protocol | Port | Source     | Purpose                             |
-|----------|----------|------|------------|-------------------------------------|
-| HTTPS    | TCP      | 443  | 0.0.0.0/0  | Allow secure HTTPS traffic from internet |
+Nexus PRO HA requires shared metadata storage across all nodes for:
+- Repository configuration
+- Component and asset information
+- Permissions and roles
+- User accounts
+- Task states
+- Job management
+- Internal indexes
+- **Distributed lock management** (prevents corruption)
 
-#### Outbound Traffic
+**Recommended:**
+- AWS RDS PostgreSQL
+- Managed service for reliability
+- Automated backups
+- Multi-AZ deployment
 
-| Rule Type   | Protocol | Port | Destination                     | Purpose                                           |
-|------------|----------|------|----------------------------------|---------------------------------------------------|
-| Custom TCP | TCP      | 3000 | Target Security Group (sg-02dbc6…) | Allow application traffic on port 3000 to backend |
-| Custom TCP | TCP      | 3000 | Target Security Group (sg-044d45…) | Allow application traffic on port 3000 to backend |
----
+**Important:** Database stores metadata only, NOT artifacts
 
-## Production Environment
-#### Security Groups
+#### 3. Shared Blob Store
 
+All Nexus pods must access **one shared storage** for artifacts.
 
-| Name                         | Security Group ID        | Security Group Name              | VPC ID                    | Description                     |
-|------------------------------|--------------------------|----------------------------------|---------------------------|---------------------------------|
-| prod-biddEasy-app-fe-sg      | sg-07d2f4532e2fce7f2     | prod-biddEasy-app-fe-sg          | vpc-0ba146c7fff6ddf4      | prod-biddEasy-app-fe-sg         |
-| prod-biddEasy-vpc-default-sg | sg-01363995f2edb1c1     | default                          | vpc-0ba146c7fff6ddf4      | default VPC security group      |
-| prod-biddEasy-bastion-sg     | sg-0352d1090ef27713     | prod-biddEasy-bastion-sg         | vpc-0ba146c7fff6ddf4      | prod-biddEasy-bastion-sg        |
-| prod-biddEasy-redis-sg       | sg-0ebd47486429bed60    | prod-biddEasy-redis-sg           | vpc-0ba146c7fff6ddf4      | prod-biddEasy-redis-sg          |
-| prod-biddEasy-alb-sg         | sg-0ae433905f817a5a     | prod-biddEasy-alb-sg             | vpc-0ba146c7fff6ddf4      | prod-biddEasy-alb-sg            |
-| prod-biddEasy-app-be-sg      | sg-05f2f928d8cfa96b2    | prod-biddEasy-app-be-sg          | vpc-0ba146c7fff6ddf4      | prod-biddEasy-app-be-sg         |
-| prod-biddEasy-vpc-endpoint-sg| sg-065ac4939552e7ed     | prod-biddEasy-vpc-endpoint-sg    | vpc-0ba146c7fff6ddf4      | prod-biddEasy-vpc-endpoint-sg   |
+**Recommended:**
+- **AWS S3** (best for AWS deployments)
+- MinIO (on-premises alternative)
+- NFS (not recommended for production)
 
----
+**Data Separation:**
+- ✅ **Artifacts** → Stored in Blob Store (S3/MinIO)
+- ✅ **Metadata** → Stored in Database (PostgreSQL)
 
-### prod-biddEasy-app-fe-sg
+#### 4. Ingress / Load Balancer
 
-#### Inbound Traffic
+Distributes traffic between Nexus pods for high availability.
 
-| Rule Type   | Protocol | Port | Source           | Purpose                                  |
-|------------|----------|------|------------------|------------------------------------------|
-| SSH        | TCP      | 22   | 10.90.12.0/24    | Allow SSH access from private subnet     |
-| SSH        | TCP      | 22   | 10.100.0.0/16    | Allow SSH access from internal network   |
-| SSH        | TCP      | 22   | 10.90.11.0/24    | Allow SSH access from private subnet     |
-| SSH        | TCP      | 22   | 10.90.1.30/32    | Allow SSH access from specific host      |
-| Custom TCP | TCP      | 3000 | Backend SG       | Allow web/application traffic on port 3000 |
+### Deployment Configuration
 
-#### Outbound Traffic
+#### Helm Values for Nexus PRO HA
+```yaml
+# High Availability Configuration
+replicaCount: 2  # Multiple active pods
 
-| Rule Type | Protocol | Port | Source / Destination | Purpose                                      |
-|----------|----------|------|----------------------|----------------------------------------------|
-| SSH      | TCP      | 22   | 10.90.11.0/24        | Allow SSH access to private subnet           |
-| HTTP     | TCP      | 80   | 0.0.0.0/0            | Allow outbound HTTP internet access          |
-| HTTPS    | TCP      | 443  | prod VPC endpoint SG | Allow HTTPS access via VPC endpoint          |
-| DNS      | TCP      | 53   | 10.90.0.2/32         | Allow DNS resolution (TCP)                   |
-| DNS      | UDP      | 53   | 10.90.0.2/32         | Allow DNS resolution (UDP)                   |
-| SSH      | TCP      | 22   | 10.90.12.0/24        | Allow SSH access to private subnet           |
-| HTTPS    | TCP      | 443  | 0.0.0.0/0            | Allow outbound HTTPS internet access         |
-| SSH      | TCP      | 22   | 20.207.73.82/32      | Allow SSH access to specific external host   |
+# Nexus PRO Image
+image:
+  repository: sonatype/nexus3
+  tag: latest
+  pullPolicy: Always
 
----
+# Enable PRO features
+nexusPro: true  # MUST be true for HA
 
-### prod-biddEasy-bastion-sg
+# Environment Configuration
+env:
+  nexus_base_url: "https://nexus.example.com"
 
-#### Inbound Traffic
+# Nexus HA Properties
+nexus:
+  properties:
+    nexus.ha.enabled: "true"
+    nexus.ha.database.enabled: "true"
+    nexus.ha.blobstore.enabled: "true"
 
-| Rule Type | Protocol | Port | Source     | Purpose                         |
-|----------|----------|------|------------|---------------------------------|
-| SSH      | TCP      | 22   | 0.0.0.0/0  | Allow SSH access from anywhere  |
+# Disable local persistence (use external blobstore)
+persistence:
+  enabled: false
 
-#### Outbound Traffic
+# S3 Blob Store Configuration
+blobStore:
+  type: s3
+  s3:
+    bucket: nexus-ha-artifacts
+    region: ap-south-1
+    prefix: nexus-data/
+    accessKeyId: "<AWS_ACCESS_KEY>"
+    secretAccessKey: "<AWS_SECRET_KEY>"
 
-| Rule Type | Protocol | Port | Destination     | Purpose    |
-|-----------|----------|------|-----------------|------------|
-| SSH       | TCP      | 22   | 10.90.12.0/24   | SSH access |
-| SSH       | TCP      | 22   | 10.90.11.0/24   | SSH access |
----
+# External PostgreSQL Configuration
+database:
+  enabled: false  # We use external DB
+  
+externalDatabase:
+  type: postgresql
+  host: "nexus-db.example.com"
+  port: 5432
+  name: "nexus"
+  username: "nexus_user"
+  password: "nexus_pass"
 
-### prod-biddEasy-redis-sg
+# Service Configuration
+service:
+  type: LoadBalancer
 
-#### Inbound Traffic
+# Resource Limits
+resources:
+  requests:
+    cpu: 1
+    memory: 4Gi
+  limits:
+    cpu: 2
+    memory: 8Gi
+```
 
-| Rule Type  | Protocol | Port | Source                         | Purpose       |
-|------------|----------|------|--------------------------------|---------------|
-| Custom TCP | TCP      | 6379 | sg-05f2f928dcfa9b67 / prod...  | Redis traffic |
-#### Outbound Traffic
+#### Deployment Commands
+```bash
+# Add Helm repository
+helm repo add oteemo https://oteemo.github.io/charts
 
-| Rule Type   | Protocol | Port | Destination| Purpose                    |
-|-------------|----------|------|-----------|----------------------------|
-| All traffic | All      | All  | 0.0.0.0/0 | Allow all outbound traffic |
----
+# Update Helm repositories
+helm repo update
 
-### prod-biddEasy-alb-sg
+# Install Nexus with HA configuration
+helm install nexus-ha oteemo/nexus -f values.yaml
 
-#### Inbound Traffic
-
-| Rule Type  | Protocol | Port | Source            | Purpose            |
-|------------|----------|------|-------------------|--------------------|
-| HTTPS      | TCP      | 443  | 0.0.0.0/0         | Public web traffic |
-#### Outbound Traffic
-
-| Rule Type   | Protocol | Port | Destination       | Purpose                    |
-|-------------|----------|------|-------------------|----------------------------|
-| All traffic | All      | All  | 0.0.0.0/0         | Allow all outbound traffic |
-| Custom TCP  | TCP      | 3000 | sg-05f2f928dcf... | App traffic                |
-| Custom TCP  | TCP      | 3000 | sg-07d2f4532e2... | App traffic                |
-| Custom TCP  | TCP      | 3002 | sg-05f2f928dcf... | App traffic                |
----
-
-### prod-biddEasy-app-be-sg
-
-#### Inbound Traffic
-
-| Rule Type   | Protocol | Port | Source            | Purpose                    |
-|-------------|----------|------|-------------------|----------------------------|
-| All traffic | All      | 22  | 10.90.11.0/24      | Allow all outbound traffic |
-| Custom TCP  | TCP      | 3000 | sg-05f2f928dcf... | App traffic                |
-| Custom TCP  | TCP      | 3002 | sg-05f2f928dcf... | App traffic                |
-#### Outbound Traffic
-
-| Rule Type   | Protocol | Port  | Destination        | Purpose |
-|------------|----------|-------|--------------------|---------|
-| SSH        | TCP      | 22    | 10.90.11.0/24      | Allow outbound SSH access to internal subnet |
-| HTTP       | TCP      | 80    | 0.0.0.0/0          | Allow outbound web traffic (HTTP) |
-| DNS (TCP)  | TCP      | 53    | 10.90.0.2/32       | Allow DNS queries over TCP to internal DNS server |
-| Custom TCP | TCP      | 27017 | 192.168.248.0/21   | Allow outbound MongoDB traffic |
-| HTTPS      | TCP      | 443   | sg-065ac49399552e7ed  | Allow HTTPS traffic to resources within referenced security group |
-| HTTPS      | TCP      | 443   | 0.0.0.0/0          | Allow outbound secure web traffic (HTTPS) |
-| Custom TCP | TCP      | 6379  | 10.90.12.0/24      | Allow Redis traffic to internal subnet |
-| DNS (UDP)  | UDP      | 53    | 10.90.0.2/32       | Allow DNS queries over UDP to internal DNS server |
-| SSH        | TCP      | 22    | 10.90.12.0/24      | Allow outbound SSH access to another internal subnet |
-| Custom TCP | TCP      | 587   | 0.0.0.0/0          | Allow outbound SMTP (email sending) |
-| SSH        | TCP      | 22    | 20.207.73.82/32    | Allow SSH access to specific external IP |
-| Custom TCP | TCP      | 6379  | 10.90.11.0/24      | Allow Redis traffic to another internal subnet |
----
-
-### prod-biddEasy-vpc-endpoint-sg
-
-#### Inbound Traffic
-
-| Rule Type | Protocol | Port |  Source | Purpose |
-|----------|----------|------|----------------------|---------|
-| HTTPS    | TCP      | 443  | sg-07d2f4532..    | Allow inbound HTTPS traffic from application/load balancer security group |
-| HTTPS    | TCP      | 443  | sg-05f2f9..   | Allow inbound HTTPS traffic from trusted production security group |
-#### Outbound Traffic
-
-| Rule Type | Protocol | Port | Destination | Purpose |
-|----------|----------|------|-------------|---------|
-| All Traffic | All | All | 0.0.0.0/0 | Allow all outbound traffic to any destination (full internet access) |
----
-
-## NACL (Network Access Control List)
-
-A NACL (Network Access Control List) is a stateless network firewall in AWS that controls inbound and outbound traffic at the subnet level. It uses allow and deny rules to provide an extra layer of security for subnets.
-
-### UAT Environment
-
-| Name | VPC ID |
-|------|--------|
-| `uat-biddEasy-private-nacl` | `vpc-0b1f4a3ecc95086e2` |
-| `uat-biddEasy-public-nacl` | `vpc-0b1f4a3ecc95086e2` |
+# Verify deployment
+kubectl get pods -l app=nexus
+kubectl get svc nexus-ha
+```
 
 ---
 
-### uat-biddEasy-private-nacl
+## Post-Installation Setup
 
-#### Inbound Rules
+### Initial Configuration
 
-| Rule No | Type | Protocol | Port | Source | Allow/Deny |
-|---------|------|----------|------|--------|------------|
-| 100 | HTTPS | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | HTTP | TCP | 80 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 3000 | `10.70.1.0/24` | Allow |
-| 130 | Custom TCP | TCP | 3000 | `10.70.2.0/24` | Allow |
-| 140 | Custom TCP | TCP | 3002 | `10.70.1.0/24` | Allow |
-| 150 | Custom TCP | TCP | 3002 | `10.70.2.0/24` | Allow |
-| 160 | Custom TCP | TCP | 3515 | `10.70.1.0/24` | Allow |
-| 170 | Custom TCP | TCP | 3515 | `10.70.2.0/24` | Allow |
-| 180 | SSH | TCP | 22 | `10.70.0.0/16` | Allow |
-| 190 | SSH | TCP | 22 | `10.90.0.0/16` | Allow |
-| 200 | SSH | TCP | 22 | `10.100.0.0/16` | Allow |
-| 210 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| * | All | All | All | `0.0.0.0/0` | Deny |
+#### 1. Access Nexus UI
+```bash
+# Get Nexus URL
+kubectl get svc nexus-ha
 
-#### Outbound Rules
+# Open in browser
+http://<NEXUS_URL>:8081
+```
 
-| Rule No | Type | Protocol | Port | Destination | Allow/Deny |
-|---------|------|----------|------|-------------|------------|
-| 100 | HTTPS | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | HTTP | TCP | 80 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 587 | `0.0.0.0/0` | Allow |
-| 130 | Custom TCP | TCP | 27017 | `192.168.248.0/21` | Allow |
-| 140 | HTTPS | TCP | 443 | `10.70.0.0/16` | Allow |
-| 150 | DNS (TCP) | TCP | 53 | `10.70.0.2/32` | Allow |
-| 160 | DNS (UDP) | UDP | 53 | `10.70.0.2/32` | Allow |
-| 170 | SSH | TCP | 22 | `20.207.73.82/32` | Allow |
-| 180 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 190 | SSH | TCP | 22 | `10.70.11.0/24` | Allow |
-| 200 | SSH | TCP | 22 | `10.70.12.0/24` | Allow |
-| * | All | All | All | `0.0.0.0/0` | Deny |
+#### 2. Initial Login
 
----
+- **Username:** `admin`
+- **Password:** Found in `/nexus-data/admin.password`
+```bash
+# Get initial password (if using Kubernetes)
+kubectl exec -it <nexus-pod> -- cat /nexus-data/admin.password
+```
 
-### uat-biddEasy-public-nacl
+**Important:** Change default password immediately after first login
 
-#### Inbound Rules
+#### 3. Security Configuration
 
-| Rule No | Type | Protocol | Port | Source | Allow/Deny |
-|---------|------|----------|------|--------|------------|
-| 100 | HTTPS | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 120 | SSH | TCP | 22 | `0.0.0.0/0` | Allow |
-| * | All | All | All | `0.0.0.0/0` | Deny |
+**Recommended Settings:**
 
-#### Outbound Rules
+1. **Anonymous Access** (for learning/development only)
+   - Settings → Security → Anonymous Access → Enable
 
-| Rule Number | Type        | Protocol | Port         | Destination     | Allow / Deny |
-|------------|-------------|----------|--------------|-----------------|--------------|
-| 100        | HTTPS (443) | TCP      | 443          | 0.0.0.0/0       | Allow |
-| 110        | Custom TCP  | TCP      | 3000         | 10.70.11.0/24   | Allow |
-| 120        | Custom TCP  | TCP      | 3000         | 10.70.12.0/24   | Allow |
-| 130        | Custom TCP  | TCP      | 3002         | 10.70.11.0/24   | Allow |
-| 140        | Custom TCP  | TCP      | 3002         | 10.70.12.0/24   | Allow |
-| 150        | Custom TCP  | TCP      | 3515         | 10.70.11.0/24   | Allow |
-| 160        | Custom TCP  | TCP      | 3515         | 10.70.12.0/24   | Allow |
-| 170        | Custom TCP  | TCP      | 1024–65535   | 0.0.0.0/0       | Allow |
-| 180        | SSH (22)    | TCP      | 22           | 10.70.11.0/24   | Allow |
-| 190        | SSH (22)    | TCP      | 22           | 10.70.12.0/24   | Allow |
-| *         | All traffic | All      | All          | 0.0.0.0/0       | Deny |
----
+2. **Docker Authentication** (Critical)
+   - Settings → Security → Realms
+   - Move **Docker Bearer Token Realm** to *Active* list
 
-### Staging Environment
+3. **User Management**
+   - Create role-based access
+   - Follow principle of least privilege
 
-| Name | VPC ID |
-|------|--------|
-| `staging-biddEasy-default-nacl` | `vpc-01aa775625bdbc866` |
-| `staging-biddEasy-private-nacl` | `vpc-01aa775625bdbc866` |
-| `staging-biddEasy-public-nacl` | `vpc-01aa775625bdbc866` |
+### Repository Creation
 
----
+#### A) npm Repositories (Node.js)
 
-### staging-biddEasy-private-nacl
+##### 1. npm-proxy (Proxy Repository)
+```
+Settings → Repositories → Create repository → npm (proxy)
+```
 
-#### Inbound Rules
+**Configuration:**
+- **Name:** `npm-proxy`
+- **Remote storage:** `https://registry.npmjs.org/`
+- **Blob store:** `default`
 
-| Rule No | Type | Protocol | Port | Source | Allow/Deny |
-|---------|------|----------|------|--------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | HTTP (80) | TCP | 80 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 3000 | `10.80.1.0/24` | Allow |
-| 130 | Custom TCP | TCP | 3000 | `10.80.2.0/24` | Allow |
-| 140 | Custom TCP | TCP | 3515 | `10.80.1.0/24` | Allow |
-| 150 | Custom TCP | TCP | 3515 | `10.80.1.0/24` | Allow |
-| 160 | SSH (22) | TCP | 22 | `10.80.0.0/16` | Allow |
-| 170 | SSH (22) | TCP | 22 | `10.90.0.0/16` | Allow |
-| 180 | SSH (22) | TCP | 22 | `10.100.0.0/16` | Allow |
-| 190 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+##### 2. npm-hosted (Hosted Repository)
+```
+Settings → Repositories → Create repository → npm (hosted)
+```
 
-#### Outbound Rules
+**Configuration:**
+- **Name:** `npm-hosted`
+- **Blob store:** `default`
+- **Deployment policy:** Allow redeploy (for development)
 
-| Rule No | Type | Protocol | Port | Destination | Allow/Deny |
-|---------|------|----------|------|-------------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | HTTP (80) | TCP | 80 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 587 | `0.0.0.0/0` | Allow |
-| 130 | Custom TCP | TCP | 27017 | `192.168.248.0/21` | Allow |
-| 140 | HTTPS (443) | TCP | 443 | `10.80.0.0/16` | Allow |
-| 150 | DNS (TCP) (53) | TCP | 53 | `10.80.0.2/32` | Allow |
-| 160 | DNS (UDP) (53) | UDP | 53 | `10.80.0.2/32` | Allow |
-| 170 | SSH (22) | TCP | 22 | `20.207.73.82/32` | Allow |
-| 180 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 190 | SSH (22) | TCP | 22 | `10.80.11.0/24` | Allow |
-| 200 | SSH (22) | TCP | 22 | `10.80.12.0/24` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+##### 3. npm-group (Group Repository)
+```
+Settings → Repositories → Create repository → npm (group)
+```
+
+**Configuration:**
+- **Name:** `npm-group`
+- **Members:** `npm-hosted`, `npm-proxy`
+- **Blob store:** `default`
+
+**Developer Configuration:**
+```bash
+# Set npm registry
+npm config set registry http://nexus.example.com/repository/npm-group/
+
+# Verify
+npm config get registry
+```
 
 ---
 
-### staging-biddEasy-public-nacl
+#### B) Docker Repositories
 
-#### Inbound Rules
+##### 1. docker-proxy (Proxy Repository)
+```
+Settings → Repositories → Create repository → docker (proxy)
+```
 
-| Rule No | Type | Protocol | Port | Source | Allow/Deny |
-|---------|------|----------|------|--------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 120 | SSH (22) | TCP | 22 | `0.0.0.0/0` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+**Configuration:**
+- **Name:** `docker-proxy`
+- **Remote storage:** `https://registry-1.docker.io`
+- **Docker Index:** Use Docker Hub
+- **HTTP connector:** Enable (choose port or path-based)
 
-#### Outbound Rules
+**Routing Options:**
+- **Path-based:** `/repository/docker-proxy/` (recommended for Kubernetes)
+- **Port-based:** Custom port (requires additional exposure)
 
-| Rule No | Type | Protocol | Port | Destination | Allow/Deny |
-|---------|------|----------|------|-------------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | Custom TCP | TCP | 3000 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 3000 | `0.0.0.0/0` | Allow |
-| 130 | Custom TCP | TCP | 3515 | `0.0.0.0/0` | Allow |
-| 140 | Custom TCP | TCP | 3515 | `0.0.0.0/0` | Allow |
-| 150 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 160 | SSH (22) | TCP | 22 | `0.0.0.0/0` | Allow |
-| 170 | SSH (22) | TCP | 22 | `0.0.0.0/0` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+##### 2. docker-hosted (Hosted Repository)
+```
+Settings → Repositories → Create repository → docker (hosted)
+```
 
----
+**Configuration:**
+- **Name:** `docker-hosted`
+- **HTTP connector:** Enable
+- **Blob store:** `default`
 
-### Production Environment
+##### 3. docker-group (Group Repository)
+```
+Settings → Repositories → Create repository → docker (group)
+```
 
-| Name | VPC ID |
-|------|--------|
-| `prod-biddEasy-default-nacl` | `vpc-0ba146c7ffff6ddf4` |
-| `prod-biddEasy-private-nacl` | `vpc-0ba146c7ffff6ddf4` |
-| `prod-biddEasy-public-nacl` | `vpc-0ba146c7ffff6ddf4` |
+**Configuration:**
+- **Name:** `docker-group`
+- **Members:** `docker-hosted`, `docker-proxy`
+- **HTTP connector:** Enable
 
----
+**Docker Configuration:**
+```bash
+# Login to Nexus Docker registry
+docker login nexus.example.com:8082
 
-### prod-biddEasy-private-nacl
+# Pull through Nexus
+docker pull nexus.example.com:8082/nginx:latest
 
-#### Inbound Rules
+# Tag and push to hosted
+docker tag myapp:latest nexus.example.com:8082/myapp:latest
+docker push nexus.example.com:8082/myapp:latest
+```
 
-| Rule No | Type | Protocol | Port | Source | Allow/Deny |
-|---------|------|----------|------|--------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | HTTP (80) | TCP | 80 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 3000 | `0.0.0.0/0` | Allow |
-| 130 | Custom TCP | TCP | 3000 | `0.0.0.0/0` | Allow |
-| 140 | Custom TCP | TCP | 3002 | `0.0.0.0/0` | Allow |
-| 150 | Custom TCP | TCP | 3002 | `0.0.0.0/0` | Allow |
-| 160 | Custom TCP | TCP | 3515 | `0.0.0.0/0` | Allow |
-| 170 | Custom TCP | TCP | 3515 | `0.0.0.0/0` | Allow |
-| 180 | SSH (22) | TCP | 22 | `10.90.0.0/16` | Allow |
-| 190 | SSH (22) | TCP | 22 | `10.100.0.0/16` | Allow |
-| 200 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 210 | Custom TCP | TCP | 6379 | `10.90.11.0/24` | Allow |
-| 220 | Custom TCP | TCP | 6379 | `10.90.12.0/24` | Allow |
-| 230 | Custom TCP | TCP | 16379 | `10.90.11.0/24` | Allow |
-| 240 | Custom TCP | TCP | 16379 | `10.90.12.0/24` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
-
-#### Outbound Rules
-
-| Rule No | Type | Protocol | Port | Destination | Allow/Deny |
-|---------|------|----------|------|-------------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | HTTP (80) | TCP | 80 | `0.0.0.0/0` | Allow |
-| 120 | Custom TCP | TCP | 587 | `0.0.0.0/0` | Allow |
-| 130 | Custom TCP | TCP | 27017 | `192.168.248.0/21` | Allow |
-| 140 | HTTPS (443) | TCP | 443 | `10.90.0.0/16` | Allow |
-| 150 | DNS (TCP) (53) | TCP | 53 | `10.90.0.0/16` | Allow |
-| 160 | DNS (UDP) (53) | UDP | 53 | `10.90.0.0/16` | Allow |
-| 170 | SSH (22) | TCP | 22 | `20.207.73.82/32` | Allow |
-| 180 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 190 | SSH (22) | TCP | 22 | `10.90.11.0/24` | Allow |
-| 200 | SSH (22) | TCP | 22 | `10.90.12.0/24` | Allow |
-| 210 | Custom TCP | TCP | 6379 | `10.90.11.0/24` | Allow |
-| 220 | Custom TCP | TCP | 6379 | `10.90.12.0/24` | Allow |
-| 230 | Custom TCP | TCP | 16379 | `10.90.11.0/24` | Allow |
-| 240 | Custom TCP | TCP | 16379 | `10.90.12.0/24` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+**Important Note:**
+- If using port-based Docker connectors, expose those ports from Nexus
+- If Nexus runs behind Kubernetes Ingress, use path-based routing (no extra ports needed)
 
 ---
 
-### prod-biddEasy-public-nacl
+#### C) Ubuntu APT Repositories
 
-#### Inbound Rules
+##### 1. ubuntu-apt-proxy (Proxy Repository)
+```
+Settings → Repositories → Create repository → apt (proxy)
+```
 
-| Rule No | Type | Protocol | Port | Source | Allow/Deny |
-|---------|------|----------|------|--------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 120 | SSH (22) | TCP | 22 | `0.0.0.0/0` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+**Configuration:**
+- **Name:** `ubuntu-apt-proxy`
+- **Remote storage:** `http://archive.ubuntu.com/ubuntu`
+- **Distribution:** `jammy` (or your Ubuntu version)
+- **Blob store:** `default`
 
-#### Outbound Rules
+##### 2. apt-hosted (Optional - Hosted Repository)
+```
+Settings → Repositories → Create repository → apt (hosted)
+```
 
-| Rule No | Type | Protocol | Port | Destination | Allow/Deny |
-|---------|------|----------|------|-------------|------------|
-| 100 | HTTPS (443) | TCP | 443 | `0.0.0.0/0` | Allow |
-| 110 | Custom TCP | TCP | 3000 | `10.90.11.0/24` | Allow |
-| 120 | Custom TCP | TCP | 3000 | `10.90.12.0/24` | Allow |
-| 130 | Custom TCP | TCP | 3002 | `10.90.11.0/24` | Allow |
-| 140 | Custom TCP | TCP | 3002 | `10.90.12.0/24` | Allow |
-| 150 | Custom TCP | TCP | 3515 | `10.90.11.0/24` | Allow |
-| 160 | Custom TCP | TCP | 3515 | `10.90.12.0/24` | Allow |
-| 170 | Custom TCP | TCP | 1024-65535 | `0.0.0.0/0` | Allow |
-| 180 | SSH (22) | TCP | 22 | `10.90.11.0/24` | Allow |
-| 190 | SSH (22) | TCP | 22 | `10.90.12.0/24` | Allow |
-| 200 | HTTP (80) | TCP | 80 | `10.90.11.0/24` | Allow |
-| 210 | HTTP (80) | TCP | 80 | `10.90.12.0/24` | Allow |
-| * | All traffic | All | All | `0.0.0.0/0` | Deny |
+**Configuration:**
+- **Name:** `apt-hosted`
+- **Distribution:** `jammy`
+- **Blob store:** `default`
 
----
+**Use Case:** Host internal .deb packages
 
-## VPC Peering Connections
+##### 3. apt-group (Optional - Group Repository)
+```
+Settings → Repositories → Create repository → apt (group)
+```
 
-VPC Peering is a networking connection between two VPCs that allows them to communicate privately using private IP addresses. It enables secure data transfer between VPCs without using the internet, VPN, or NAT.
+**Configuration:**
+- **Name:** `apt-group`
+- **Members:** `apt-hosted`, `ubuntu-apt-proxy`
 
-### UAT Environment
+**Ubuntu Configuration:**
+```bash
+# Add Nexus APT source
+echo "deb http://nexus.example.com/repository/ubuntu-apt-proxy/ jammy main restricted universe multiverse" | \
+  sudo tee /etc/apt/sources.list.d/nexus.list
 
-| Name | Peering ID | Requester | Accepter | Requester CIDR | Accepter CIDR |
-|------|------------|-----------|----------|----------------|---------------|
-| `biddprod-to-bidduat` | `pcx-0bfb406f33d3f9d39` | `vpc-07cd70e1627796750` | `vpc-0b1f4a3ecc95086e2` | `10.100.0.0/16` | `10.70.0.0/16` |
-| `uat-bidd-vpc-to-atlas-mongodb-uat-cluster` | `pcx-0f9c6969527912b03` | `vpc-0c15c903bb07b2372` | `vpc-0b1f4a3ecc95086e2` | `192.168.248.0/21` | `10.70.0.0/16` |
-| `icm-db-nat-to-bidd-uat-vpc` | `pcx-0761b6447a5af5541` | `vpc-30b82559` | `vpc-0b1f4a3ecc95086e2` | `10.0.0.0/16` | `10.70.0.0/16` |
+# Update package list
+sudo apt update
 
----
-
-## Route53
-
-Amazon Route 53 is used as the central DNS service for the Biddeasy platform. It manages all public domain records and routes user traffic to CloudFront, ALBs, and other AWS services.
-
-### Hosted Zone Details
-
-| Item | Value |
-|------|-------|
-| **Hosted Zone Name** | `biddeasy.com` |
-| **Type** | Public Hosted Zone |
-| **Hosted Zone ID** | `Z040560417E3CEE47EV20` |
-| **Total Records** | 52 |
-| **Managed By** | AWS Route 53 |
-
-This hosted zone is the authoritative DNS for all Biddeasy environments such as Prod, UAT, Staging, India-specific apps, Admin portals, APIs, and static websites.
-
-### UAT-Specific DNS Records
-
-#### uat.biddeasy.com
-
-| Attribute | Value |
-|-----------|-------|
-| **Record Type** | A (Alias) |
-| **Target** | CloudFront |
-| **CloudFront Domain** | `d1c7rlm04vujut.cloudfront.net` |
-| **Purpose** | Main UAT frontend |
-
-**User Access Flow:**
-
-`uat.biddeasy.com` → Route53 routes traffic to CloudFront → CloudFront forwards requests to ALB for API and S3 static sites for prelogin and postlogin.
+# Install packages through Nexus
+sudo apt install <package-name>
+```
 
 ---
 
-## AWS Certificate Manager (ACM)
+## Best Practices
 
-AWS Certificate Manager (ACM) is used to manage SSL/TLS certificates for the Biddeasy platform, enabling HTTPS (secure communication) for all public-facing applications and APIs.
+### Repository Organization
 
-Biddeasy is using one wildcard certificate to secure all subdomains under `biddeasy.com`.
+1. **Use Group Repositories** for developer/CI access
+2. **Separate Hosted repos** for different teams/projects
+3. **Configure Proxy repos** for each external registry
+4. **Regular cleanup** of old artifacts
 
-### Certificate Details
+### Security Recommendations
 
-| Attribute | Value |
-|-----------|-------|
-| **Certificate ID** | `65933fc4-4b16-4c5c-90a9-a39f3baa7a8d` |
-| **ARN** | `arn:aws:acm:ap-south-1:851725248992:certificate/65933fc4-4b16-4c5c-90a9-a39f3baa7a8d` |
-| **Domain Name** | `*.biddeasy.com` |
-| **Type** | Amazon Issued |
-| **Status** | Issued |
-| **Key Algorithm** | RSA 2048 |
-| **Signature Algorithm** | SHA-256 with RSA |
-| **Renewal Eligibility** | Eligible |
-| **In Use** | Yes |
+1. **Disable anonymous access** in production
+2. **Enable LDAP/SSO** integration
+3. **Use Docker Bearer Token Realm** for Docker authentication
+4. **Regular security scans** with integrated tools
+5. **Implement RBAC** (Role-Based Access Control)
 
----
+### Performance Optimization
 
-## CloudFront
+1. **Use blob stores** efficiently (S3 for cloud)
+2. **Configure cleanup policies** to remove old artifacts
+3. **Monitor disk usage** and set quotas
+4. **Enable aggressive caching** for frequently used dependencies
 
-Amazon CloudFront is used as the primary content delivery and entry layer for the Biddeasy platform.
+### Monitoring & Maintenance
 
-It sits in front of:
-- Static websites hosted on S3
-- Dynamic backend APIs hosted behind Application Load Balancers (ALB)
-
-### UAT Environment
-
-| Distribution ID | Domain |
-|-----------------|--------|
-| `E2KZCJ8FDJGAEJ` | `uat.biddeasy.com` |
-| `E25E28HZBXY6BS` | `uatbonds.biddeasy.com` |
-| `E2I3UFIXUYD3T2` | `uatlearn.biddeasy.com` |
-| `EKTYH98S9H6JW` | `adminuat.biddeasy.com` |
-
-### Staging Environment
-
-| Distribution ID | Domain |
-|-----------------|--------|
-| `E3QFC7XE1FHX6K` | `india.biddeasy.com` |
-| `E32VHFUFBBBLAY` | `indiabonds.biddeasy.com` |
-| `E2F788R35RPUKJ` | `indiaadmin.biddeasy.com` |
-| `E33TGKD4W8CV6` | `indialearn.biddeasy.com` |
-
-### Production Environment
-
-| Distribution ID | Domain |
-|-----------------|--------|
-| `E1K8UQQSESDI1N` | `www.biddeasy.com` |
-| `E1U0QPF8VYZ1EN` | `biddeasy.com` |
-| `E7ZJAS2B8RUZF` | `assets.biddeasy.com` |
-| `EDSJ251MAIEIU` | `admin.biddeasy.com` |
-| `E2UHCF9487VOYA` | `bonds.biddeasy.com` |
-| `E3RL25CLD3BB45` | `learn.biddeasy.com` |
-| `E1QYCUCJUDH84J` | `marketing.biddeasy.com` |
+1. **Set up health checks** in Kubernetes
+2. **Monitor blob store** size and growth
+3. **Regular database backups** (for PRO with PostgreSQL)
+4. **Track repository usage** metrics
+5. **Review audit logs** periodically
 
 ---
 
-## Deployment Steps
+## Troubleshooting
 
-For detailed deployment procedures, refer to the deployment documentation:
+### Common Issues
 
-[Biddeasy Deployment Guide](https://docs.google.com/document/d/1mI7rtrBRfdnXjAsPhYxab5b_PSiQaJKeoLYakEdSiVY/edit?usp=sharing)
+#### Cannot Pull Docker Images
+
+**Symptoms:**
+- `unauthorized: access to the requested resource is not authorized`
+
+**Solution:**
+1. Verify Docker Bearer Token Realm is active
+2. Check repository permissions
+3. Verify `docker login` credentials
+4. Ensure correct registry URL
+
+#### Slow Artifact Downloads
+
+**Symptoms:**
+- Slow pulls from Nexus compared to internet
+
+**Solution:**
+1. Check network connectivity between Jenkins/client and Nexus
+2. Verify blob store performance (S3 vs local)
+3. Check Nexus resource limits (CPU/Memory)
+4. Review concurrent connection limits
+
+#### Repository Not Caching
+
+**Symptoms:**
+- Every request goes to upstream registry
+
+**Solution:**
+1. Verify proxy repository remote URL
+2. Check Maximum component age in proxy settings
+3. Review negative cache settings
+4. Clear repository cache and retry
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** January 2026  
-**Maintained By:** Infrastructure Team
+## Conclusion
+
+Nexus Repository Manager transforms your CI/CD pipeline by:
+
+- ✅ **Reducing build times** by 30-70%
+- ✅ **Eliminating internet dependency** for builds
+- ✅ **Securing supply chain** with vulnerability scanning
+- ✅ **Enabling artifact versioning** and easy rollbacks
+- ✅ **Providing centralized control** over all dependencies
+- ✅ **Improving team productivity** with faster, reliable builds
+
+### Next Steps
+
+1. Deploy Nexus (OSS for small teams, PRO for enterprise HA)
+2. Configure repositories for your technology stack
+3. Integrate with Jenkins pipelines
+4. Train team on Nexus usage
+5. Implement security scanning tools
+6. Monitor and optimize performance
 
 ---
+
+## Additional Resources
+
+- [Nexus Repository Manager Documentation](https://help.sonatype.com/repomanager3)
+- [Helm Chart Repository](https://github.com/sonatype/helm3-charts)
+- [Docker Configuration Guide](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry)
+- [npm Configuration Guide](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/npm-registry)
+
+---
+ 
+**Maintained By:** DevOps Team
